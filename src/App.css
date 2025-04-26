@@ -2,10 +2,24 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'RobotoSlab';
+  src: url('./assets/fonts/RobotoSlab.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
+
+
+body {
+  background-color: #000d33;
+opacity: 1;
+background-image:
+  linear-gradient(#001a66 1px, transparent 1px),
+  linear-gradient(to right, #001a66 1px, #000d33 1px);
+background-size: 50px 50px;
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

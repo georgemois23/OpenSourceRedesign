@@ -19,7 +19,8 @@ function App() {
         <Route path="/" element={<Header />}>
         <Route index element={<HomePage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/*" element={<Error404 />} />
+        <Route path="/*" element={<Error404/>} />
+
         </Route>
         
       </Routes>

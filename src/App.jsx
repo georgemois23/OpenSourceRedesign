@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Sponsors from "./pages/Sponsors";
 import Header from "./components/Header";
 import Error404 from "./pages/Error404";
+import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +17,7 @@ function App() {
   backgroundSize="50px 50px"
   overflow={"auto"}
   >
+      <ScrollToTop />
         <Routes>
         <Route path="/" element={<Header />}>
         <Route index element={<HomePage />} />

@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Routes, Route } from "react-router-dom";
 import { Box, Heading, Button } from "@chakra-ui/react";
 import HomePage from "./pages/HomePage";
-import Register from "./pages/Register.jsx";
+import Register from "./pages/Register";
+import Sponsors from "./pages/Sponsors";
 import Header from "./components/Header";
 import Error404 from "./pages/Error404";
 import './App.css';
@@ -19,7 +20,9 @@ function App() {
         <Route path="/" element={<Header />}>
         <Route index element={<HomePage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/*" element={<Error404/>} />
+        <Route path="/sponsors" element={<Sponsors />} />
+        <Route path="/*" element={<Sponsors/>} />
+        <Route path="/404" element={<Error404/>} />
 
         </Route>
         

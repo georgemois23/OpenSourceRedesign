@@ -114,7 +114,7 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 myUoM
                             </Text>
                         </Link>
-                        <Link to="/resources" onClick={onClose}>
+                        <Link to="/readme" onClick={onClose}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -127,7 +127,7 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 borderBottom="2px solid transparent"
                                 color={isActive("/resources") ? "brand.dark.secondary" : "brand.dark.text"} 
                             >
-                                ΠΗΓΕΣ
+                                README
                             </Text>
                         </Link>
                         <Link to="/contact" onClick={onClose}>

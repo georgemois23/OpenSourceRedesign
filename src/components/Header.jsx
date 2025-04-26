@@ -103,7 +103,7 @@ export default function Header() {
               myUoM
             </Text>
           </Link>
-          <Link to="/resources">
+          <Link to="/readme">
             <Text fontSize="md" _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}padding="4px 0">
               README
             </Text>

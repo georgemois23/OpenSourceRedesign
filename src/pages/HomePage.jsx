@@ -86,12 +86,13 @@ export default function HomePage() {
   opacity={isVisible ? 0 : 1} 
   pointerEvents={isVisible ? 'none' : 'auto'} 
   userSelect={'none'}
+  mt={{ base: '10vw', lg: 0 }}
 >
   Μάθε περισσότερα για την κοινότητα μας <ArrowDownIcon />
 </Text>
 
-    <Box  ref={aboutSectionRef} mt={{ base: '23vw', lg: '5vh' }}></Box>
-    <Flex  direction='column' mt={{ base: '24vw', lg: '6vh' }}  mb={10} marginInline={'auto'} gap={4}   width={{base: '90vw', lg:'70vw'}}  padding={4} borderRadius={8} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+    <Box  ref={aboutSectionRef} mt={{ base: '20vw', lg: '5vh' }}></Box>
+    <Flex  direction='column' mt={{ base: '23vw', lg: '6vh' }}  mb={10} marginInline={'auto'} gap={4}   width={{base: '90vw', lg:'70vw'}}  padding={4} borderRadius={8} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
   border="1px solid rgba(255, 255, 255, 0.05)">
       <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center">Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
     <Box  as='p' textAlign="left" lineHeight="0.9"  fontFamily="Arial" px={{ sm: 5, lg: 20 }}  width={{base: '90vw', lg:'70vw'}}  marginInline={'auto'} > 

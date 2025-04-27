@@ -8,12 +8,8 @@ const NotReady = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const allowedPaths = [
-          "/sponsors",
-          "/myuom",
           "/blog",
           "/readme",
-          "/resources",
-          "/contact"
         ];
     
         if (!allowedPaths.includes(location.pathname)) {

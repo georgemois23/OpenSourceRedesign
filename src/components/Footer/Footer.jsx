@@ -79,7 +79,7 @@ const Footer = () => {
           <Flex direction="column" gap={2} pt={2} >
             <Flex align={'center'} gap={1}>
               <FaMapMarkerAlt />
-              <Text onClick={() => window.open('https://www.google.gr/maps/place/University+of+Macedonia/@40.6250129,22.9579198,17z/data=!4m5!3m4!1s0x14a838febd9553d7:0xdafb4206c7c961c9!8m2!3d40.6250129!4d22.9601085', '_blank')} cursor={'pointer'} fontSize="sm" color="gray.400" lineHeight="normal" whiteSpace="nowrap" >
+              <Text onClick={() => window.open('https://www.google.gr/maps/place/University+of+Macedonia/@40.6250129,22.9579198,17z/data=!4m5!3m4!1s0x14a838febd9553d7:0xdafb4206c7c961c9!8m2!3d40.6250129!4d22.9601085', '_blank')} cursor={'pointer'} fontSize="sm" color="gray.400" lineHeight="normal" whiteSpace="pretty" >
                 Πανεπιστήμιο Μακεδονίας, Αίθουσα 10
               </Text>
             </Flex>

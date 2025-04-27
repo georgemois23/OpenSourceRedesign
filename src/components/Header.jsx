@@ -45,7 +45,7 @@ export default function Header() {
         <Flex
           gap={6}
           align="center"
-          flex="1"
+          flex="1" 
           justify="center"
           display={{ base: "none", lg: "flex" }}
         >

@@ -57,7 +57,7 @@ export function MenuDrawer({ isOpen, onClose }) {
                         height="80%"  // Make sure the content takes up the full height
                         fontWeight="800"
                     >
-                        <Link to="/" onClick={onClose}>
+                        <Text onClick={()=> {navigate("/"); onClose(); }}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -68,8 +68,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                             >
                                 ΑΡΧΙΚΗ
                             </Text>
-                        </Link>
-                        <Link to="/blog" onClick={onClose}>
+                        </Text>
+                        <Text onClick={()=> {navigate("/blog"); onClose(); }}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -85,8 +85,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                             >
                                 <ToolTipUnderConstruction where={'BLOG'} />
                             </Text>
-                        </Link>
-                        <Link to="/sponsors" onClick={onClose}>
+                        </Text>
+                        <Text onClick={()=> {navigate("/sponsors"); onClose(); }}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -97,8 +97,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                             >
                                 ΧΟΡΗΓΟΙ
                             </Text>
-                        </Link>
-                        <Link to="/register" onClick={onClose}>
+                        </Text>
+                        <Text onClick={()=> {navigate("/register"); onClose(); }}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -113,8 +113,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                             >
                                 ΕΓΓΡΑΦΗ
                             </Text>
-                        </Link>
-                        <Link to="https://my.uom.gr/"  target="_blank">
+                        </Text>
+                        <Text onClick={() => {window.open('https://my.uom.gr/','_blank'); onclose();}}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -128,8 +128,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                             >
                                 myUoM
                             </Text>
-                        </Link>
-                        <Link to="/readme" onClick={onClose}>
+                        </Text>
+                        <Text onClick={()=> {navigate("/readme"); onClose(); }}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -145,8 +145,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 {/* README */}
                                 <ToolTipUnderConstruction where={'README'} />
                             </Text>
-                        </Link>
-                        <Link to="/contact" onClick={onClose}>
+                        </Text>
+                        <Text onClick={()=> {navigate("/contact"); onClose(); }}>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -161,7 +161,7 @@ export function MenuDrawer({ isOpen, onClose }) {
                             >
                                 ΕΠΙΚΟΙΝΩΝΙΑ
                             </Text>
-                        </Link>
+                        </Text>
                         <Text position={'absolute'} bottom={"10vh"} fontWeight={200}> <InfoIcon pb={'0.5'} fontSize={'18px'} /> Σελίδα υπο κατασκευή
                         </Text>
                     </Box>

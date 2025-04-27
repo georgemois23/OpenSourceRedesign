@@ -74,16 +74,17 @@ export default function HomePage() {
 
     </Flex>
     <Flex direction='column'  justify="center" align="center" gap={{ base: 1, lg: 0.5 }} mt={{ base: '7vw', lg: '6vh' }} mb={10}>
-  {/* <Text fontSize={{ base: 'lg', lg: '2xl' }}  textAlign="center" >
-    Δεν είσαι σίγουρος; </Text> */}
+  
+  
+  
   <Text
   cursor="pointer"
   onClick={scrollToRef}
   fontSize={{ base: 'md', lg: 'xl' }}
   textAlign="center"
   sx={{ transition: "all 0.3s ease-in-out" }}
-  opacity={isVisible ? 0 : 1} // 👈 instead of conditional rendering
-  pointerEvents={isVisible ? 'none' : 'auto'} // 👈 so it doesn't click when invisible
+  opacity={isVisible ? 0 : 1} 
+  pointerEvents={isVisible ? 'none' : 'auto'} 
 >
   Μάθε περισσότερα για την κοινότητα μας <ArrowDownIcon />
 </Text>

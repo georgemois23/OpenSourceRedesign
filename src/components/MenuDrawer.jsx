@@ -11,11 +11,17 @@ import {
     useColorModeValue,
     Button
 } from "@chakra-ui/react";
-import { location } from "react-router-dom";
+import { location,useNavigate } from "react-router-dom";
+
 
 export function MenuDrawer({ isOpen, onClose }) {
+    const navigate = useNavigate();
     const location = useLocation();
     const isActive = (path) => location.pathname === path;
+    const goToHomePage = () => {
+        navigate("/");
+        onClose();
+    };
     return (
         <Drawer onClose={onClose} isOpen={isOpen} size={"full"} >
             <DrawerOverlay />
@@ -27,7 +33,7 @@ export function MenuDrawer({ isOpen, onClose }) {
                 minHeight: '100vh',
               }}>
                 <DrawerCloseButton sx={{ zIndex: 9999 }} />
-                <DrawerHeader fontWeight={800} opacity={1}  textAlign={"center"}>
+                <DrawerHeader fontWeight={800} opacity={1}  textAlign={"center"} onClick={goToHomePage}>
 
                     OpenSource UoM
                 </DrawerHeader>
@@ -98,7 +104,7 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 ΕΓΓΡΑΦΗ
                             </Text>
                         </Link>
-                        <Link to="/myuom" onClick={onClose}>
+                        <Link to="https://my.uom.gr/"  isExternal>
                             <Text
                                 width="full"
                                 fontSize="lg"
@@ -109,7 +115,6 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 }}
                                 paddingY={3}
                                 borderBottom="2px solid transparent"
-                                color={isActive("/myuom") ? "brand.dark.secondary" : "brand.dark.text"}
                             >
                                 myUoM
                             </Text>

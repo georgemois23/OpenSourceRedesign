@@ -4,7 +4,7 @@ import { Box, Flex, Heading, Image, IconButton, useDisclosure, Text } from "@cha
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { MenuDrawer } from "./MenuDrawer";  
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -75,6 +75,7 @@ export default function Header() {
           onClick={goToHomePage}
         >
           <Image
+          draggable={false}
             src={'https://avatars.githubusercontent.com/u/109147894?s=200&v=4'}
             w={{ base: "40px", md: "60px" }}
           />
@@ -98,7 +99,7 @@ export default function Header() {
           display={{ base: "none", lg: "flex" }}
           
         >
-          <Link to="/myuom">
+          <Link to="https://my.uom.gr/"  isExternal>
             <Text fontSize="md" _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }} padding="4px 0">
               myUoM
             </Text>

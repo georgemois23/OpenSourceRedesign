@@ -5,6 +5,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { MenuDrawer } from "./MenuDrawer";  
 import { Link } from "react-router-dom";
 import Footer from "./Footer/Footer";
+import { ToolTipUnderConstruction } from "./ToolTipUnderConstruction";
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,21 +49,22 @@ export default function Header() {
           justify="center"
           display={{ base: "none", lg: "flex" }}
         >
-          <Link to="/blog">
-            <Text fontSize="md" _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}>
-              BLOG
+          <Text onClick={()=> navigate("/blog")} >
+            <Text fontSize="md" color={isActive("/blog") ? "brand.dark.secondary" : "brand.dark.text"} _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}>
+              {/* BLOG */}
+              <ToolTipUnderConstruction where={'BLOG'} />
             </Text>
-          </Link>
-          <Link to="/sponsors">
+          </Text>
+          <Text onClick={()=> navigate("/sponsors")} >
             <Text fontSize="md" color={isActive("/sponsors") ? "brand.dark.secondary" : "brand.dark.text"}  _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}>
               ΧΟΡΗΓΟΙ
             </Text>
-          </Link>
-          <Link to="/register">
+          </Text>
+          <Text onClick={()=> navigate("/register")} >
             <Text fontSize="md" color={isActive("/register") ? "brand.dark.secondary" : "brand.dark.text"} _hover={{ color: "brand.dark.secondary", cursor: "pointer" , fontWeight: "600"}}>
               ΕΓΓΡΑΦΗ
             </Text>
-          </Link>
+          </Text>
         </Flex>
 
         <Flex
@@ -95,21 +97,22 @@ export default function Header() {
           display={{ base: "none", lg: "flex" }}
           
         >
-          <Link to="https://my.uom.gr/"  isExternal>
-            <Text fontSize="md" _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }} padding="4px 0">
-              myUoM
+          <Text onClick={() => window.open('https://my.uom.gr/','_blank')}>
+            <Text fontSize="md"  _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }} padding="4px 0">
+            myUoM
             </Text>
-          </Link>
-          <Link to="/readme">
-            <Text fontSize="md" _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}padding="4px 0">
-              README
+          </Text>
+          <Text onClick={()=> navigate("/readme")} >
+            <Text fontSize="md" color={isActive("/readme") ? "brand.dark.secondary" : "brand.dark.text"} _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}padding="4px 0">
+              {/* README */}
+              <ToolTipUnderConstruction where={'README'} />
             </Text>
-          </Link>
-          <Link to="/contact">
-            <Text fontSize="md" _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}padding="4px 0">
+          </Text>
+          <Text onClick={()=> navigate("/contact")} >
+            <Text fontSize="md" color={isActive("/contact") ? "brand.dark.secondary" : "brand.dark.text"} _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}padding="4px 0">
               ΕΠΙΚΟΙΝΩΝΙΑ
             </Text>
-          </Link>
+          </Text>
         </Flex>
 
         <IconButton

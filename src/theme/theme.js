@@ -11,12 +11,12 @@ const theme = extendTheme({
       light: {
         text: "#dceeff",
         primary: "#0031a1",
-        secondary: "#fb7d1e"
+        secondary: "#e76a0f"
       },
       dark: {
         text: "#dceeff",
         primary: "#000d33",
-        secondary: "#fb7d1e"
+        secondary: "#e76a0f"
       }
     },
   },
@@ -40,12 +40,18 @@ const theme = extendTheme({
     },
   },
   components: {
+    Image:{
+      baseStyle: {
+        draggable: false,
+        userSelect: "none",
+    }},
     Button: {
       baseStyle: {
+        variant:"solid",
         _hover: {
           color: "brand.dark.secondary",
           backgroundColor: "brand.dark.text",
-          transform: "scale(1.05)", // Slightly scale the button on hover
+          transform: "scale(1.05)", 
           transition: "all 0.3s ease-in-out",
         },
       },

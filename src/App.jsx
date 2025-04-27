@@ -3,7 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { Box, Heading, Button } from "@chakra-ui/react";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
+import NotReady from "./pages/NotReady";
 import Sponsors from "./pages/Sponsors";
+import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Error404 from "./pages/Error404";
 import ScrollToTop from "./components/ScrollToTop";
@@ -23,7 +25,8 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/sponsors" element={<Sponsors />} />
-        <Route path="/*" element={<Sponsors/>} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/*" element={<NotReady/>} />
         <Route path="/404" element={<Error404/>} />
 
         </Route>

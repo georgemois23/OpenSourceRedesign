@@ -12,6 +12,8 @@ import {
     Button
 } from "@chakra-ui/react";
 import { location,useNavigate } from "react-router-dom";
+import { ToolTipUnderConstruction } from "./ToolTipUnderConstruction";
+import {InfoIcon} from '@chakra-ui/icons';
 
 
 export function MenuDrawer({ isOpen, onClose }) {
@@ -26,18 +28,25 @@ export function MenuDrawer({ isOpen, onClose }) {
         <Drawer onClose={onClose} isOpen={isOpen} size={"full"} >
             <DrawerOverlay />
             <DrawerContent  
-             sx={{
-                backgroundColor: 'rgba(0, 10, 38, 0.9)', // Transparent background color
-                backdropFilter: 'blur(8px)', // Apply the blur effect
-                WebkitBackdropFilter: 'blur(15px)', // For Safari
-                minHeight: '100vh',
-              }}>
+            //  sx={{
+            //     backgroundColor: 'rgba(0, 10, 38, 0.97)', // Transparent background color
+            //     backdropFilter: 'blur(8px)', // Apply the blur effect
+            //     WebkitBackdropFilter: 'blur(15px)', // For Safari
+            //     minHeight: '100vh',
+            //   }}>
+                sx={{
+                    bg:"rgba(0, 10, 38, 0.7)",
+                 width:"100%",
+                    backdropFilter:"blur(20px)",
+                    minHeight: '100vh',
+                }}>
+
                 <DrawerCloseButton sx={{ zIndex: 9999 }} />
                 <DrawerHeader fontWeight={800} opacity={1}  textAlign={"center"} onClick={goToHomePage}>
 
                     OpenSource UoM
                 </DrawerHeader>
-                <DrawerBody>
+                <DrawerBody >
                     <Box
                         display="flex"
                         flexDirection="column"
@@ -71,9 +80,10 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 }}
                                 paddingY={3}
                                 borderBottom="2px solid transparent"
+                                marginInline={"auto"}
                                 color={isActive("/blog") ? "brand.dark.secondary" : "brand.dark.text"}
                             >
-                                BLOG
+                                <ToolTipUnderConstruction where={'BLOG'} />
                             </Text>
                         </Link>
                         <Link to="/sponsors" onClick={onClose}>
@@ -132,7 +142,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 borderBottom="2px solid transparent"
                                 color={isActive("/resources") ? "brand.dark.secondary" : "brand.dark.text"} 
                             >
-                                README
+                                {/* README */}
+                                <ToolTipUnderConstruction where={'README'} />
                             </Text>
                         </Link>
                         <Link to="/contact" onClick={onClose}>
@@ -151,6 +162,8 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 ΕΠΙΚΟΙΝΩΝΙΑ
                             </Text>
                         </Link>
+                        <Text position={'absolute'} bottom={"10vh"} fontWeight={200}> <InfoIcon pb={'0.5'} fontSize={'18px'} /> Σελίδα υπο κατασκευή
+                        </Text>
                     </Box>
                 </DrawerBody>
             </DrawerContent>

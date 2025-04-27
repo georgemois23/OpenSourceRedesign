@@ -1,10 +1,11 @@
 import React from 'react';
-import { Flex, Box, Text, Image } from '@chakra-ui/react';
+import { Flex, Box, Text, Image,useBreakpointValue} from '@chakra-ui/react';
 import { EmailIcon } from "@chakra-ui/icons";
 import { FaInstagram, FaFacebook, FaLinkedin, FaDiscord, FaMapMarkerAlt } from 'react-icons/fa';
 import SocialMediaLink from './FooterSocial';
 
 const Footer = () => {
+  const linkedInLabel = useBreakpointValue({ base: "LinkedIn", md: "company/opensourceuom" });
   return (
     <Flex
       as="footer"
@@ -28,7 +29,7 @@ const Footer = () => {
         direction={{ base: "column", md: "row" }} 
       >
         <Image
-        
+          alt='Open Source UoM Logo'
           draggable={false}
           src="https://avatars.githubusercontent.com/u/109147894?s=200&v=4"
           w={{ base: "40px", md: "60px" }}
@@ -60,7 +61,7 @@ const Footer = () => {
               <SocialMediaLink
                 icon={<FaLinkedin size="16px" />}
                 url="https://www.linkedin.com/company/opensourceuom"
-                label="LinkedIn"
+                label={linkedInLabel}
               />
               <SocialMediaLink
                 icon={<FaFacebook size="16px" />}
@@ -73,7 +74,7 @@ const Footer = () => {
 
         <Box textAlign="left" width={{ base: "100%", md: "auto" }}>
           <Text fontSize="sm" color="white" fontWeight="bold">
-            Βρείτε μας
+            ΒΡΕΙΤΕ ΜΑΣ
           </Text>
           <Flex direction="column" gap={2} pt={2}>
             <Flex align="center" gap={1}>

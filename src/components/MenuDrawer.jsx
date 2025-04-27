@@ -104,7 +104,7 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 ΕΓΓΡΑΦΗ
                             </Text>
                         </Link>
-                        <Link to="https://my.uom.gr/"  isExternal>
+                        <Link to="https://my.uom.gr/"  target="_blank">
                             <Text
                                 width="full"
                                 fontSize="lg"

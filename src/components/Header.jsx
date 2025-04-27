@@ -41,7 +41,6 @@ export default function Header() {
         height="80px"
         fontFamily="Arial"
              >
-        {/* Left Links */}
         <Flex
           gap={6}
           align="center"
@@ -66,7 +65,6 @@ export default function Header() {
           </Link>
         </Flex>
 
-        {/* Center Logo */}
         <Flex
           align="center"
           justify="center"
@@ -86,11 +84,9 @@ export default function Header() {
             ml="2"
             display={{ base: "none", md: "block" }}
           >
-            {/* OpenSource UoM */}
           </Heading>
         </Flex>
 
-        {/* Right Links */}
         <Flex
           gap={6}
           align="center"
@@ -116,7 +112,6 @@ export default function Header() {
           </Link>
         </Flex>
 
-        {/* Mobile Menu Icon */}
         <IconButton
           icon={<HamburgerIcon />}
           aria-label="Open Menu"
@@ -128,10 +123,8 @@ export default function Header() {
         />
       </Flex>
 
-      {/* Drawer for Mobile Menu */}
       <MenuDrawer isOpen={isOpen} onClose={onClose} />
 
-      {/* Content Offset */}
       <Box mt="80px">
         <Outlet />
       </Box>

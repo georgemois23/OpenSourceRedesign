@@ -16,12 +16,12 @@ const Register = () => {
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4} py={{sm:0,lg:5}}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
                     Εγγραφή στην ομάδα Open Source UoM</Text>                    
-                <Button fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} >Φόρμα Εγγραφής στην ομάδα</Button>
+                <Button fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} onClick={()=>window.open('https://forms.gle/hER2GgCSzEu96Xus8')} >Φόρμα Εγγραφής στην ομάδα</Button>
                 </Flex>
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
                 Συμμετοχή σε project της ομάδας</Text>
-                <Button fontSize={{ base: 'sm', lg: '1xl' }} >Φόρμα Συμμετοχής σε Project</Button>
+                <Button fontSize={{ base: 'sm', lg: '1xl' }} onClick={()=>window.open('https://forms.gle/QEYxctvkyJhW3GSUA')} >Φόρμα Συμμετοχής σε Project</Button>
                 </Flex>
                 </Flex>
                 {/* Add your registration form here */} 

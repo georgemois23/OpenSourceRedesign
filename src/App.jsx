@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import NotReady from "./pages/NotReady";
 import Sponsors from "./pages/Sponsors";
 import Contact from "./pages/Contact";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Error404 from "./pages/Error404";
 import ScrollToTop from "./components/ScrollToTop";
 import './App.css';

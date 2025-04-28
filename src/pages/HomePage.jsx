@@ -7,6 +7,7 @@ import { Wrap, WrapItem } from '@chakra-ui/react';
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
 
 export default function HomePage() {
+  document.title = "Αρχική - Open Source UoM";
   const navigate = useNavigate();
   const aboutSectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -55,11 +56,11 @@ export default function HomePage() {
 
 
 <Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="20vh">
-  <Text fontSize={{ sm:'4xl',base: '5xl', lg: '9xl' }}>
+  <Text fontSize={{ sm:'4xl',md: '6xl', lg: '9xl' }}>
     OPEN SOURCE
     {/* ΚΟΙΝΟΤΗΤΑ ΑΝΟΙΚΤΟΥ ΛΟΓΙΣΜΙΚΟΥ */}
   </Text>
-  <Text fontSize={{ sm:'4xl',base: '5xl', lg: '9xl' }} color="gray.600">
+  <Text fontSize={{ sm:'4xl',md: '6xl', lg: '9xl' }} color="gray.600">
     UOM COMMUNITY
     {/* ΠΑΝΕΠΙΣΤΗΜΙΟ ΜΑΚΕΔΟΝΙΑΣ */}
   </Text>
@@ -125,10 +126,10 @@ export default function HomePage() {
       
     >
       <WrapItem>
-        <Image draggable="false" src="https://opensource.uom.gr/storage/2023/08/eellak.png" alt="KDE logo" width={{ base: '630px', lg: '630px' }} height={{ base: '170px', lg: '170px' }} />
+        <Image draggable="false" src="https://opensource.uom.gr/storage/2023/08/eellak.png" alt="KDE logo" width={{ base: '550px', lg: '550px' }} height='auto' />
       </WrapItem>
       <WrapItem>
-        <Image draggable="false" src="https://opensource.uom.gr/storage/2023/07/University_of_Macedonia_logo-white-768x458-1.png" alt="KDE logo" width={{ base: '300px', lg: '300px' }} height={{ base: '179px', lg: '179px' }} />
+        <Image draggable="false" src="https://opensource.uom.gr/storage/2023/07/University_of_Macedonia_logo-white-768x458-1.png" alt="KDE logo" width={{ base: '300px', lg: '300px' }} height='auto' />
       </WrapItem>
     </Wrap>
     </Flex>

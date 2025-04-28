@@ -31,7 +31,9 @@ const Footer = () => {
         <Image
           alt='Open Source UoM Logo'
           draggable={false}
-          src="https://avatars.githubusercontent.com/u/109147894?s=200&v=4"
+          src="/logo.png"
+          loading="eager" 
+          height="auto"
           w={{ base: "40px", md: "60px" }}
         />
         

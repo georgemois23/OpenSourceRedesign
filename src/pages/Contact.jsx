@@ -4,6 +4,7 @@ import { Divider } from '@chakra-ui/react'
 import { EmailIcon } from "@chakra-ui/icons";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 const Register = () => {
+    document.title = "Επικοινωνία - Open Source UoM";
     return (
         <Flex justify="center"  pt={{ base: 10, lg: 20 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
            <Box textAlign={"center"} >

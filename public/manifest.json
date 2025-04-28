@@ -1,19 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Open Source UoM",
+  "name": "Open Source UoM - Πανεπιστήμιο Μακεδονίας",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "g4008.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+     
+      "src": "g4008.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "151x151"
     },
     {
-      "src": "logo512.png",
+      "src": "g4008.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -21,5 +22,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#000d33"
 }

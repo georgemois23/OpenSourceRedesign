@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { Box, Flex, Heading, Image, IconButton, useDisclosure, Text,Button } from "@chakra-ui/react";
 import { HamburgerIcon,ChevronDownIcon,ExternalLinkIcon } from "@chakra-ui/icons";
-import { MenuDrawer } from "./MenuDrawer";  
+import { MenuDrawer } from "../Header/MenuDrawer";  
 import { Link } from "react-router-dom";
-import Footer from "./Footer/Footer";
-import { ToolTipUnderConstruction } from "./ToolTipUnderConstruction";
+import Footer from "../Footer/Footer";
+import { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
 import {
   Menu,
   MenuButton,
@@ -16,6 +16,7 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from '@chakra-ui/react'
+
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -91,7 +92,7 @@ export default function Header() {
         >
           <Image
           draggable={false}
-            src={'https://avatars.githubusercontent.com/u/109147894?s=200&v=4'}
+            src={'/logo.png'}
             w={{ base: "40px", md: "60px" }}
           />
           <Heading

@@ -9,10 +9,11 @@ import {
     Box,
     Text,
     useColorModeValue,
-    Button
+    Button,
+    Image,
 } from "@chakra-ui/react";
 import { location,useNavigate } from "react-router-dom";
-import { ToolTipUnderConstruction } from "./ToolTipUnderConstruction";
+import { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
 import {InfoIcon,ExternalLinkIcon,ChevronDownIcon} from '@chakra-ui/icons';
 import {
     Menu,
@@ -53,8 +54,12 @@ export function MenuDrawer({ isOpen, onClose }) {
 
                 <DrawerCloseButton sx={{ zIndex: 9999 }} />
                 <DrawerHeader fontWeight={800} opacity={1}  textAlign={"center"} onClick={goToHomePage}>
-
-                    OpenSource UoM
+            <Image
+          draggable={false}
+            src={'/logo.png'}
+            w={{ base: "40px", md: "50px" }}
+            marginInline={"auto"}
+          />
                 </DrawerHeader>
                 <DrawerBody >
                     <Box

@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex,Box,Text,Button,Center } from '@chakra-ui/react';
 import { Divider } from '@chakra-ui/react'
 const Register = () => {
+    document.title = "Εγγραφή - Open Source UoM";
     return (
         <Flex justify="center"  pt={{ base: 10, lg: 20 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
            <Box textAlign={"center"} >

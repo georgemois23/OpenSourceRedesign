@@ -42,20 +42,23 @@ export default function HomePage() {
     }
   }, [isVisible]);
 
-  function scrollToRef(e) {
-    aboutSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  function scrollToRef() {
+    const yOffset = -100; // Αρνητικό σημαίνει ότι θα ανέβει πιο πάνω κατά 100px (για το ύψος του navbar)
+    const y = aboutSectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
  
     return(
-    <Flex justify="start" direction={"column"} pt={{ base: '8vh', lg: 15 }} height="fit-content" align={'center'}  >
+    <Flex justify="start"  direction={"column"} pt={{ base: '2vh', lg: 15 }} height="fit-content" align={'center'}  >
 
 
 <Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="20vh">
-  <Text fontSize={{ sm:'5xl',base: '5xl', lg: '9xl' }}>
+  <Text fontSize={{ sm:'4xl',base: '5xl', lg: '9xl' }}>
     OPEN SOURCE
     {/* ΚΟΙΝΟΤΗΤΑ ΑΝΟΙΚΤΟΥ ΛΟΓΙΣΜΙΚΟΥ */}
   </Text>
-  <Text fontSize={{ sm:'5xl',base: '5xl', lg: '9xl' }} color="gray.600">
+  <Text fontSize={{ sm:'4xl',base: '5xl', lg: '9xl' }} color="gray.600">
     UOM COMMUNITY
     {/* ΠΑΝΕΠΙΣΤΗΜΙΟ ΜΑΚΕΔΟΝΙΑΣ */}
   </Text>
@@ -87,14 +90,16 @@ export default function HomePage() {
   opacity={isVisible ? 0 : 1} 
   pointerEvents={isVisible ? 'none' : 'auto'} 
   userSelect={'none'}
-  mt={{ base: '10vw', lg: 0 }}
+  mt={{ base: '1vh', lg: 0 }}
 >
   Μάθε περισσότερα για την κοινότητα μας <ArrowDownIcon />
 </Text>
 
-    <Box  ref={aboutSectionRef} mt={{ base: '20vw', lg: '5vh' }}></Box>
-    <Flex  direction='column' mt={{ base: '23vw', lg: '6vh' }}  mb={10} marginInline={'auto'} gap={4}   width={{base: '90vw', lg:'70vw'}}  padding={4} borderRadius={8} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-  border="1px solid rgba(255, 255, 255, 0.05)">
+    {/* <Box height="1px" ref={aboutSectionRef} mt={{ base: '20vw', lg: 1 }}></Box> */}
+    <Flex ref={aboutSectionRef}   direction='column'   mb={10} marginInline={'auto'} gap={4}   width={{base: '90vw', lg:'70vw'}}  padding={4} borderRadius={8} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+  border="1px solid rgba(255, 255, 255, 0.05)"
+  mt={{ base: '22vw', lg: '12vh' }}
+  >
       <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center">Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
     <Box  as='p' textAlign="left" lineHeight="0.9"  fontFamily="Arial" px={{ sm: 5, lg: 20 }}  width={{base: '90vw', lg:'70vw'}}  marginInline={'auto'} > 
     Η Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας είναι μια ομάδα οργανωμένη από φοιτητές/-τριες του Πανεπιστημίου Μακεδονίας, που σκοπό έχει να γνωστοποιήσει και να προωθήσει το Ελεύθερο Λογισμικό, Λογισμικό Ανοικτού Κώδικα (ΕΛ/ΛΑΚ) και Open Source Hardware. Η κοινότητα απαρτίζεται κυρίως από φοιτητές/-τριες του τμήματος της Εφαρμοσμένης Πληροφορικής, μπορεί όμως να συμμετέχει οποιοσδήποτε θέλει να βοηθήσει και να προσφέρει στην ομάδα, με όποιον τρόπο μπορεί.

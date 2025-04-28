@@ -13,7 +13,17 @@ import {
 } from "@chakra-ui/react";
 import { location,useNavigate } from "react-router-dom";
 import { ToolTipUnderConstruction } from "./ToolTipUnderConstruction";
-import {InfoIcon} from '@chakra-ui/icons';
+import {InfoIcon,ExternalLinkIcon,ChevronDownIcon} from '@chakra-ui/icons';
+import {
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    MenuItemOption,
+    MenuGroup,
+    MenuOptionGroup,
+    MenuDivider,
+  } from '@chakra-ui/react'
 
 
 export function MenuDrawer({ isOpen, onClose }) {
@@ -64,6 +74,9 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 fontWeight="800"
                                 paddingY={3}
                                 borderBottom="2px solid transparent"
+                                _hover={{
+                                    cursor: "pointer",
+                                }}
                                 color={isActive("/") ? "brand.dark.secondary" : "brand.dark.text"}
                             >
                                 ΑΡΧΙΚΗ
@@ -75,12 +88,12 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 fontSize="lg"
                                 fontWeight="800"
                                 _hover={{
-                                    textDecoration: "underline",
                                     cursor: "pointer",
                                 }}
                                 paddingY={3}
                                 borderBottom="2px solid transparent"
                                 marginInline={"auto"}
+                                
                                 color={isActive("/blog") ? "brand.dark.secondary" : "brand.dark.text"}
                             >
                                 <ToolTipUnderConstruction where={'BLOG'} />
@@ -93,6 +106,9 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 fontWeight="800"
                                 paddingY={3}
                                 borderBottom="2px solid transparent"
+                                _hover={{
+                                    cursor: "pointer",
+                                }}
                                 color={isActive("/sponsors") ? "brand.dark.secondary" : "brand.dark.text"}
                             >
                                 ΧΟΡΗΓΟΙ
@@ -104,7 +120,6 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 fontSize="lg"
                                 fontWeight="800"
                                 _hover={{
-                                    textDecoration: "underline",
                                     cursor: "pointer",
                                 }}
                                 paddingY={3}
@@ -120,7 +135,6 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 fontSize="lg"
                                 fontWeight="800"
                                 _hover={{
-                                    textDecoration: "underline",
                                     cursor: "pointer",
                                 }}
                                 paddingY={3}
@@ -129,13 +143,50 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 myUoM
                             </Text>
                         </Text>
+                        <Text>
+                        <Menu borderRadius={8}  isLazy autoSelect={false} placement="bottom"  closeOnSelect={false} >
+                          {({ isOpen }) => (
+                            <>
+                              <MenuButton
+          as={Text}  // <--- This is the magic trick
+          width="full"
+          fontSize="lg"
+          fontWeight="800"
+          paddingY={3}
+          ml={1}
+          textAlign={"center"}
+          borderBottom="2px solid transparent"
+          color="brand.dark.text"
+          _hover={{
+            cursor: "pointer",
+          }}
+        >
+                                ΠΗΓΕΣ  <ChevronDownIcon />
+                              </MenuButton>
+                              <MenuList  borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+                          border="1px solid rgba(255, 255, 255, 0.15)">
+                                <MenuItem  bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+                           onClick={() => window.open('https://github.com/open-source-uom','_blank')}
+                                _hover={{ color: "brand.dark.secondary" }}
+                                >Αποθετήριο Github <ExternalLinkIcon fontSize={14} ml={1} mb={1}/></MenuItem>
+                                <MenuItem  bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" onClick={() => window.open('https://gitlab.com/opensourceuom','_blank')}
+                                _hover={{ color: "brand.dark.secondary" }}
+                                >Αποθετήριο Gitlab <ExternalLinkIcon fontSize={14} ml={1} mb={1}/></MenuItem>
+                                <MenuItem  bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" 
+                                _hover={{ color: "brand.dark.secondary" }}
+                                ><ToolTipUnderConstruction where={'Βασικές εντολές LINUX'} />  </MenuItem>
+                                
+                              </MenuList>
+                            </>
+                          )}
+                        </Menu>
+                        </Text>
                         <Text onClick={()=> {navigate("/readme"); onClose(); }}>
                             <Text
                                 width="full"
                                 fontSize="lg"
                                 fontWeight="800"
                                 _hover={{
-                                    textDecoration: "underline",
                                     cursor: "pointer",
                                 }}
                                 paddingY={3}
@@ -152,7 +203,6 @@ export function MenuDrawer({ isOpen, onClose }) {
                                 fontSize="lg"
                                 fontWeight="800"
                                 _hover={{
-                                    textDecoration: "underline",
                                     cursor: "pointer",
                                 }}
                                 paddingY={3}

@@ -1,11 +1,21 @@
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import { Box, Flex, Heading, Image, IconButton, useDisclosure, Text } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { Box, Flex, Heading, Image, IconButton, useDisclosure, Text,Button } from "@chakra-ui/react";
+import { HamburgerIcon,ChevronDownIcon,ExternalLinkIcon } from "@chakra-ui/icons";
 import { MenuDrawer } from "./MenuDrawer";  
 import { Link } from "react-router-dom";
 import Footer from "./Footer/Footer";
 import { ToolTipUnderConstruction } from "./ToolTipUnderConstruction";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from '@chakra-ui/react'
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -49,6 +59,11 @@ export default function Header() {
           justify="center"
           display={{ base: "none", lg: "flex" }}
         >
+          <Text onClick={()=> navigate("/")} >
+            <Text fontSize="md" color={isActive("/") ? "brand.dark.secondary" : "brand.dark.text"} _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}>
+             ΑΡΧΙΚΗ
+            </Text>
+            </Text>
           <Text onClick={()=> navigate("/blog")} >
             <Text fontSize="md" color={isActive("/blog") ? "brand.dark.secondary" : "brand.dark.text"} _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}>
               {/* BLOG */}
@@ -102,6 +117,30 @@ export default function Header() {
             myUoM
             </Text>
           </Text>
+          <Menu borderRadius={8}  isLazy autoSelect={false} placement="bottom"  closeOnSelect={false} >
+  {({ isOpen }) => (
+    <>
+      <MenuButton isActive={isOpen} as={Box} cursor="pointer" rightIcon={<ChevronDownIcon />}>
+        ΠΗΓΕΣ  <ChevronDownIcon />
+      </MenuButton>
+      <MenuList  borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+  border="1px solid rgba(255, 255, 255, 0.15)">
+        <MenuItem  bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+   onClick={() => window.open('https://github.com/open-source-uom','_blank')}
+        _hover={{ color: "brand.dark.secondary" }}
+        >Αποθετήριο Github <ExternalLinkIcon fontSize={14} ml={1} mb={1}/></MenuItem>
+        <MenuItem  bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" onClick={() => window.open('https://gitlab.com/opensourceuom','_blank')}
+        _hover={{ color: "brand.dark.secondary" }}
+        >Αποθετήριο Gitlab <ExternalLinkIcon fontSize={14} ml={1} mb={1}/></MenuItem>
+        <MenuItem  bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" 
+        _hover={{ color: "brand.dark.secondary" }}
+        ><ToolTipUnderConstruction where={'Βασικές εντολές LINUX'} /></MenuItem>
+        
+      </MenuList>
+    </>
+  )}
+</Menu>
+          
           <Text onClick={()=> navigate("/readme")} >
             <Text fontSize="md" color={isActive("/readme") ? "brand.dark.secondary" : "brand.dark.text"} _hover={{ color: "brand.dark.secondary", cursor: "pointer", fontWeight: "600" }}padding="4px 0">
               {/* README */}

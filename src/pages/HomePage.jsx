@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowForwardIcon, ArrowDownIcon ,InfoOutlineIcon} from "@chakra-ui/icons";
 import { useRef,useState,useEffect } from "react";
 import { Wrap, WrapItem } from '@chakra-ui/react';
+import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -108,12 +109,11 @@ export default function HomePage() {
     Η συμμετοχή είναι εθελοντική και δεν είστε υποχρεωμένοι/-ες να καταβάλετε οποιοδήποτε χρηματικό ποσό εκτός και αν θέλετε να βοηθήσετε οικονομικά την ομάδα σε τυχόν έξοδα που προκύπτουν κατά καιρούς, είτε για αγορά απαραίτητου εξοπλισμού, είτε για την διοργάνωση εκδηλώσεων. Για περισσότερες πληροφορίες επικοινωνήστε με την ομάδα.
     </Box>
 
-    <Tooltip label="Σελίδα υπό κατασκευή" bg={'brand.dark.secondary'} color={'brand.dark.primary'} aria-label='A tooltip'>
+    
 
     <Button width={'fit-content'} marginInline={'auto'} onClick={() => navigate('/readme')} display="flex"
         alignItems="center"
-        gap={2}>Περισσότερες πληροφορίες<ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /></Button>
-        </Tooltip>
+        gap={2}><ToolTipUnderConstruction where={"Περισσότερες πληροφορίες"} /> <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /></Button>
  </Flex>
     </Flex>
 

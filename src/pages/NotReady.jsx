@@ -40,8 +40,7 @@ const NotReady = () => {
 </Box>
 <br/>
             <Button
-                as={Link}
-                to="/"
+            onClick={() => navigate("/")}
                 // colorScheme="teal"
                 // bgGradient="linear(to-r, brand.dark.text,  brand.dark.secondary)"
                 // color="white"

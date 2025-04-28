@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Heading, Text, Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Error404 = () => {
+    const navigate = useNavigate(); 
     return (
         <Box
             textAlign="center"
@@ -27,8 +29,7 @@ const Error404 = () => {
             </Text>
 
             <Button
-                as={Link}
-                to="/"
+                onClick={() => navigate("/")}
                 // colorScheme="teal"
                 // bgGradient="linear(to-r, brand.dark.text,  brand.dark.secondary)"
                 // color="white"

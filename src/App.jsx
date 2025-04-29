@@ -5,6 +5,8 @@ import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import NotReady from "./pages/NotReady";
 import Sponsors from "./pages/Sponsors";
+import Blog from "./pages/Blog.jsx";
+import PostPage from './pages/blog/[slug].jsx';
 import Contact from "./pages/Contact";
 import Header from "./components/Header/Header";
 import Error404 from "./pages/Error404";
@@ -26,6 +28,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<PostPage />} />
         <Route path="/*" element={<NotReady/>} />
         <Route path="/404" element={<Error404/>} />
 

@@ -17,7 +17,7 @@ export default function HomePage() {
       ([entry], observerInstance) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observerInstance.unobserve(entry.target); // 👉 σταματάει να παρακολουθεί
+          observerInstance.unobserve(entry.target);
         }
       },
       { threshold: 0.3 }
@@ -52,15 +52,15 @@ export default function HomePage() {
   }
  
     return(
-    <Flex justify="start"  direction={"column"} pt={{ base: '2vh', lg: 15 }} height="fit-content" align={'center'}  >
+    <Flex justify="start"  direction={"column"} pt={{ base: '3vh', lg: 15 }} height="fit-content" align={'center'}  >
 
 
 <Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="20vh">
-  <Text fontSize={{ sm:'4xl',md: '6xl', lg: '9xl' }}>
+  <Text fontSize={{ sm:'5xl',md: '6xl', lg: '9xl' }}>
     OPEN SOURCE
     {/* ΚΟΙΝΟΤΗΤΑ ΑΝΟΙΚΤΟΥ ΛΟΓΙΣΜΙΚΟΥ */}
   </Text>
-  <Text fontSize={{ sm:'4xl',md: '6xl', lg: '9xl' }} color="gray.600">
+  <Text fontSize={{ sm:'5xl',md: '6xl', lg: '9xl' }} color="gray.600">
     UOM COMMUNITY
     {/* ΠΑΝΕΠΙΣΤΗΜΙΟ ΜΑΚΕΔΟΝΙΑΣ */}
   </Text>
@@ -92,7 +92,7 @@ export default function HomePage() {
   opacity={isVisible ? 0 : 1} 
   pointerEvents={isVisible ? 'none' : 'auto'} 
   userSelect={'none'}
-  mt={{ base: '1vh', lg: 0 }}
+  mt={{ base: '.5vh', lg: 0 }}
 >
   Μάθε περισσότερα για την κοινότητα μας <ArrowDownIcon />
 </Text>
@@ -100,7 +100,7 @@ export default function HomePage() {
     {/* <Box height="1px" ref={aboutSectionRef} mt={{ base: '20vw', lg: 1 }}></Box> */}
     <Flex ref={aboutSectionRef}   direction='column'   mb={10} marginInline={'auto'} gap={4}   width={{base: '90vw', lg:'70vw'}}  padding={4} borderRadius={8} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
   border="1px solid rgba(255, 255, 255, 0.05)"
-  mt={{ base: '22vw', lg: '12vh' }}
+  mt={{ base: '25vw', lg: '12vh' }}
   >
       <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center">Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
     <Box  as='p' textAlign="left" lineHeight="0.9"  fontFamily="Arial" px={{ sm: 5, lg: 20 }}  width={{base: '90vw', lg:'70vw'}}  marginInline={'auto'} > 

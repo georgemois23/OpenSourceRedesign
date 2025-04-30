@@ -32,7 +32,7 @@ export default function BlogList() {
         Blog
       </Heading>
       {/* <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}> */}
-      <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '90%', md: '90%', lg: '100%' }}> 
+      <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}> 
         {posts.map((post) => {
           console.log(post);
           // Generate image URL using the builder
@@ -45,7 +45,7 @@ export default function BlogList() {
   : null;
 
           return (
-            <WrapItem key={post._id} width={{ base: '90%', md: '45%', lg: '30%' }} marginInline={'auto'}>
+            <WrapItem key={post._id} width={{ base: '100%', md: '45%', lg: '30%' }} marginInline={'auto'}>
             <Box
               key={post._id}
               borderWidth={1}

@@ -115,11 +115,11 @@ export const LatestPosts = () => {
                     borderRadius="md"
                     mb={4}
                     width="100%"
-                    height="auto"
+                    height="200px"
                     objectFit="cover"
                   />
                 )}
-                <Heading as="h3" size="lg" mb={3}>{post.title}</Heading>
+                <Heading as="h2" size="md" mb={3}>{post.title}</Heading>
                 <Text mb={4} color="gray.300">{excerpt}</Text>
                 <Flex justify="space-between" color="brand.dark.secondary">
                   <HStack spacing={2}>

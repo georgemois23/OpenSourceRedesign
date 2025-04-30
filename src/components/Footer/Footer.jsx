@@ -131,8 +131,8 @@ const Footer = () => {
       </Flex>
 
       <Text fontSize="xs" color="gray.500" textAlign="center" mt={4} userSelect={'none'}>
-        {/* © {new Date().getFullYear()}  */}
-        Open Source UoM
+       
+        Open Source UoM I  © All rights reserved {new Date().getFullYear()} 
       </Text>
     </Flex>
   );

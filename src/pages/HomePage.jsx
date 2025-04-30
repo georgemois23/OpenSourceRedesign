@@ -5,6 +5,7 @@ import { ArrowForwardIcon, ArrowDownIcon ,InfoOutlineIcon} from "@chakra-ui/icon
 import { useRef,useState,useEffect } from "react";
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
+import { LatestPosts } from "./blog/LatestPosts.jsx";
 
 export default function HomePage() {
   document.title = "Αρχική - Open Source UoM";
@@ -132,6 +133,8 @@ export default function HomePage() {
         <Image draggable="false" src="https://opensource.uom.gr/storage/2023/07/University_of_Macedonia_logo-white-768x458-1.png" alt="KDE logo" width={{ base: '300px', lg: '300px' }} height='auto' />
       </WrapItem>
     </Wrap>
+
+    <LatestPosts />
     </Flex>
 
     );

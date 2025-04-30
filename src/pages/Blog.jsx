@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Heading, SimpleGrid, Text, Image,HStack ,Flex,Wrap,WrapItem} from '@chakra-ui/react';
+import { Box, Heading, SimpleGrid, Text, Image,HStack ,Flex,Wrap,WrapItem,Skeleton,SkeletonText,SkeletonCircle} from '@chakra-ui/react';
 import { client } from '../sanity/client'; // Sanity client
 import imageUrlBuilder from '@sanity/image-url'; // Import the image URL builder
 import { FaUser,FaCalendarAlt  } from "react-icons/fa";
@@ -22,15 +22,81 @@ export default function BlogList() {
   document.title = "Blog - Open Source UoM";
   const [posts, setPosts] = useState([]);
   const [textteaser, setText] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [lastFetchTime, setLastFetchTime] = useState(0);
   const navigate = useNavigate(); 
 
   useEffect(() => {
-    client.fetch(POSTS_QUERY).then(setPosts).catch((err) => console.error(err));
-  }, []);
 
-if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="100vh" direction={'column'} gap={4}>
-    <Spinner speed='0.65s' thickness='3px' />
-    <Text textAlign={'center'} fontSize={{sm: 'xl',md:'3xl'}}>Φόρτωση...</Text> </Flex>);
+  const CACHE_DURATION = 1 * 60 * 1000;
+  const cachedData = localStorage.getItem('blogPosts');
+    const cachedTime = localStorage.getItem('blogPostsTime');
+
+    if (cachedData && cachedTime && Date.now() - parseInt(cachedTime) < CACHE_DURATION) {
+      setPosts(JSON.parse(cachedData));
+      setIsLoading(false);
+      return; // Exit if cached data is fresh
+    }
+
+    // Fetch new data if cache is expired or doesn't exist
+    client.fetch(POSTS_QUERY)
+      .then((data) => {
+        setPosts(data);
+        setIsLoading(false);
+        // Save to cache
+        localStorage.setItem('blogPosts', JSON.stringify(data));
+        localStorage.setItem('blogPostsTime', Date.now().toString());
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsLoading(false);
+        // If fetch fails but we have cached data, use that
+        if (cachedData) {
+          setPosts(JSON.parse(cachedData));
+        }
+      });
+  }, []);
+  
+  const renderSkeletons = () => (
+    <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}>
+      {[...Array(6)].map((_, i) => (
+        <WrapItem key={i} width={{ base: '100%', md: '45%', lg: '30%' }} marginInline={'auto'}>
+          <Box
+            borderWidth={1}
+            p={4}
+            width={{ base: '90%', md: '90%', lg: '100%' }}
+            borderRadius={8}
+            bg="rgba(0, 10, 38, 0.85)"
+            border="1px solid rgba(255, 255, 255, 0.13)"
+          >
+            <Skeleton height="200px" borderRadius={8} mb={4} />
+            
+            <Skeleton height="30px" mb={4} />
+            
+            <SkeletonText noOfLines={3} spacing="3" mb={4} />
+            
+            <Skeleton height="20px" width="100px" mb={4} />
+            
+            <Flex justifyContent="space-between" alignItems="center">
+              <HStack spacing={2}>
+                <SkeletonCircle size="18px" /> {/* Calendar Icon */}
+                <Skeleton height="20px" width="80px" /> {/* Date */}
+              </HStack>
+              
+              <HStack spacing={2}>
+                <SkeletonCircle size="18px" /> {/* User Icon */}
+                <Skeleton height="20px" width="60px" /> {/* Author */}
+              </HStack>
+            </Flex>
+          </Box>
+        </WrapItem>
+      ))}
+    </Wrap>
+  );
+
+// if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="100vh" direction={'column'} gap={4}>
+//     <Spinner speed='0.65s' thickness='3px' />
+//     <Text textAlign={'center'} fontSize={{sm: 'xl',md:'3xl'}}>Φόρτωση...</Text> </Flex>);
 
   return (
     <Box minH={'100vh'} px={4} py={8} >
@@ -38,7 +104,12 @@ if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="1
         Blog
       </Heading>
       {/* <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}> */}
-      <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}> 
+
+
+      {isLoading ? (
+        renderSkeletons()
+      ) : (
+      <Wrap spacing={8} justify="center"  mx={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }} > 
         {posts.map((post) => {
           console.log(post);
           const postImageUrl = post.image
@@ -50,14 +121,17 @@ if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="1
   : null;
 
           return (
-            <WrapItem key={post._id} width={{ base: '100%', md: '45%', lg: '30%' }} marginInline={'auto'}>
+            <WrapItem key={post._id} width={{ base: '100%', md: '45%', lg: '30%' }} display="flex"
+            justifyContent="center" 
+            // marginInline={'auto'}
+            >
             <Box
               key={post._id}
               borderWidth={1}
               p={4}
               h={'fit-content'}
               width={{ base: '90%', md: '90%', lg: '100%' }}
-              marginInline={'left'}
+              // marginInline={'left'}
               borderRadius={8}
               bg="rgba(0, 10, 38, 0.85)"
               backdropFilter="blur(6px)"
@@ -67,7 +141,11 @@ if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="1
               // backdropFilter="blur(4px)" // Blur effect to match
               // boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" // Lighter shadow for a subtle effect
               // border="1px solid rgba(255, 255, 255, 0.09)"
-
+              _hover={{ 
+                transform: 'translateY(-5px)',
+                boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)'
+              }}
+              transition="all 0.3s ease"
 
 
               flexDirection="column"
@@ -89,7 +167,9 @@ if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="1
                   borderRadius={8}
                   mb={4}
                   height="auto"
-                  width="80%"
+                  width={{base:"100%", lg:"90%"}}
+                  marginInline={{base: 'none', lg: 'auto'}}
+                  onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
                 />
               ) }
 
@@ -141,7 +221,7 @@ if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="1
           );
         })}
       {/* </SimpleGrid> */}
-      </Wrap>
+      </Wrap>)}
     </Box>
   );
 }

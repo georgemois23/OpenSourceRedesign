@@ -3,9 +3,19 @@ import { Flex, Box, Text, Image, useBreakpointValue } from '@chakra-ui/react';
 import { EmailIcon } from "@chakra-ui/icons";
 import { FaInstagram, FaFacebook, FaLinkedin, FaMapMarkerAlt,FaDiscord } from 'react-icons/fa';
 import SocialMediaLink from './FooterSocial';
+import { useEffect, useState } from 'react';
 
 const Footer = () => {
- 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Mark as mounted to fix layout issues that happen before hydration
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <Box h="80px" w="100%" />;
+  }
 
   return (
     <Flex

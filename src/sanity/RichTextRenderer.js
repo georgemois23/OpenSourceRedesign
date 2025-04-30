@@ -95,20 +95,33 @@ export const RichTextRenderer = ({ content }) => {
     const block = item;
     switch (block._type) {
       case 'block':
-        if (/^h\d/.test(block.style)) {
-          const level = parseInt(block.style.replace('h', ''));
-          return (
-            <Heading
-              key={block._key}
-              as={`h${level}`}
-              size={['xl', '2xl'][level - 1] || 'xl'}
-              my={6}
-            >
-              {block.children.map((child) => renderInline(child, block.markDefs))}
-            </Heading>
-          );
-        }
+        case 'block':
+      if (/^h\d/.test(block.style)) {
+        const level = parseInt(block.style.replace('h', ''));
+        
+        // Define your size mapping
+        const sizeMap = {
+          1: 'xl',  // h1
+          2: 'lg',   // h2
+          3: 'md',   // h3
+          4: 'md',   // h4
+          5: 'sm',   // h5
+          6: 'xs'    // h6
+        };
 
+        return (
+          <Heading
+            key={block._key}
+            as={`h${level}`}
+            size={sizeMap[level] || 'md'} // Fallback to medium
+            my={level <= 3 ? 6 : 4}      // Larger margin for h1-h3
+            fontWeight={level <= 2 ? 'bold' : 'semibold'}
+            lineHeight="shorter"
+          >
+            {block.children.map((child) => renderInline(child, block.markDefs))}
+          </Heading>
+        );
+      }
         if (block.style === 'normal') {
           return (
             <Text key={block._key} mb={4} fontSize="lg" lineHeight="tall">

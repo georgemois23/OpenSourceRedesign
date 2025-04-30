@@ -6,33 +6,73 @@ import imageUrlBuilder from "@sanity/image-url"; // Import the image URL builder
 import { useNavigate } from "react-router-dom"; // for navigation
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Spinner } from '@chakra-ui/react'
-
 import { RichTextRenderer } from "../../sanity/RichTextRenderer";
+import useSWR from 'swr';
+
+
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
+
+const fetcher = ([query, params]) => {
+  // Check if we have cached data
+  const cacheKey = `sanity:${query}:${JSON.stringify(params)}`;
+  const cached = sessionStorage.getItem(cacheKey);
+  
+  if (cached) {
+    const parsed = JSON.parse(cached);
+    // Return cached data immediately
+    return Promise.resolve(parsed);
+  }
+
+  // Fetch fresh data and cache it
+  return client.fetch(query, params)
+    .then(data => {
+      sessionStorage.setItem(cacheKey, JSON.stringify(data));
+      return data;
+    });
+};
+
+
 
 const builder = imageUrlBuilder(client); // Create the builder using the Sanity client
 const urlFor = (source) => builder.image(source); // Use the builder to create the image URL
 
+const CACHE_DURATION = 10 * 60 * 1000;
+
 const PostPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate(); // Initialize the navigate function
-  const [post, setPost] = useState(null);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const data = await client.fetch(POST_QUERY, { slug });
-        setPost(data);
-      } catch (error) {
-        console.error("Error fetching post:", error);
-      }
-    };
-    fetchPost();
-  }, [slug]);
+  // const [post, setPost] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
 
 
-  if (!post ) return (<Flex justifyContent="center" alignItems="center" height="100vh" direction={'column'} gap={4}>
+  const { data: post, error, isLoading } = useSWR(
+    [POST_QUERY, { slug }], // Query + parameters
+    fetcher,                // Sanity client fetcher
+    {
+      refreshInterval: 10000,
+      revalidateOnMount: true,       // Always check for updates
+      revalidateOnFocus: false,      // No refetch on tab focus
+      shouldRetryOnError: false,     // No automatic retries
+      dedupingInterval: 10000,       // Avoid duplicate requests for 10s
+      loadingTimeout: 2000 
+    }
+  );
+
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     try {
+  //       const data = await client.fetch(POST_QUERY, { slug });
+  //       setPost(data);
+  //     } catch (error) {
+  //       console.error("Error fetching post:", error);
+  //     }
+  //   };
+  //   fetchPost();
+  // }, [slug]);
+
+
+  if (isLoading ) return (<Flex justifyContent="center" alignItems="center" height="100vh" direction={'column'} gap={4}>
     <Spinner speed='0.65s' thickness='3px' />
     <Text textAlign={'center'} fontSize={{sm: 'xl',md:'3xl'}}>Φόρτωση του άρθρου...</Text> </Flex>);
 
@@ -67,9 +107,10 @@ document.title = `${post.title} - Open Source UoM`;
     borderRadius="md"
     mb={6}
     maxW="100%"
-    w={"80%"}
+    w={"50%"}
     h="auto"
     mx="auto"
+    
     css={{
       aspectRatio: 'auto 16/9', // Default aspect ratio
       objectFit: 'contain'

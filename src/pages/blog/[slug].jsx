@@ -31,9 +31,12 @@ const PostPage = () => {
     fetchPost();
   }, [slug]);
 
+
   if (!post ) return (<Flex justifyContent="center" alignItems="center" height="100vh" direction={'column'} gap={4}>
     <Spinner speed='0.65s' thickness='3px' />
     <Text textAlign={'center'} fontSize={{sm: 'xl',md:'3xl'}}>Φόρτωση του άρθρου...</Text> </Flex>);
+
+document.title = `${post.title} - Open Source UoM`;
 
   // Use the image URL builder to create the image URL with width and height
   const postImageUrl = post.image
@@ -47,7 +50,7 @@ const PostPage = () => {
   return (
     <Box maxWidth="3xl" mx="auto" p={4} minHeight="100vh" >
       
-        <Text fontSize="lg" onClick={()=>navigate('/blog')} cursor={'pointer'}  mb={4}>
+        <Text fontSize="lg" onClick={()=>navigate('/blog')} cursor={'pointer'} _hover={{color:'brand.dark.secondary'}}  mb={4}>
         <IoIosArrowRoundBack size={40}/> Πίσω στο Blog
         </Text>
 

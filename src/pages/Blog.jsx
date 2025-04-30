@@ -18,6 +18,7 @@ const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
 export default function BlogList() {
+  document.title = "Blog - Open Source UoM";
   const [posts, setPosts] = useState([]);
   const [textteaser, setText] = useState([]);
   const navigate = useNavigate(); 
@@ -27,7 +28,7 @@ export default function BlogList() {
   }, []);
 
   return (
-    <Box minH={'100vh'} p={8}>
+    <Box minH={'100vh'} px={4} py={8} >
       <Heading as="h1" size="2xl" mb={8}>
         Blog
       </Heading>

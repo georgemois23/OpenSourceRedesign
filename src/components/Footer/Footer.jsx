@@ -100,7 +100,7 @@
 import React from 'react';
 import { Flex, Box, Text, Image, useBreakpointValue } from '@chakra-ui/react';
 import { EmailIcon } from "@chakra-ui/icons";
-import { FaInstagram, FaFacebook, FaLinkedin, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaLinkedin, FaMapMarkerAlt,FaDiscord } from 'react-icons/fa';
 import SocialMediaLink from './FooterSocial';
 
 const Footer = () => {
@@ -187,6 +187,11 @@ const Footer = () => {
                 icon={<FaFacebook size="16px" />}
                 url="https://www.facebook.com/opensourceuom"
                 label="opensourceuom"
+              />
+              <SocialMediaLink
+                icon={<FaDiscord size="16px" />}
+                url="https://discord.gg/nzMJpRYxp6"
+                label="discord"
               />
             </Flex>
           </Box>

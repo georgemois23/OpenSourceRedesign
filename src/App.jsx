@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route } from "react-router-dom";
 import { Box, Heading, Button } from "@chakra-ui/react";
+import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import NotReady from "./pages/NotReady";
@@ -23,7 +24,7 @@ function App() {
   >
       <ScrollToTop />
         <Routes>
-        <Route path="/" element={<Header />}>
+        <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/sponsors" element={<Sponsors />} />

@@ -70,10 +70,7 @@ export default function Header() {
 
       <MenuDrawer isOpen={isOpen} onClose={onClose} />
 
-      <Box mt="80px">
-        <Outlet />
-      </Box>
-      <Footer />
+     
     </Box>
   );
 }

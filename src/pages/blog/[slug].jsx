@@ -50,7 +50,7 @@ document.title = `${post.title} - Open Source UoM`;
   return (
     <Box maxWidth="3xl" mx="auto" p={4} minHeight="100vh" >
       
-        <Text fontSize="lg" onClick={()=>navigate('/blog')} cursor={'pointer'} _hover={{color:'brand.dark.secondary'}}  mb={4}>
+        <Text fontSize="lg" onClick={()=>navigate('/blog')} cursor={'pointer'} _hover={{color:'brand.dark.secondary'}}width={'fit-content'} userSelect={'none'} mb={4}>
         <IoIosArrowRoundBack size={40}/> Πίσω στο Blog
         </Text>
 
@@ -79,7 +79,7 @@ document.title = `${post.title} - Open Source UoM`;
 
       
 
-      <Text fontSize="md" color="gray.500" mb={6}>
+      <Text fontSize="md" color="gray.500" mb={6} userSelect={'none'}>
         Δημοσιεύθηκε: {new Date(post.publishedAt).toLocaleDateString('en-GB')}
         <br />
         {post.author && (
@@ -106,8 +106,8 @@ document.title = `${post.title} - Open Source UoM`;
 
       </Box>
       {post.tag &&(
-        <HStack spacing={2} mb={4}>
-          <Text fontSize='md'>Ετικέτες:</Text>
+        <HStack spacing={2} mb={4} userSelect={'none'}>
+          <Text fontSize='md' >Ετικέτες:</Text>
       <Box bg={'brand.dark.secondary'} width={"fit-content"} p={1} borderRadius={8}>{post.tag}</Box>
       </HStack>
       )}

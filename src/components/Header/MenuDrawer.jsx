@@ -41,12 +41,13 @@ import {
               marginInline={"auto"}
             />
           </DrawerHeader>
-          <DrawerBody>
+          <DrawerBody userSelect={'none'}>
           <Flex
             direction="column"
             align="center"
             justify={"center"}
-            width="80%"
+            width="90%"
+            pt={4}
             maxW="300px"
             gap={4} 
             marginInline={"auto"}
@@ -107,7 +108,7 @@ import {
                 )}
               </Menu>
   
-              <Text position="absolute" bottom="5vh" fontWeight={200}>
+              <Text position="absolute" bottom="8vh" fontWeight={200}>
                 <InfoIcon pb="0.5" fontSize="18px" /> Σελίδα υπο κατασκευή
               </Text>
             </Flex>

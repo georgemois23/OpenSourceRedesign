@@ -5,6 +5,7 @@ import { client } from '../sanity/client'; // Sanity client
 import imageUrlBuilder from '@sanity/image-url'; // Import the image URL builder
 import { FaUser,FaCalendarAlt  } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'; 
+import { Spinner } from '@chakra-ui/react'
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, 
 image {
@@ -27,16 +28,19 @@ export default function BlogList() {
     client.fetch(POSTS_QUERY).then(setPosts).catch((err) => console.error(err));
   }, []);
 
+if (!posts ) return (<Flex justifyContent="center" alignItems="center" height="100vh" direction={'column'} gap={4}>
+    <Spinner speed='0.65s' thickness='3px' />
+    <Text textAlign={'center'} fontSize={{sm: 'xl',md:'3xl'}}>Φόρτωση...</Text> </Flex>);
+
   return (
     <Box minH={'100vh'} px={4} py={8} >
-      <Heading as="h1" size="2xl" mb={8}>
+      <Heading as="h1" size="2xl" mb={8} userSelect={'none'} >
         Blog
       </Heading>
       {/* <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}> */}
       <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}> 
         {posts.map((post) => {
           console.log(post);
-          // Generate image URL using the builder
           const postImageUrl = post.image
   ? urlFor(post.image)
       .width(800)  
@@ -107,7 +111,7 @@ export default function BlogList() {
   </Text>
 )}
                         </Text>
-                        <Text mb={2} color={'brand.dark.secondary'} onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'} >Περισσότερα »</Text>
+                        <Text mb={2} color={'brand.dark.secondary'} onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'} userSelect={'none'} >Περισσότερα »</Text>
                         <Flex 
   justifyContent="space-between" 
   alignItems="center" 
@@ -118,7 +122,7 @@ export default function BlogList() {
 >
   <HStack spacing={2} flexShrink={0}>  {/* Prevent shrinking */}
     <FaCalendarAlt size={18} />
-    <Text fontSize={{base: 'sm', md: 'md'}}>
+    <Text fontSize={{base: 'sm', md: 'md'}} userSelect={'none'}>
       {new Date(post.publishedAt).toLocaleDateString("en-GB")}
     </Text>
   </HStack>
@@ -126,7 +130,7 @@ export default function BlogList() {
   {post.author && (
     <HStack spacing={2} flexShrink={0}>  {/* Prevent shrinking */}
       <FaUser size={18} />
-      <Text fontSize={{base: 'sm', md: 'md'}}>
+      <Text fontSize={{base: 'sm', md: 'md'}} userSelect={'none'}>
         {post.author}
       </Text>
     </HStack>

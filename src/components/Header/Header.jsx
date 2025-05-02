@@ -29,6 +29,7 @@ export default function Header() {
         paddingY="1rem"
         zIndex="999"
         backgroundColor='rgba(0, 10, 38, 0.98)'
+        backdropBlur={"4px"}
         height="80px"
         fontFamily="Arial"
       >

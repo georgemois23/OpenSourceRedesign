@@ -8,6 +8,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { Spinner } from '@chakra-ui/react'
 import { RichTextRenderer } from "../../sanity/RichTextRenderer";
 import useSWR from 'swr';
+import LoadingThreeDotsPulse from "../../components/Loading";
 
 
 
@@ -72,9 +73,11 @@ const PostPage = () => {
   // }, [slug]);
 
 
-  if (isLoading ) return (<Flex justifyContent="center" alignItems="center" height="100vh" direction={'column'} gap={4}>
-    <Spinner speed='0.65s' thickness='3px' />
-    <Text textAlign={'center'} fontSize={{sm: 'xl',md:'3xl'}}>Φόρτωση του άρθρου...</Text> </Flex>);
+  if (isLoading) return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
+    {/* <Spinner speed='0.65s' thickness='3px' /> */}
+    {/* <Text textAlign={'center'} fontSize={{sm: 'md',md:'xl'}}>Φόρτωση του άρθρου...</Text>  */}
+    <LoadingThreeDotsPulse />
+    </Flex>);
 
 document.title = `${post.title} - Open Source UoM`;
 

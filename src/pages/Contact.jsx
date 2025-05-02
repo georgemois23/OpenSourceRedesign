@@ -14,8 +14,13 @@ const Register = () => {
                 <Text fontSize="lg" mb={8}>
                 Εδώ θα βρεις όλες τις πληροφορίες!
                 </Text>
-                <Flex direction={'column'} width={'fit-content'} alignItems={'center'} borderRadius={8} gap={4} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-  border="1px solid rgba(255, 255, 255, 0.05)"  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
+                <Flex direction={'column'} width={'fit-content'} alignItems={'center'} borderRadius={8} gap={4}
+                    bg="rgba(0, 10, 38, 0.85)"
+                    backdropFilter="blur(6px)"
+                    boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
+                    border="1px solid rgba(255, 255, 255, 0.13)"
+                    px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
+
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
                     Στείλε μας email</Text>

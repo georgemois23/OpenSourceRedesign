@@ -123,6 +123,7 @@ export default function BlogList() {
           return (
             <WrapItem key={post._id} width={{ base: '100%', md: '45%', lg: '30%' }} display="flex"
             justifyContent="center" 
+            
             // marginInline={'auto'}
             >
             <Box
@@ -130,7 +131,7 @@ export default function BlogList() {
               borderWidth={1}
               p={4}
               h={'fit-content'}
-              width={{ base: '90%', md: '90%', lg: '100%' }}
+              width={{ base: '90%', md: '90%', lg: '95%' }}
               // marginInline={'left'}
               borderRadius={8}
               bg="rgba(0, 10, 38, 0.85)"
@@ -167,13 +168,13 @@ export default function BlogList() {
                   borderRadius={8}
                   mb={4}
                   height="auto"
-                  width={{base:"100%", lg:"90%"}}
+                  width={{base:"100%", lg:"100%"}}
                   marginInline={{base: 'none', lg: 'auto'}}
                   onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
                 />
               ) }
 
-            <Heading as="h2" size="lg" mb={4} >
+            <Heading as="h3" size="md" mb={4} >
                   {post.title}
                 </Heading>
               <Text >

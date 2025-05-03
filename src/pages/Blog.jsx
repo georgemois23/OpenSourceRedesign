@@ -111,7 +111,6 @@ export default function BlogList() {
       ) : (
       <Wrap spacing={8} justify="center"  mx={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }} > 
         {posts.map((post) => {
-          console.log(post);
           const postImageUrl = post.image
   ? urlFor(post.image)
       .width(800)  

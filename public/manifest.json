@@ -3,18 +3,18 @@
   "name": "Open Source UoM - Πανεπιστήμιο Μακεδονίας",
   "icons": [
     {
-      "src": "g4008.png",
+      "src": "manifest.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },
     {
      
-      "src": "g4008.png",
+      "src": "manifest.png",
       "type": "image/png",
       "sizes": "151x151"
     },
     {
-      "src": "g4008.png",
+      "src": "manifest.png",
       "type": "image/png",
       "sizes": "512x512"
     }

@@ -31,9 +31,6 @@ export const LatestPosts = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("Is loading:", isLoading);
-  },[]);
 
   useEffect(() => {
     const CACHE_KEY = 'latest-posts';
@@ -57,7 +54,6 @@ export const LatestPosts = () => {
         setPosts(data);
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         localStorage.setItem(`${CACHE_KEY}-time`, Date.now().toString());
-        console.log("Fetched posts:", data);
       }})
       .catch(err => {
         console.error("Error fetching posts:", err);
@@ -81,7 +77,7 @@ export const LatestPosts = () => {
       </Flex>
     );
   }
-  console.log(error);
+
   return (
     <Box py={8} px={4}>
       {!error && <Heading as="h2" size="xl" mb={8} textAlign="center">Τελευταία Νέα</Heading>}

@@ -120,7 +120,7 @@ export const LatestPosts = () => {
                     borderRadius="md"
                     mb={4}
                     width="100%"
-                    height="200px"
+                    h={"auto"}
                     objectFit="cover"
                   />
                 )}

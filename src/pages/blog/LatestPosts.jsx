@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Box, Heading, Text, Image, HStack, Flex, Wrap, WrapItem, Spinner,Button } from '@chakra-ui/react';
 import { FaUser, FaCalendarAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { client } from '../../sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
+import LoadingThreeDotsPulse from "../../components/Loading";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
@@ -26,7 +27,13 @@ const LATEST_POSTS_QUERY = `*[_type == "post" && defined(slug.current)] | order(
 export const LatestPosts = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("Is loading:", isLoading);
+  },[]);
 
   useEffect(() => {
     const CACHE_KEY = 'latest-posts';
@@ -42,41 +49,43 @@ export const LatestPosts = () => {
 
     // Always fetch fresh data
     client.fetch(LATEST_POSTS_QUERY)
+      
       .then(data => {
+        if (data.length === 0) {
+          setError(true);
+        } else {
         setPosts(data);
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         localStorage.setItem(`${CACHE_KEY}-time`, Date.now().toString());
-      })
+        console.log("Fetched posts:", data);
+      }})
       .catch(err => {
         console.error("Error fetching posts:", err);
         if (cached) setPosts(JSON.parse(cached)); // Fallback to cache if available
       })
+      
       .finally(() => setIsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    if(!isLoading && posts.length === 0) 
+    {
+      setError(true);
+    }
   }, []);
 
   if (isLoading) {
     return (
       <Flex justify="center" gap={8} py={8}>
-        {[...Array(3)].map((_, i) => (
-          <Box 
-            key={i} 
-            width={{ base: '90%', md: '45%', lg: '30%' }}
-            borderWidth={1}
-            p={4}
-            borderRadius={8}
-            bg="rgba(0, 10, 38, 0.85)"
-            border="1px solid rgba(255, 255, 255, 0.13)"
-          >
-            <Spinner size="xl" />
-          </Box>
-        ))}
+            <LoadingThreeDotsPulse />
       </Flex>
     );
   }
-
+  console.log(error);
   return (
     <Box py={8} px={4}>
-      <Heading as="h2" size="xl" mb={8} textAlign="center">Τελευταία Νέα</Heading>
+      {!error && <Heading as="h2" size="xl" mb={8} textAlign="center">Τελευταία Νέα</Heading>}
+      {!error && 
       <Wrap spacing={8} justify="center">
         {posts.map(post => {
           const excerpt = post.body
@@ -119,13 +128,14 @@ export const LatestPosts = () => {
                     objectFit="cover"
                   />
                 )}
-                <Heading as="h2" size="md" mb={3}>{post.title}</Heading>
-                <Text mb={4} color="gray.300">{excerpt}</Text>
+                {post.title && <Heading as="h2" size="md" mb={3}>{post.title}</Heading>}
+                {post.body && <Text mb={4} color="gray.300">{excerpt}</Text>}
                 <Flex justify="space-between" color="brand.dark.secondary">
+                {post.publishedAt &&
                   <HStack spacing={2}>
                     <FaCalendarAlt />
                     <Text>{new Date(post.publishedAt).toLocaleDateString("en-GB")}</Text>
-                  </HStack>
+                  </HStack>}
                   {post.author && (
                     <HStack spacing={2}>
                       <FaUser />
@@ -138,8 +148,9 @@ export const LatestPosts = () => {
           );
         })}
       </Wrap>
+}
       <Text textAlign={'center'}>
-      <Button marginInline={'auto'} textAlign={'center'} my={6} onClick={() => navigate('/blog')} >Περισσότερα στο Blog</Button>
+      <Button marginInline={'auto'} textAlign={'center'} my={6} onClick={() => navigate('/blog')} >{!error ?'Περισσότερα στο Blog' : 'Δείτε όλα τα άρθα στο Blog'}</Button>
       </Text>
     </Box>
   );

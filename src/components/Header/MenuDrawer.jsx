@@ -9,12 +9,13 @@ import {
     Text,
     Image,
   } from "@chakra-ui/react";
-  import { ChevronDownIcon, ExternalLinkIcon,InfoIcon } from '@chakra-ui/icons';
+  import { ChevronDownIcon, ExternalLinkIcon,InfoIcon,ChevronUpIcon } from '@chakra-ui/icons';
   import { Menu, MenuButton, MenuList, MenuItem,Flex } from '@chakra-ui/react';
   import { NAV_ITEMS, SOURCES_MENU_ITEMS } from "../../config/navigationConfig";
   import { NavItem } from "./NavItem";
   import  {useNavigate} from "react-router-dom";
   import { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
+  import { motion, AnimatePresence } from "framer-motion";
   
   export function MenuDrawer({ isOpen, onClose }) {
     const navigate = useNavigate();
@@ -81,8 +82,31 @@ import {
                       borderBottom="2px solid transparent"
                       color="brand.dark.text"
                       _hover={{ cursor: "pointer" }}
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                      _active={{ background: "transparent" }}
+                      _focusVisible={{ background: "transparent" }}
+                      userSelect="none"
+                      sx={{ WebkitTapHighlightColor: "transparent" }}
                     >
-                      ΠΗΓΕΣ <ChevronDownIcon />
+
+                      ΠΗΓΕΣ 
+                      {/* {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} */}
+                      <AnimatePresence mode="wait" initial={false}>
+                      <motion.span
+                        key={isOpen ? "open" : "closed"}
+                        initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
+                        animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                        exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
+                        transition={{ duration: 0.1, ease: "easeOut" }}
+                        style={{ display: "inline-block", marginLeft: "0.5rem" }}
+                      >
+                        {isOpen ? <ChevronUpIcon  boxSize={5} /> : <ChevronDownIcon boxSize={5} />}
+                      </motion.span>
+                    </AnimatePresence>
+
+
+
+
                     </MenuButton>
                     <MenuList borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
                       {SOURCES_MENU_ITEMS.map((item) => (

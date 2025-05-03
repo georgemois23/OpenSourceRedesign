@@ -15,7 +15,7 @@ const Register = () => {
                 Εδώ θα βρεις όλες τις πληροφορίες!
                 </Text>
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'} borderRadius={8} gap={4}
-                    bg="rgba(0, 10, 38, 0.85)"
+                    bg="rgba(0, 10, 38, 0.95)"
                     backdropFilter="blur(6px)"
                     boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
                     border="1px solid rgba(255, 255, 255, 0.13)"

@@ -29,16 +29,22 @@ export const postType = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [
+        {type: 'block'}, // This is for regular text blocks
+        {type: 'image'}  // This allows inserting images between text
+      ],
     }),
     defineField({
       name: 'author',
       type: 'string',
     }),
     defineField({
-      name: 'tag',
-      type: 'string',
+      name: 'tags',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags' // This provides a nice UI for entering tags
+      }
     }),
-  
   ],
 })

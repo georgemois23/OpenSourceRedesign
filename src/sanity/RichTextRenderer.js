@@ -1,4 +1,8 @@
-import { Heading, Text, Link, UnorderedList, OrderedList, ListItem } from "@chakra-ui/react";
+import { Heading, Text, Link, UnorderedList, OrderedList, ListItem,Box,Image } from "@chakra-ui/react";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "../sanity/client"; 
+const builder = imageUrlBuilder(client); // Create the builder using the Sanity client
+const urlFor = (source) => builder.image(source);
 
 const groupListItems = (blocks) => {
   const groupedBlocks = [];
@@ -84,7 +88,7 @@ export const RichTextRenderer = ({ content }) => {
       return (
         <ListComponent key={item.items[0]._key} spacing={2} pl={4} my={4}>
           {item.items.map((listItem) => (
-            <ListItem key={listItem._key} fontSize="lg" mb={2}>
+            <ListItem key={listItem._key} fontSize={{base:'md',lg:'lg'}} mb={2}>
               {listItem.children.map((child) => renderInline(child, listItem.markDefs))}
             </ListItem>
           ))}
@@ -124,13 +128,51 @@ export const RichTextRenderer = ({ content }) => {
       }
         if (block.style === 'normal') {
           return (
-            <Text key={block._key} mb={4} fontSize="lg" lineHeight="tall">
+            <Text key={block._key} mb={4} fontSize={{base:'md',lg:'lg'}} lineHeight="tall">
               {block.children.map((child) => renderInline(child, block.markDefs))}
             </Text>
           );
         }
 
         return null;
+
+
+        case 'image':
+          // Corrected: Use block.asset instead of block.image
+          const imageUrl = block.asset 
+            ? urlFor(block.asset)
+                .width(800)
+                .fit('max')
+                .auto('format')
+                .url()
+            : null;
+          
+          return (
+            <Box key={block._key} my={6} textAlign="center">
+              <Image
+                src={imageUrl}
+                alt={block.alt || ''}
+                draggable={false}
+                borderRadius="md"
+                mb={6}
+                maxW="100%"
+                w={"80%"}
+                h="auto"
+                mx="auto"
+                loading="lazy"
+                fallbackSrc={block.asset?.metadata?.lqip}
+                css={{
+                  aspectRatio: block.asset?.metadata?.dimensions?.aspectRatio || 'auto',
+                  objectFit: 'contain'
+                }}
+              />
+              {block.caption && (
+                <Text fontSize="sm" color="gray.500" mt={2}>
+                  {block.caption}
+                </Text>
+              )}
+            </Box>
+  );
 
       default:
         return null;

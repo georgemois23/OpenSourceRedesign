@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Box, Flex, Image, IconButton, useDisclosure } from "@chakra-ui/react";
-import { HamburgerIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, ChevronDownIcon,ChevronUpIcon } from "@chakra-ui/icons";
 import { MenuDrawer } from "./MenuDrawer";  
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import { NAV_ITEMS, SOURCES_MENU_ITEMS } from "../../config/navigationConfig";
 import  { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
 import { NavItem } from "./NavItem";
 import Footer from "../Footer/Footer";
+  import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,6 +49,8 @@ export default function Header() {
             draggable={false}
             src={'/logo.png'}
             w={{ base: "40px", md: "60px" }}
+            _hover={{ transform: "scale(1.05)" }}
+            transition="transform 0.3s ease-in-out"
           />
         </Flex>
 
@@ -64,7 +67,7 @@ export default function Header() {
           display={{ base: "flex", lg: "none" }}
           onClick={toggleMobileMenu}
           variant="ghost"
-          color="white"
+          color="brand.dark.text"
           ml="auto"
         />
       </Flex>
@@ -83,6 +86,7 @@ const NavSection = ({ items, sourcesItems }) => (
     flex="1" 
     justify="center"
     display={{ base: "none", lg: "flex" }}
+    fontWeight={400}
   >
     {items.map((item) => (
       <NavItem key={item.path} item={item} />
@@ -92,8 +96,21 @@ const NavSection = ({ items, sourcesItems }) => (
       <Menu borderRadius={8} isLazy autoSelect={false} placement="bottom" closeOnSelect={false}>
         {({ isOpen }) => (
           <>
-            <MenuButton isActive={isOpen} as={Box} cursor="pointer" rightIcon={<ChevronDownIcon />}>
-              ΠΗΓΕΣ <ChevronDownIcon />
+            <MenuButton isActive={isOpen} as={Box} cursor="pointer" rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} >
+              ΠΗΓΕΣ 
+               <AnimatePresence mode="wait" initial={false}>
+                                    <motion.span
+                                      key={isOpen ? "open" : "closed"}
+                                      initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
+                                      animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                      exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
+                                      transition={{ duration: 0.1, ease: "easeOut" }}
+                                      style={{ display: "inline-block", marginLeft: "0.1rem" }}
+                                    >
+                                      {isOpen ? <ChevronUpIcon  boxSize={5} /> : <ChevronDownIcon boxSize={5} />}
+                                    </motion.span>
+                                  </AnimatePresence>
+              {/* <ChevronDownIcon /> */}
             </MenuButton>
             <MenuList borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
               {sourcesItems.map((item) => (

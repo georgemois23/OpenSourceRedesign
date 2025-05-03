@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, Text, Image, Link, Flex,UnorderedList,OrderedList, List,ListItem, HStack } from "@chakra-ui/react";
+import { Box, Heading, Text, Image, Link, Flex,UnorderedList,OrderedList, List,ListItem, HStack,Wrap,Tag,TagLabel } from "@chakra-ui/react";
 import { client } from "../../sanity/client"; // assuming the client is set up correctly
 import { useParams } from "react-router-dom"; // for getting the slug from the URL
 import imageUrlBuilder from "@sanity/image-url"; // Import the image URL builder
@@ -9,13 +9,13 @@ import { Spinner } from '@chakra-ui/react'
 import { RichTextRenderer } from "../../sanity/RichTextRenderer";
 import useSWR from 'swr';
 import LoadingThreeDotsPulse from "../../components/Loading";
+import { FaTag } from "react-icons/fa";
 
 
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
 const fetcher = ([query, params]) => {
-  // Check if we have cached data
   const cacheKey = `sanity:${query}:${JSON.stringify(params)}`;
   const cached = sessionStorage.getItem(cacheKey);
   
@@ -25,13 +25,13 @@ const fetcher = ([query, params]) => {
     return Promise.resolve(parsed);
   }
 
-  // Fetch fresh data and cache it
   return client.fetch(query, params)
     .then(data => {
       sessionStorage.setItem(cacheKey, JSON.stringify(data));
       return data;
     });
 };
+
 
 
 
@@ -42,35 +42,22 @@ const CACHE_DURATION = 10 * 60 * 1000;
 
 const PostPage = () => {
   const { slug } = useParams();
-  const navigate = useNavigate(); // Initialize the navigate function
-  // const [post, setPost] = useState(null);
-  // const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate(); 
 
 
   const { data: post, error, isLoading } = useSWR(
     [POST_QUERY, { slug }], // Query + parameters
     fetcher,                // Sanity client fetcher
     {
-      refreshInterval: 10000,
-      revalidateOnMount: true,       // Always check for updates
-      revalidateOnFocus: false,      // No refetch on tab focus
-      shouldRetryOnError: false,     // No automatic retries
-      dedupingInterval: 10000,       // Avoid duplicate requests for 10s
-      loadingTimeout: 2000 
+      revalidateOnFocus: true,  // Enable revalidation when window gains focus
+    revalidateOnReconnect: true,  // Enable revalidation when regaining network
+    revalidateIfStale: true,  // Automatically revalidate even if not stale
+    refreshInterval: 0,       // Disable automatic refresh (use manual revalidation)
+    dedupingInterval: 2000,
     }
   );
 
-  // useEffect(() => {
-  //   const fetchPost = async () => {
-  //     try {
-  //       const data = await client.fetch(POST_QUERY, { slug });
-  //       setPost(data);
-  //     } catch (error) {
-  //       console.error("Error fetching post:", error);
-  //     }
-  //   };
-  //   fetchPost();
-  // }, [slug]);
+
 
 
   if (isLoading) return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
@@ -90,17 +77,32 @@ document.title = `${post.title} - Open Source UoM`;
       .url()
   : null;
 
+  const inputDate= new Date(post.publishedAt).toLocaleDateString('en-GB')
+  const [day, month, year] = inputDate.split("/");
+  
+  const monthsGR = [
+    "Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",
+    "Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου", "Δεκεμβρίου"
+  ];
+  
+  const date= `${Number(day)} ${monthsGR[Number(month) - 1]} ${year}`;
+  
+
   return (
-    <Box maxWidth="3xl" mx="auto" p={4} minHeight="100vh" >
+    <Box maxWidth="4xl" mx="auto" p={4} minHeight="100vh" width={"90%"} >
       
-        <Text fontSize="lg" onClick={()=>navigate('/blog')} cursor={'pointer'} _hover={{color:'brand.dark.secondary'}}width={'fit-content'} userSelect={'none'} mb={4}>
+        <Text fontSize="lg" onClick={()=>navigate('/blog')} cursor={'pointer'} 
+        _hover={{color:'brand.dark.secondary'}}
+        width={'fit-content'} userSelect={'none'} 
+        mb={4}>
         <IoIosArrowRoundBack size={40}/> Πίσω στο Blog
         </Text>
 
     
         <Heading as="h1" fontSize="4xl" fontWeight="bold" mb={6}>
         {post.title}
-      </Heading>
+        </Heading>
+     
       {postImageUrl && (
   <Image
     draggable={false}
@@ -115,7 +117,7 @@ document.title = `${post.title} - Open Source UoM`;
     mx="auto"
     
     css={{
-      aspectRatio: 'auto 16/9', // Default aspect ratio
+      aspectRatio: 'auto 16/9', 
       objectFit: 'contain'
     }}
   />
@@ -124,7 +126,7 @@ document.title = `${post.title} - Open Source UoM`;
       
 
       <Text fontSize="md" color="gray.500" mb={6} userSelect={'none'}>
-        Δημοσιεύθηκε: {new Date(post.publishedAt).toLocaleDateString('en-GB')}
+        Δημοσιεύθηκε: {date}
         <br />
         {post.author && (
         <Text fontSize={{base:'sm', md: 'md' }} >Από {post.author}</Text>
@@ -133,27 +135,47 @@ document.title = `${post.title} - Open Source UoM`;
       
 
       <Box className="prose" mb={8} borderRadius={8}
-              bg="rgba(0, 10, 38, 0.45)"
+              bg="rgba(0, 10, 38, 0.55)"
               backdropFilter="blur(6px)"
-              boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
+              boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
               border="1px solid rgba(255, 255, 255, 0.13)" p={{sm:4, md:8}}
               textAlign={'left'}
               >
-              
-        {/* Assuming post.body is a rich text field from Sanity */}
-        {/* {Array.isArray(post.body) && post.body.map((block, index) => (
-          <Text key={index}>{block.children[0].text}</Text>
-        ))} */}
-<Box fontSize={{base:'sm', md: 'lg' }} >
-        <RichTextRenderer content={post.body} />
-      </Box>
+      
+        <Box fontSize={{base:'sm', md: 'lg' }} >
+          <RichTextRenderer content={post.body} />
+        </Box>
 
       </Box>
-      {post.tag &&(
-        <HStack spacing={2} mb={4} userSelect={'none'}>
-          <Text fontSize='md' >Ετικέτες:</Text>
-      <Box bg={'brand.dark.secondary'} width={"fit-content"} p={1} borderRadius={8}>{post.tag}</Box>
-      </HStack>
+      {post.tags && post.tags.length > 0  &&(
+        <Box mt={12} mb={8}>
+        <HStack spacing={2} mb={3}>
+          <FaTag />
+          <Text fontSize="lg" fontWeight="semibold">Ετικέτες:</Text>
+        </HStack>  <Wrap spacing={3}>
+            {post.tags.map((tag) => (
+              <Tag 
+                key={tag}
+                size="md"
+                variant="subtle"
+                colorScheme="blue"
+                borderRadius="full"
+                px={4}
+                py={2}
+                border="1px solid"
+                borderColor="blue.200"
+                cursor= 'default'
+                // _hover={{
+                //   bg: 'blue.50',
+                  
+                // }}
+                // onClick={() => navigate(`/blog/tag/${tag.toLowerCase()}`)}
+              >
+                <TagLabel>{tag}</TagLabel>
+              </Tag>
+            ))}
+          </Wrap>
+        </Box>
       )}
     </Box>
   );

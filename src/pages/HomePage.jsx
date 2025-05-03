@@ -7,12 +7,16 @@ import { Wrap, WrapItem } from '@chakra-ui/react';
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
 import { LatestPosts } from "./blog/LatestPosts.jsx";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 export default function HomePage() {
   document.title = "Αρχική - Open Source UoM";
   const navigate = useNavigate();
   const aboutSectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(true);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry], observerInstance) => {
@@ -45,8 +49,27 @@ export default function HomePage() {
     }
   }, [isVisible]);
 
+  const MotionSpan = motion.span;
+
+  const texts = [
+    { content: "OPEN SOURCE", color: undefined },
+    { content: "UOM COMMUNITY", color: "gray.600" }
+  ];
+
+  useEffect(() => {
+    // Check if animation has already played this session
+    const animationPlayed = sessionStorage.getItem('textAnimationPlayed');
+    if (!animationPlayed) {
+      setShouldAnimate(true);
+      sessionStorage.setItem('textAnimationPlayed', 'true');
+    }
+  }, []);
+
+
+
+  
   function scrollToRef() {
-    const yOffset = -100; // Αρνητικό σημαίνει ότι θα ανέβει πιο πάνω κατά 100px (για το ύψος του navbar)
+    const yOffset = -150; 
     const y = aboutSectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
     
     window.scrollTo({ top: y, behavior: 'smooth' });
@@ -57,14 +80,52 @@ export default function HomePage() {
 
 
 <Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="20vh">
-  <Text fontSize={{ sm:'5xl',md: '6xl', lg: '9xl' }}>
+  {/* <Text fontSize={{ sm:'5xl',md: '6xl', lg: '9xl' }}>
     OPEN SOURCE
-    {/* ΚΟΙΝΟΤΗΤΑ ΑΝΟΙΚΤΟΥ ΛΟΓΙΣΜΙΚΟΥ */}
   </Text>
   <Text fontSize={{ sm:'5xl',md: '6xl', lg: '9xl' }} color="gray.600">
     UOM COMMUNITY
-    {/* ΠΑΝΕΠΙΣΤΗΜΙΟ ΜΑΚΕΔΟΝΙΑΣ */}
-  </Text>
+  </Text> */}
+ 
+    <AnimatePresence>
+      {texts.map((text, index) => (
+        <Text
+          key={index}
+          fontSize={{ sm: "5xl", md: "6xl", lg: "9xl" }}
+          color={text.color}
+          display="inline-block"
+        >
+          {text.content.split(" ").map((word, wordIndex) => {
+            const Component = shouldAnimate ? MotionSpan : "span";
+            const props = shouldAnimate
+              ? {
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: {
+                    duration: 0.5,
+                    delay: index * 0.3 + wordIndex * 0.1,
+                    ease: [0.16, 1, 0.3, 1]
+                  }
+                }
+              : {};
+
+            return (
+              <Component
+                key={wordIndex}
+                {...props}
+                style={{
+                  display: "inline-block",
+                  marginRight: "0.25em",
+                  whiteSpace: "nowrap"
+                }}
+              >
+                {word}
+              </Component>
+            );
+          })}
+        </Text>
+      ))}
+    </AnimatePresence>
 </Box>
 
 <Flex direction={{ base: 'column', lg: 'row' }}  justify="center" align="center" gap={{ base: 2, lg: '8' }} mt={'10vh'} mb={10}>
@@ -139,3 +200,4 @@ export default function HomePage() {
 
     );
   }
+   

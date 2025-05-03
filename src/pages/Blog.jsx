@@ -123,7 +123,7 @@ export default function BlogList() {
           return (
             <WrapItem key={post._id} width={{ base: '100%', md: '45%', lg: '30%' }} display="flex"
             justifyContent="center" 
-            
+            onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
             // marginInline={'auto'}
             >
             <Box
@@ -179,7 +179,7 @@ export default function BlogList() {
                 </Heading>
               <Text >
               {Array.isArray(post.body) && (
-  <Text>
+  <Text onClick={(e) => e.stopPropagation()} cursor={'auto'}>
     {
       post.body
         .filter(b => b._type === "block" && Array.isArray(b.children))

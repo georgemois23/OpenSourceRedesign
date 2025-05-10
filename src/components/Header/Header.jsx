@@ -14,12 +14,22 @@ import Footer from "../Footer/Footer";
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-
+const location = useLocation();
+  
+  useEffect(() => {
+    onClose();
+  }, [location.pathname]);
   const goToHomePage = () => {
   navigate("/");
-  onClose(); // Explicitly close drawer on navigation
+  onClose(); 
 };
-  const toggleMobileMenu = () => onOpen();
+  const toggleMobileMenu = () => {
+  if (isOpen) {
+    onClose();
+  } else {
+    onOpen();
+  }
+};
 
   return (
     <Box>

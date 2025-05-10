@@ -5,20 +5,24 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
+    DrawerFooter,
     Box,
     Text,
     Image,
+    Button,
   } from "@chakra-ui/react";
-  import { ChevronDownIcon, ExternalLinkIcon,InfoIcon,ChevronUpIcon } from '@chakra-ui/icons';
+  import { ChevronDownIcon, ExternalLinkIcon,InfoIcon,ChevronUpIcon} from '@chakra-ui/icons';
   import { Menu, MenuButton, MenuList, MenuItem,Flex } from '@chakra-ui/react';
   import { NAV_ITEMS, SOURCES_MENU_ITEMS } from "../../config/navigationConfig";
   import { NavItem } from "./NavItem";
-  import  {useNavigate} from "react-router-dom";
+  import  {useNavigate,useLocation} from "react-router-dom";
   import { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
   import { motion, AnimatePresence } from "framer-motion";
+  import {CloseIcon} from "../../assets/icons";
   
   export function MenuDrawer({ isOpen, onClose }) {
     const navigate = useNavigate();
+    const location = useLocation();
     const goToHomePage = () => {
       navigate("/");
       onClose();
@@ -33,7 +37,7 @@ import {
           backdropFilter: "blur(20px)",
           minHeight: '100vh',
         }}>
-          <DrawerCloseButton sx={{ zIndex: 9999 }} />
+          <DrawerCloseButton sx={{ zIndex: 9999 }}  />
           <DrawerHeader fontWeight={800} opacity={1} textAlign={"center"} onClick={goToHomePage}>
             <Image
               draggable={false}
@@ -68,7 +72,7 @@ import {
               </Box>
             ))}
               
-              <Menu borderRadius={8} isLazy autoSelect={false} placement="bottom" closeOnSelect={false}>
+              <Menu borderRadius={8} zIndex='99999' autoSelect={false} placement="bottom" closeOnSelect={false}>
                 {({ isOpen }) => (
                   <>
                     <MenuButton
@@ -108,14 +112,23 @@ import {
 
 
                     </MenuButton>
-                    <MenuList borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
+                    <MenuList borderRadius={8}  bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
                       {SOURCES_MENU_ITEMS.map((item) => (
                         <MenuItem 
                           key={item.label}
                           bg='rgba(0, 10, 38, 0.6)' 
                           backdropFilter='blur(4px)' 
                           boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-                          onClick={() => !item.underConstruction && window.open(item.path, '_blank')}
+                          color={(location.pathname === item.path) ? "brand.dark.secondary" : "brand.dark.text"}
+                          onClick={() => {
+                            if (item.underConstruction) return;
+                            if (item.type === "external") {
+                              window.open(item.path, '_blank', 'noopener,noreferrer');
+                            } else {
+                              navigate(item.path);
+                              onClose(); 
+                            }
+                          }}
                           _hover={{ color: "brand.dark.secondary" }}
                         >
                           {item.underConstruction ? (
@@ -132,11 +145,28 @@ import {
                 )}
               </Menu>
   
-              <Text position="absolute" bottom="8vh" fontWeight={200}>
+              {/* <Text position="absolute" bottom="8vh" fontWeight={200}>
                 <InfoIcon pb="0.5" fontSize="18px" /> Σελίδα υπο κατασκευή
-              </Text>
+              </Text> */}
             </Flex>
           </DrawerBody>
+          {/* <DrawerFooter
+                    justifyContent={"center"}
+                >
+                    <Button
+                        onClick={onClose}
+                        variant="ghost"
+                        fontWeight="bold"
+                        fontFamily="Syne"
+                        fontSize={{ base: "sm", lg: "lg" }}
+                        _hover={false}
+                        leftIcon={<Box ml="0.5rem" pt="0.4rem">
+                            <CloseIcon />
+                        </Box>}
+                    >
+                        ΚΛΕΙΣΙΜΟ
+                    </Button>
+                </DrawerFooter> */}
         </DrawerContent>
       </Drawer>
     );

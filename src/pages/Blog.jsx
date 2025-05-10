@@ -62,6 +62,7 @@ export default function BlogList() {
       {[...Array(6)].map((_, i) => (
         <WrapItem key={i} width={{ base: '100%', md: '45%', lg: '30%' }} marginInline={'auto'}>
           <Box
+            marginInline={'auto'}
             borderWidth={1}
             p={4}
             width={{ base: '90%', md: '90%', lg: '100%' }}
@@ -135,7 +136,8 @@ export default function BlogList() {
               borderRadius={8}
               bg="rgba(0, 10, 38, 0.85)"
               backdropFilter="blur(6px)"
-              boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
+              // boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
+              boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
               border="1px solid rgba(255, 255, 255, 0.13)"
               // bg="linear-gradient(135deg, rgba(0, 10, 38, 0.6), rgba(25, 35, 55, 0.8))" // New color gradient (deep blue to darker blue)
               // backdropFilter="blur(4px)" // Blur effect to match
@@ -196,11 +198,11 @@ export default function BlogList() {
   justifyContent="space-between" 
   alignItems="center" 
   marginTop="auto"
-  width="full"  // Ensure it takes full width
-  gap={4}       // Add gap between items
-  flexWrap="wrap" // Allow wrapping on small screens
+  width="full"  
+  gap={4}      
+  flexWrap="wrap" 
 >
-  <HStack spacing={2} flexShrink={0}>  {/* Prevent shrinking */}
+  <HStack spacing={2} flexShrink={0}> 
     <FaCalendarAlt size={18} />
     <Text fontSize={{base: 'sm', md: 'md'}} userSelect={'none'}>
       {new Date(post.publishedAt).toLocaleDateString("en-GB")}
@@ -208,7 +210,7 @@ export default function BlogList() {
   </HStack>
   
   {post.author && (
-    <HStack spacing={2} flexShrink={0}>  {/* Prevent shrinking */}
+    <HStack spacing={2} flexShrink={0}> 
       <FaUser size={18} />
       <Text fontSize={{base: 'sm', md: 'md'}} userSelect={'none'}>
         {post.author}
@@ -220,7 +222,6 @@ export default function BlogList() {
             </WrapItem>
           );
         })}
-      {/* </SimpleGrid> */}
       </Wrap>)}
     </Box>
   );

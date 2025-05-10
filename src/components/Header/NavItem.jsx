@@ -28,28 +28,42 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
     <Text
     onClick={handleClick}
     fontSize={isMobile ? "lg" : "md"}
-    fontWeight={isActive ? "bold" : isMobile ? "800" : "600"}
+    fontWeight={isMobile ? "800" : "600"}
     py={isMobile ? 2 : 1}
     px={isActive ? 3 : 0}
     width={isMobile ? "full" : "auto"}
     textAlign={isMobile ? "center" : "left"}
     borderRadius="lg"
     transition="all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
-    color={isActive ? "white" : "brand.dark.text"}
-    bg={isActive ? "#000d33" : "transparent"}  // Deep blue active bg
-    boxShadow={isActive ? "0 0 8px rgba(0, 80, 200, 0.1)" : "none"}  // Reduced glow
-    textShadow={isActive ? "0 0 4px rgba(100, 180, 255, 0.2)" : "none"}  // Softer text glow
-    border={isActive ? "1px solid rgba(100, 180, 255, 0.10)" : "1px solid transparent"}
+    color={
+      isMobile
+        ? isActive
+          ? "brand.dark.secondary" 
+          : "brand.dark.text"
+        : isActive
+        ? "brand.dark.text" 
+        : "brand.dark.text"
+    }
+    bg={isMobile ? "transparent" : isActive ? "#000d33" : "transparent"}
+    boxShadow={isMobile ? "none" : isActive ? "0 0 8px rgba(0, 80, 200, 0.1)" : "none"} 
+    textShadow={isMobile ? "none" : isActive ? "0 0 4px rgba(100, 180, 255, 0.2)" : "none"} 
+    border={isMobile ? "1px solid transparent" : isActive ? "1px solid rgba(100, 180, 255, 0.10)" : "1px solid transparent"} 
     _hover={{
-      color: !isActive ? "brand.dark.secondary" : "white",
-      transform: !isActive ? "translateY(-2px) scale(1.02)" : "none",
+      color: isMobile
+        ? isActive
+          ? "brand.dark.secondary" 
+          : "brand.dark.secondary"
+        : !isActive
+        ? "brand.dark.secondary"
+        : "white",
+      transform: isMobile ? "none" : !isActive ? "translateY(-2px) scale(1.02)" : "none",
       textDecoration: "none",
       cursor: "pointer",
     }}
     _active={{
-      transform: "scale(0.98)",
-      bg: "#000d33",  // Ensures deep blue stays on click
-      boxShadow: "0 0 10px rgba(0, 80, 200, 0.25)",  // Stronger glow on press
+      transform: isMobile ? "none" : "scale(0.98)",
+      bg: isMobile ? "transparent" : "#000d33", 
+      boxShadow: isMobile ? "none" : "0 0 10px rgba(0, 80, 200, 0.25)", 
     }}
     userSelect="none"
     letterSpacing="-0.025em"
@@ -57,9 +71,9 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
     style={{
       WebkitTapHighlightColor: "transparent",
     }}
->
+  >
     {item.label}
-</Text>
+  </Text>
   
   );
 };

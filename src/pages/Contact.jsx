@@ -6,20 +6,29 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 const Register = () => {
     document.title = "Επικοινωνία - Open Source UoM";
     return (
-        <Flex justify="center"  pt={{ base: 10, lg: 20 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
-           <Box textAlign={"center"} >
+        <Flex justify="center"   pt={{ base: 10, lg: 20 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
+           <Box textAlign={"center"}  marginInline={'auto'} >
                 <Text fontSize={{ base: '3xl', lg: '4xl' }} fontWeight="bold" mb={4}>
                     Θέλεις να επικοινωνήσεις μαζί μας;
                 </Text>
                 <Text fontSize="lg" mb={8}>
                 Εδώ θα βρεις όλες τις πληροφορίες!
                 </Text>
-                <Flex direction={'column'} width={'fit-content'} alignItems={'center'} borderRadius={8} gap={4}
-                    bg="rgba(0, 10, 38, 0.95)"
-                    backdropFilter="blur(6px)"
-                    boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
-                    border="1px solid rgba(255, 255, 255, 0.13)"
-                    px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
+                <Flex 
+                direction={'column'} 
+                width={'fit-content'} 
+                align={'center'} 
+                justify={'center'}
+                borderRadius="12px" // Slightly larger radius for modern look
+                gap={4}
+                bg="rgba(0, 15, 45, 0.98)" // Slightly brighter/lighter than page bg
+                backdropFilter="blur(12px)"
+                border="1px solid rgba(120, 150, 255, 0.15)" // More visible border
+                my={{ sm: 21, lg: 20 }} 
+                marginInline={'auto'}
+                textAlign={'center'}
+                
+               >
 
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
@@ -54,6 +63,7 @@ const Register = () => {
                 </Flex>
                 </Flex>
            </Box>
+           
         </Flex>
     );
 };

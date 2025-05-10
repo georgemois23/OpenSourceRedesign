@@ -44,14 +44,23 @@ export const NAV_ITEMS = [
       label: "Αποθετήριο Github",
       path: "https://github.com/open-source-uom",
       icon: <ExternalLinkIcon fontSize={14} ml={1} mb={1}/>,
+      type: "external",
     },
+    // {
+    //   label: "Αποθετήριο Gitlab",
+    //   path: "https://gitlab.com/opensourceuom",
+    //   icon: <ExternalLinkIcon fontSize={14} ml={1} mb={1}/>,
+    //   type: "external",
+    // },
     {
-      label: "Αποθετήριο Gitlab",
-      path: "https://gitlab.com/opensourceuom",
-      icon: <ExternalLinkIcon fontSize={14} ml={1} mb={1}/>,
+      label: "Βίντεο",
+      path: "/videos",
+      type: "internal",
+      // icon: <ExternalLinkIcon fontSize={14} ml={1} mb={1}/>,
     },
     {
       label: "Βασικές εντολές LINUX",
-      underConstruction: true,
+      path: "/linux",
+      type: "internal",
     },
   ];

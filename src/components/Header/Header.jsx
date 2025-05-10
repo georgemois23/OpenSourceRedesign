@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Box, Flex, Image, IconButton, useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronDownIcon,ChevronUpIcon } from "@chakra-ui/icons";
 import { MenuDrawer } from "./MenuDrawer";  
@@ -31,7 +32,7 @@ export default function Header() {
         zIndex="999"
         backgroundColor='rgba(0, 10, 38, 0.98)'
         backdropBlur={"4px"}
-        height="80px"
+        height={{base:"70px", lg:"80px"}}
         fontFamily="Arial"
       >
         {/* Left Navigation (Desktop) */}
@@ -62,13 +63,22 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <IconButton
-          icon={<HamburgerIcon />}
-          aria-label="Open Menu"
+          icon={<HamburgerIcon boxSize={5} />}
+          aria-label={isOpen ? "Close Menu" : "Open Menu"}
           display={{ base: "flex", lg: "none" }}
           onClick={toggleMobileMenu}
           variant="ghost"
           color="brand.dark.text"
           ml="auto"
+          isRound
+           minW="48px"
+           minH="48px" 
+           zIndex={9999}
+        _hover={{ bg: "transparent" }}
+        _active={{ bg: "transparent",transform: "scale(0.9)"}}
+        _focus={{ boxShadow: "none" }}
+        transition="all 0.2s"
+        position="relative"
         />
       </Flex>
 
@@ -79,7 +89,10 @@ export default function Header() {
   );
 }
 
-const NavSection = ({ items, sourcesItems }) => (
+const NavSection = ({ items, sourcesItems }) => {
+  const navigate = useNavigate();
+   const location = useLocation();
+  return(
   <Flex
     gap={6}
     align="center"
@@ -87,16 +100,18 @@ const NavSection = ({ items, sourcesItems }) => (
     justify="center"
     display={{ base: "none", lg: "flex" }}
     fontWeight={400}
+    position="relative"
+    zIndex="1"
   >
     {items.map((item) => (
       <NavItem key={item.path} item={item} />
     ))}
     
     {sourcesItems && (
-      <Menu borderRadius={8} isLazy autoSelect={false} placement="bottom" closeOnSelect={false}>
+      <Menu borderRadius={8} isLazy autoSelect={false} placement="bottom" closeOnSelect={true}>
         {({ isOpen }) => (
           <>
-            <MenuButton isActive={isOpen} as={Box} cursor="pointer" rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} >
+            <MenuButton isActive={isOpen} as={Box} cursor="pointer" rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} position="relative" >
               ΠΗΓΕΣ 
                <AnimatePresence mode="wait" initial={false}>
                                     <motion.span
@@ -105,7 +120,7 @@ const NavSection = ({ items, sourcesItems }) => (
                                       animate={{ opacity: 1, rotate: 0, scale: 1 }}
                                       exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
                                       transition={{ duration: 0.1, ease: "easeOut" }}
-                                      style={{ display: "inline-block", marginLeft: "0.1rem" }}
+                                      style={{ display: "inline-block", marginLeft: "0.1rem",pointerEvents: "none"  }}
                                     >
                                       {isOpen ? <ChevronUpIcon  boxSize={5} /> : <ChevronDownIcon boxSize={5} />}
                                     </motion.span>
@@ -117,9 +132,17 @@ const NavSection = ({ items, sourcesItems }) => (
                 <MenuItem 
                   key={item.label}
                   bg='rgba(0, 10, 38, 0.6)' 
+                  color={(location.pathname === item.path) ? "brand.dark.secondary" : "brand.dark.text"}
                   backdropFilter='blur(4px)' 
                   boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-                  onClick={() => !item.underConstruction && window.open(item.path, '_blank')}
+                  onClick={() => {
+                    if (item.underConstruction) return;
+                    if (item.type === "external") {
+                      window.open(item.path, '_blank', 'noopener,noreferrer');
+                    } else {
+                      navigate(item.path);
+                    }
+                  }}
                   _hover={{ color: "brand.dark.secondary" }}
                 >
                   {item.underConstruction ? (
@@ -137,4 +160,4 @@ const NavSection = ({ items, sourcesItems }) => (
       </Menu>
     )}
   </Flex>
-);
+);}

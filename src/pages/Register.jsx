@@ -12,8 +12,19 @@ const Register = () => {
                 <Text fontSize="lg" mb={8}>
                 Εδώ θα βρεις τις φόρμες συμμετοχής στην ομάδα!
                 </Text>
-              <Flex direction={'column'} width={'fit-content'} alignItems={'center'} borderRadius={8} gap={4} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-                border="1px solid rgba(255, 255, 255, 0.05)" py={{sm: 21, lg: 5}} px={{ sm: 21, lg: 15 }} marginInline={'auto'}>
+              <Flex direction={'column'} 
+                width={'fit-content'} 
+                align={'center'} 
+                justify={'center'}
+                borderRadius="12px" // Slightly larger radius for modern look
+                gap={4}
+                bg="rgba(0, 15, 45, 0.98)" // Slightly brighter/lighter than page bg
+                backdropFilter="blur(12px)"
+                border="1px solid rgba(120, 150, 255, 0.15)" // More visible border
+                my={{ sm: 21, lg: 20 }} 
+                marginInline={'auto'}
+                py={{ sm: 5, lg: 5 }}
+                textAlign={'center'}>
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4} py={{sm:0,lg:5}}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
                     Εγγραφή στην ομάδα Open Source UoM</Text>                    

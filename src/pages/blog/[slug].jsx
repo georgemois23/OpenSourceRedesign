@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, Text, Image, Link, Flex,UnorderedList,OrderedList, List,ListItem, HStack,Wrap,Tag,TagLabel } from "@chakra-ui/react";
+import { Box, Heading, Text, Image, Link, Flex,UnorderedList,OrderedList, List,ListItem, HStack,Wrap,Tag,TagLabel,Button } from "@chakra-ui/react";
 import { client } from "../../sanity/client"; // assuming the client is set up correctly
 import { useParams } from "react-router-dom"; // for getting the slug from the URL
 import imageUrlBuilder from "@sanity/image-url"; // Import the image URL builder
@@ -57,7 +57,8 @@ const PostPage = () => {
     }
   );
 
-
+  // if(!post) navigate('/404', {replace:true});
+ 
 
 
   if (isLoading) return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
@@ -66,7 +67,22 @@ const PostPage = () => {
     <LoadingThreeDotsPulse />
     </Flex>);
 
-document.title = `${post.title} - Open Source UoM`;
+if(!post){
+  document.title = 'Δεν βρέθηκε το άρθρο - Open Source UoM';
+return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
+  <Heading as="h3" size="lg" mb={4} textAlign={"center"}>Το άρθρο δεν βρέθηκε</Heading>
+   <Text color={'gray.500'} mb={6} textAlign={'center'} >
+                  Το άρθρο που αναζητάτε δεν υπάρχει ή έχει μετακινηθεί.
+              </Text>
+  <Button onClick={() => navigate('/blog')}  mt={4}>
+    Πίσω στο Blog
+  </Button>
+  </Flex>);
+  }
+else{
+
+
+{post.title && (document.title = `${post.title} - Open Source UoM`)};
 
   // Use the image URL builder to create the image URL with width and height
   const postImageUrl = post.image
@@ -99,7 +115,7 @@ document.title = `${post.title} - Open Source UoM`;
         </Text>
 
     
-        <Heading as="h1" fontSize="4xl" fontWeight="bold" mb={6}>
+        <Heading as="h1" fontSize={{base:"2xl", lg:"4xl"}} fontWeight="bold" mb={6}>
         {post.title}
         </Heading>
      
@@ -148,7 +164,8 @@ document.title = `${post.title} - Open Source UoM`;
 
       </Box>
       {post.tags && post.tags.length > 0  &&(
-        <Box mt={12} mb={8}>
+        <Box mt={12} mb={8} 
+        userSelect={'none'}>
         <HStack spacing={2} mb={3}>
           <FaTag />
           <Text fontSize="lg" fontWeight="semibold">Ετικέτες:</Text>
@@ -178,7 +195,7 @@ document.title = `${post.title} - Open Source UoM`;
         </Box>
       )}
     </Box>
-  );
+  );}
 };
 
 export default PostPage;

@@ -53,7 +53,7 @@ export default function HomePage() {
 
   const texts = [
     { content: "OPEN SOURCE", color: undefined },
-    { content: "UOM COMMUNITY", color: "gray.600" }
+    { content: "UOM COMMUNITY", color: "gray.500" }
   ];
 
   useEffect(() => {
@@ -94,6 +94,7 @@ export default function HomePage() {
           fontSize={{ sm: "5xl", md: "6xl", lg: "9xl" }}
           color={text.color}
           display="inline-block"
+          userselect={'none'}
         >
           {text.content.split(" ").map((word, wordIndex) => {
             const Component = shouldAnimate ? MotionSpan : "span";
@@ -116,7 +117,8 @@ export default function HomePage() {
                 style={{
                   display: "inline-block",
                   marginRight: "0.25em",
-                  whiteSpace: "nowrap"
+                  whiteSpace: "nowrap",
+                  userSelect: 'none'
                 }}
               >
                 {word}
@@ -159,10 +161,20 @@ export default function HomePage() {
   Μάθε περισσότερα για την κοινότητα μας <ArrowDownIcon />
 </Text>
 
-    {/* <Box height="1px" ref={aboutSectionRef} mt={{ base: '20vw', lg: 1 }}></Box> */}
-    <Flex ref={aboutSectionRef}   direction='column'   mb={10} marginInline={'auto'} gap={4}   width={{base: '90vw', lg:'70vw'}}  padding={4} borderRadius={8} bg='rgba(0, 10, 38, 0.6)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-  border="1px solid rgba(255, 255, 255, 0.05)"
+    <Flex ref={aboutSectionRef}   
+    direction='column'  
+     mb={10} 
+     marginInline={'auto'} 
+     gap={4}   
+     width={{base: '90vw', lg:'70vw'}}  
+     padding={4}
+     borderRadius={8}  
+    boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
+    bg="rgba(0, 12, 45, 0.98)" 
+    backdropFilter="blur(14px)"
+    border="1px solid rgba(0, 46, 102, 0.96)" 
   mt={{ base: '25vw', lg: '12vh' }}
+  transform="translateY(-2px)" 
   >
       <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center">Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
     <Box  as='p' textAlign="left" lineHeight="0.9"  fontFamily="Arial" px={{ sm: 5, lg: 20 }}  width={{base: '90vw', lg:'70vw'}}  marginInline={'auto'} > 

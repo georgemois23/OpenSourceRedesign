@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useState,useEffect} from "react";
+import { Outlet, useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Box, Flex, Image, IconButton, useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronDownIcon,ChevronUpIcon } from "@chakra-ui/icons";

@@ -66,7 +66,11 @@ export default function Header() {
           icon={<HamburgerIcon boxSize={5} />}
           aria-label={isOpen ? "Close Menu" : "Open Menu"}
           display={{ base: "flex", lg: "none" }}
-          onClick={toggleMobileMenu}
+          onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          toggleMobileMenu();
+        }}
           variant="ghost"
           color="brand.dark.text"
           ml="auto"

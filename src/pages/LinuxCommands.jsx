@@ -1,5 +1,4 @@
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Code,Table, Thead, Tbody, Tr, Th, Td, TableContainer, Heading,Text} from '@chakra-ui/react';
-
 const commandCategories = [
     {
     "label": "Διαχείριση Αρχείων",
@@ -340,7 +339,7 @@ const LinuxCommands = () => {
     <Text fontSize={{ base: "sm", md: "md" }} textAlign="left" mb={4} color="gray.400">
         Εδώ θα δούμε κάποιες βασικές εντολές τερματικού
         </Text>
-    <Accordion allowMultiple={'false'} mt={10} mb={10}>
+    <Accordion allowMultiple mt={10} mb={10}>
   {commandCategories.map((category, index) => (
     <AccordionItem 
       key={index} 
@@ -382,18 +381,18 @@ const LinuxCommands = () => {
                   px={{ base: 2, md: 4 }}
                   py={3}
                   color="brand.dark.secondary"
-                  bg="white"
+                  bg="gray.300"
                 >
-                  Εντολή
+                  Εντολη
                 </Th>
                 <Th 
                   textAlign="center" 
                   px={{ base: 2, md: 4 }}
                   py={3}
                   color="brand.dark.secondary"
-                  bg="white"
+                  bg="gray.300"
                 >
-                  Περιγραφή
+                  Περιγραφη
                 </Th>
               </Tr>
             </Thead>

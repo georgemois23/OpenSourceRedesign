@@ -6,10 +6,10 @@ const Register = () => {
     return (
         <Flex justify="center"  pt={{ base: 10, lg: 20 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
            <Box textAlign={"center"} >
-                <Text fontSize={{ base: '3xl', lg: '4xl' }} fontWeight="bold" mb={4}>
+                <Text fontSize={{ base: 'xl', lg: '4xl' }} fontWeight="bold" mb={4}>
                     Ενδιαφέρεσαι να γίνεις μέλος της κοινότητας μας;
                 </Text>
-                <Text fontSize="lg" mb={8}>
+                <Text fontSize={{ base: 'md', lg: 'lg' }}  mb={8} color={'gray.500'}>
                 Εδώ θα βρεις τις φόρμες συμμετοχής στην ομάδα!
                 </Text>
               <Flex direction={'column'} 
@@ -18,9 +18,10 @@ const Register = () => {
                 justify={'center'}
                 borderRadius="12px" // Slightly larger radius for modern look
                 gap={4}
-                bg="rgba(0, 15, 45, 0.98)" // Slightly brighter/lighter than page bg
-                backdropFilter="blur(12px)"
-                border="1px solid rgba(120, 150, 255, 0.15)" // More visible border
+                boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
+                bg="rgba(0, 12, 45, 0.98)" 
+                backdropFilter="blur(14px)"
+                border="1px solid rgba(0, 46, 102, 0.96)"
                 my={{ sm: 21, lg: 20 }} 
                 marginInline={'auto'}
                 py={{ sm: 5, lg: 5 }}

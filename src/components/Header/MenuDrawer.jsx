@@ -32,6 +32,7 @@ import {
       <Drawer onClose={onClose} isOpen={isOpen} size="full">
         <DrawerOverlay />
         <DrawerContent sx={{
+          zIndex: '99999 !important',
           bg: "rgba(0, 10, 38, 0.7)",
           width: "100%",
           backdropFilter: "blur(20px)",

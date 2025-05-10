@@ -15,7 +15,10 @@ export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
-  const goToHomePage = () => navigate("/");
+  const goToHomePage = () => {
+  navigate("/");
+  onClose(); // Explicitly close drawer on navigation
+};
   const toggleMobileMenu = () => onOpen();
 
   return (

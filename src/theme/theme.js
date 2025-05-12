@@ -21,7 +21,9 @@ const theme = extendTheme({
     },
   },
   breakpoints: {
+    xs: "280px",
     sm: "320px",
+    sm2: "480px",
     md: "768px",
     lg: "960px",
     xl: "1200px",
@@ -49,6 +51,7 @@ const theme = extendTheme({
       baseStyle: {
         variant:"solid",
         _hover: {
+          fontweight: "bold",
           color: "brand.dark.secondary",
           backgroundColor: "brand.dark.text",
           transform: "scale(1.05)", 

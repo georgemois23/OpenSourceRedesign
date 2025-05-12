@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { client } from '../../sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 import LoadingThreeDotsPulse from "../../components/Loading";
-
+import { Card, CardHeader, CardBody, CardFooter,Stack,Divider,ButtonGroup } from '@chakra-ui/react'
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
@@ -82,7 +82,7 @@ export const LatestPosts = () => {
     <Box py={8} px={4}>
       {!error && <Heading as="h2" size="xl" mb={8} textAlign="center">Τελευταία Νέα</Heading>}
       {!error && 
-      <Wrap spacing={8} justify="center">
+      <Wrap spacing={8} justify="center" mx={'auto'}>
         {posts.map(post => {
           const excerpt = post.body
             ?.filter(b => b._type === "block")
@@ -98,7 +98,57 @@ export const LatestPosts = () => {
               userSelect={'none'}
               
             >
-              <Box
+              <Card maxW='sm'  borderRadius={8} color={'brand.dark.text'}
+              p={1}
+              mx={'auto'}
+              width="100%"
+              // transform={'scale(0.9)'}
+              bg="rgba(0, 10, 38, 0.85)"
+                backdropFilter="blur(6px)"
+                boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
+                border="1px solid rgba(255, 255, 255, 0.13)"
+                _hover={{ 
+                  transform: 'translateY(-5px)',
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)'
+                }}
+                transition="all 0.3s ease"
+              >
+              <CardBody >
+                <Image
+                    src={urlFor(post.image).width(800).url()}
+                    alt={post.title}
+                    borderRadius="md"
+                    mb={4}
+                    width="100%"
+                    h={"auto"}
+                    objectFit="cover"
+                  />
+                <Stack mt='6' spacing='3'>
+                  <Heading size='md'>{post.title}</Heading>
+                  <Text>
+                    {excerpt}
+                  </Text>
+                  
+                </Stack>
+              </CardBody>
+              {/* <Divider /> */}
+              {/* <CardFooter> */}
+                <Flex justify="space-between" direction={{xs:'column',sm:'row'}} flexWrap={{sm:'wrap'}} color="brand.dark.secondary" px={{xs:'4',sm:2, md:3}} py={{sm:2, md:1}}>
+                {post.publishedAt &&
+                  <HStack spacing={2}>
+                    <FaCalendarAlt />
+                    <Text>{new Date(post.publishedAt).toLocaleDateString("en-GB")}</Text>
+                  </HStack>}
+                  {post.author && (
+                    <HStack spacing={2}>
+                      <FaUser />
+                      <Text>{post.author}</Text>
+                    </HStack>
+                  )}
+                </Flex>
+              {/* </CardFooter> */}
+            </Card>
+              {/* <Box
                 borderWidth={1}
                 p={4}
                 width="100%"
@@ -139,7 +189,7 @@ export const LatestPosts = () => {
                     </HStack>
                   )}
                 </Flex>
-              </Box>
+              </Box> */}
             </WrapItem>
           );
         })}
@@ -150,4 +200,76 @@ export const LatestPosts = () => {
       </Text>
     </Box>
   );
+//   return (
+//     <Box py={8} px={4}>
+//       {!error && <Heading as="h2" size="xl" mb={8} textAlign="center">Τελευταία Νέα</Heading>}
+//       {!error && 
+//       <Wrap spacing={8} justify="center">
+//         {posts.map(post => {
+//           const excerpt = post.body
+//             ?.filter(b => b._type === "block")
+//             ?.flatMap(b => b.children.map(c => c.text))
+//             ?.join(" ").split(" ").slice(0, 20).join(" ") + "…";
+            
+//           return (
+//             <WrapItem 
+//               key={post._id}
+//               width={{ base: '100%', md: '45%', lg: '30%' }}
+//               onClick={() => navigate(`/blog/${post.slug.current}`)}
+//               cursor="pointer"
+//               userSelect={'none'}
+              
+//             >
+//               <Box
+//                 borderWidth={1}
+//                 p={4}
+//                 width="100%"
+//                 borderRadius={8}
+//                 bg="rgba(0, 10, 38, 0.85)"
+//                 backdropFilter="blur(6px)"
+//                 boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
+//                 border="1px solid rgba(255, 255, 255, 0.13)"
+//                 _hover={{ 
+//                   transform: 'translateY(-5px)',
+//                   boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)'
+//                 }}
+//                 transition="all 0.3s ease"
+//               >
+//                 {post.image && (
+//                   <Image
+//                     src={urlFor(post.image).width(800).url()}
+//                     alt={post.title}
+//                     borderRadius="md"
+//                     mb={4}
+//                     width="100%"
+//                     h={"auto"}
+//                     objectFit="cover"
+//                   />
+//                 )}
+//                 {post.title && <Heading as="h2" size="md" mb={3}>{post.title}</Heading>}
+//                 {post.body && <Text mb={4} color="gray.300">{excerpt}</Text>}
+//                 <Flex justify="space-between" color="brand.dark.secondary">
+//                 {post.publishedAt &&
+//                   <HStack spacing={2}>
+//                     <FaCalendarAlt />
+//                     <Text>{new Date(post.publishedAt).toLocaleDateString("en-GB")}</Text>
+//                   </HStack>}
+//                   {post.author && (
+//                     <HStack spacing={2}>
+//                       <FaUser />
+//                       <Text>{post.author}</Text>
+//                     </HStack>
+//                   )}
+//                 </Flex>
+//               </Box>
+//             </WrapItem>
+//           );
+//         })}
+//       </Wrap>
+// }
+//       <Text textAlign={'center'}>
+//       <Button marginInline={'auto'} textAlign={'center'} my={6} onClick={() => navigate('/blog')} >{!error ?'Περισσότερα στο Blog' : 'Δείτε όλα τα άρθα στο Blog'}</Button>
+//       </Text>
+//     </Box>
+//   );
 };

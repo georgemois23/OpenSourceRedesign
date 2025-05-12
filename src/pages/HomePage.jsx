@@ -186,9 +186,13 @@ export default function HomePage() {
 
     
 
-    <Button width={'fit-content'} marginInline={'auto'} onClick={() => navigate('/readme')} display="flex"
-        alignItems="center"
-        gap={2}><ToolTipUnderConstruction where={"Περισσότερες πληροφορίες"} /> <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /></Button>
+    <Button  marginInline={'auto'} onClick={() => navigate('/readme')} display="flex"
+        alignItems="center" width={{ base: 'fit-content', lg: 'fit-content' }} wordBreak={'break-word'}
+        gap={2} fontSize={{ base: 'sm', lg: 'lg' }}>
+          {/* <ToolTipUnderConstruction where={"Περισσότερες πληροφορίες"} /> */}
+          Περισσότερες πληροφορίες
+          <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /> 
+          </Button>
  </Flex>
     </Flex>
 

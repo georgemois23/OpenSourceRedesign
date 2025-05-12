@@ -121,7 +121,7 @@ export default function BlogList() {
   : null;
 
           return (
-            <WrapItem key={post._id} width={{ base: '100%', md: '45%', lg: '30%' }} display="flex"
+            <WrapItem key={post._id} width={{ sm: '95%',sm2: '70%', md: '45%', lg: '30%' }} display="flex"
             justifyContent="center" 
             onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
             // marginInline={'auto'}
@@ -131,8 +131,7 @@ export default function BlogList() {
               borderWidth={1}
               p={4}
               h={'fit-content'}
-              width={{ base: '90%', md: '90%', lg: '95%' }}
-              // marginInline={'left'}
+              width={{ base: '100%', md: '90%', lg: '95%' }}
               borderRadius={8}
               bg="rgba(0, 10, 38, 0.85)"
               backdropFilter="blur(6px)"
@@ -170,6 +169,7 @@ export default function BlogList() {
                   mb={4}
                   height="auto"
                   width={{base:"100%", lg:"100%"}}
+                  transform={'scale(0.9)'}
                   marginInline={{base: 'none', lg: 'auto'}}
                   onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
                 />

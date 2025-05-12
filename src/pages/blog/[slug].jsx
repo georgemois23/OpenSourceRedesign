@@ -107,15 +107,22 @@ else{
   return (
     <Box maxWidth="4xl" mx="auto" p={4} minHeight="100vh" width={"90%"} >
       
-        <Text fontSize="lg" onClick={()=>navigate('/blog')} cursor={'pointer'} 
-        _hover={{color:'brand.dark.secondary'}}
-        width={'fit-content'} userSelect={'none'} 
-        mb={4}>
-        <IoIosArrowRoundBack size={40}/> Πίσω στο Blog
-        </Text>
+         <Flex
+      align="center"
+      fontSize="lg"
+      onClick={() => navigate('/blog')}
+      cursor="pointer"
+      _hover={{ color: 'brand.dark.secondary' }}
+      width="fit-content"
+      userSelect="none"
+      mb={4}
+    >
+      <IoIosArrowRoundBack size={40} style={{ marginRight: '6px' }} />
+      <Text>Πίσω στο Blog</Text>
+    </Flex>
 
     
-        <Heading as="h1" fontSize={{base:"2xl", lg:"4xl"}} fontWeight="bold" mb={6}>
+        <Heading as="h1" fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }} fontWeight="bold" mb={6}>
         {post.title}
         </Heading>
      
@@ -128,7 +135,7 @@ else{
     borderRadius="md"
     mb={6}
     maxW="100%"
-    w={"50%"}
+    w={{sm:'80%', md:'80%', lg:'30%'}}
     h="auto"
     mx="auto"
     
@@ -142,7 +149,7 @@ else{
       
 
       <Text fontSize="md" color="gray.500" mb={6} userSelect={'none'}>
-        Δημοσιεύθηκε: {date}
+        Δημοσιεύθηκε: <span>{date}</span>
         <br />
         {post.author && (
         <Text fontSize={{base:'sm', md: 'md' }} >Από {post.author}</Text>
@@ -150,12 +157,13 @@ else{
       </Text>
       
 
-      <Box className="prose" mb={8} borderRadius={8}
-              bg="rgba(0, 10, 38, 0.55)"
-              backdropFilter="blur(6px)"
-              boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
-              border="1px solid rgba(255, 255, 255, 0.13)" p={{sm:4, md:8}}
-              textAlign={'left'}
+      <Box 
+              // mb={8} borderRadius={8}
+              // bg="rgba(0, 10, 38, 0.55)"
+              // backdropFilter="blur(6px)"
+              // boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
+              // border="1px solid rgba(255, 255, 255, 0.13)" p={{sm:4, md:8}}
+              // textAlign={'left'}
               >
       
         <Box fontSize={{base:'sm', md: 'lg' }} >

@@ -48,7 +48,7 @@ const ReadMe = () => {
         fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
         mb={12}
         userSelect="none"
-        color={headingColor}
+        color={textColor}
         textAlign="center"
       >
         ReadMe - Περισσότερα για εμάς

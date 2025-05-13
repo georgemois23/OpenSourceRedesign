@@ -121,7 +121,7 @@ export default function BlogList() {
   : null;
 
           return (
-            <WrapItem key={post._id} width={{ sm: '95%',sm2: '70%', md: '45%', lg: '30%' }} display="flex"
+            <WrapItem key={post._id} width={{ sm: '100%',sm2: '70%', md: '45%', lg: '30%' }} display="flex"
             justifyContent="center" 
             onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
             // marginInline={'auto'}

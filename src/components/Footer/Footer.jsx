@@ -45,7 +45,7 @@ const Footer = () => {
             alt='Open Source UoM Logo'
             draggable={false}
             src="/logo.png"
-            loading="eager"
+            loading="lazy"
             height="auto"
             w={{ base: "40px", md: "60px" }}
           />

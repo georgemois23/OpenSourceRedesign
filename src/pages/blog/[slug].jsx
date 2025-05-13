@@ -57,15 +57,22 @@ const PostPage = () => {
     }
   );
 
+
+  
   // if(!post) navigate('/404', {replace:true});
  
 
 
-  if (isLoading) return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
+  if (isLoading){ 
+    const timeout = setTimeout(() => {
+      window.location.reload();
+    }, 7000);
+    return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
     {/* <Spinner speed='0.65s' thickness='3px' /> */}
     {/* <Text textAlign={'center'} fontSize={{sm: 'md',md:'xl'}}>Φόρτωση του άρθρου...</Text>  */}
     <LoadingThreeDotsPulse />
-    </Flex>);
+    </Flex>);}
+
 
 if(!post){
   document.title = 'Δεν βρέθηκε το άρθρο - Open Source UoM';
@@ -138,7 +145,6 @@ else{
     w={{sm:'80%', md:'80%', lg:'30%'}}
     h="auto"
     mx="auto"
-    
     css={{
       aspectRatio: 'auto 16/9', 
       objectFit: 'contain'

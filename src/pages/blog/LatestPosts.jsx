@@ -103,8 +103,8 @@ export const LatestPosts = () => {
               mx={'auto'}
               width="100%"
               // transform={'scale(0.9)'}
-              bg="rgba(0, 10, 38, 0.85)"
-                backdropFilter="blur(6px)"
+              bg="rgba(0, 10, 38, 0.95)"
+                // backdropFilter="blur(6px)"
                 boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
                 border="1px solid rgba(255, 255, 255, 0.13)"
                 _hover={{ 

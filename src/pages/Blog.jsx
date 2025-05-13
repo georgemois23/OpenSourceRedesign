@@ -133,8 +133,8 @@ export default function BlogList() {
               h={'fit-content'}
               width={{ base: '100%', md: '90%', lg: '95%' }}
               borderRadius={8}
-              bg="rgba(0, 10, 38, 0.85)"
-              backdropFilter="blur(6px)"
+              bg="rgba(0, 10, 38, 0.95)"
+              // backdropFilter="blur(6px)"
               // boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
               boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
               border="1px solid rgba(255, 255, 255, 0.13)"

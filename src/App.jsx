@@ -12,6 +12,7 @@ import Blog from "./pages/Blog.jsx";
 import PostPage from './pages/blog/[slug].jsx';
 import Contact from "./pages/Contact";
 import Header from "./components/Header/Header";
+import ReadMe from "./pages/ReadMe";
 import Error404 from "./pages/Error404";
 import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/linux" element={<Linux />} />
+        <Route path="/readme" element={<ReadMe />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<PostPage />} />
         <Route path="/*" element={<NotReady/>} />

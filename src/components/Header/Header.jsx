@@ -44,7 +44,7 @@ const location = useLocation();
         paddingY="1rem"
         zIndex="999"
         backgroundColor='rgba(0, 10, 38, 0.98)'
-        backdropBlur={"4px"}
+        // backdropBlur={"4px"}
         height={{base:"70px", lg:"80px"}}
         fontFamily="Arial"
       >
@@ -164,13 +164,12 @@ const handleMouseEnter = () => {
             <MenuList  
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-             borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
+             borderRadius={8} bg='rgba(0, 10, 38, 1)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
               {sourcesItems.map((item) => (
                 <MenuItem 
                   key={item.label}
                   bg='rgba(0, 10, 38, 0.6)' 
                   color={(location.pathname === item.path) ? "brand.dark.secondary" : "brand.dark.text"}
-                  backdropFilter='blur(4px)' 
                   boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
                   onClick={() => {
                     if (item.underConstruction) return;

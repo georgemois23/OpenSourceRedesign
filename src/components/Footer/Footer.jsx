@@ -26,7 +26,6 @@ const Footer = () => {
       px={{ base: 4, md: 8 }}
       bg="rgba(0, 10, 38, 0.93)"
       width="100%"
-      backdropFilter="blur(4px)"
       gap={6}
       minH="fit-content"
     >

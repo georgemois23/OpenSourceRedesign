@@ -30,7 +30,6 @@ export const NAV_ITEMS = [
       label: "README",
       path: "/readme",
       type: "internal",
-      underConstruction: true,
     },
     {
       label: "ΕΠΙΚΟΙΝΩΝΙΑ",

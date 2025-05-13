@@ -11,6 +11,7 @@ import {
     Image,
     Button,
   } from "@chakra-ui/react";
+  import { useBreakpointValue } from '@chakra-ui/react';
   import { ChevronDownIcon, ExternalLinkIcon,InfoIcon,ChevronUpIcon} from '@chakra-ui/icons';
   import { Menu, MenuButton, MenuList, MenuItem,Flex } from '@chakra-ui/react';
   import { NAV_ITEMS, SOURCES_MENU_ITEMS } from "../../config/navigationConfig";
@@ -27,9 +28,10 @@ import {
       navigate("/");
       onClose();
     };
+    
   
     return (
-      <Drawer onClose={onClose} isOpen={isOpen} size="full">
+      <Drawer onClose={onClose} isOpen={isOpen} size="full" closeOnBlur>
         <DrawerOverlay />
         <DrawerContent sx={{
           zIndex: '99999 !important',
@@ -73,7 +75,12 @@ import {
               </Box>
             ))}
               
-              <Menu borderRadius={8} zIndex='99999' autoSelect={false} placement="bottom" closeOnSelect={false}>
+              <Menu borderRadius={8} zIndex='99999' autoSelect={false} 
+              modifiers={[{ name: "flip", enabled: false }]}
+            placement={useBreakpointValue({ xxs: 'top', xs: 'bottom' })}
+              closeOnSelect={false} 
+              preventOverflow
+  isLazy >
                 {({ isOpen }) => (
                   <>
                     <MenuButton
@@ -113,7 +120,7 @@ import {
 
 
                     </MenuButton>
-                    <MenuList borderRadius={8}  bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
+                    <MenuList borderRadius={8}  bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)" mt={0}>
                       {SOURCES_MENU_ITEMS.map((item) => (
                         <MenuItem 
                           key={item.label}

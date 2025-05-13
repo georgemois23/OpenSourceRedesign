@@ -23,7 +23,7 @@ const Register = () => {
                 gap={4}
                 boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
                 bg="rgba(0, 12, 45, 0.98)" 
-                backdropFilter="blur(14px)"
+                // backdropFilter="blur(14px)"
                 border="1px solid rgba(0, 46, 102, 0.96)"
                 my={{ sm: 21, lg: 20 }} 
                 marginInline={'auto'}

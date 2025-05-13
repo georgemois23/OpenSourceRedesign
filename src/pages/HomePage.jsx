@@ -177,10 +177,10 @@ export default function HomePage() {
   transform="translateY(-2px)" 
   >
       <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center">Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
-    <Box  as='p' textAlign="left" lineHeight="0.9"  fontFamily="Arial" px={{ sm: 5, lg: 20 }}  width={{base: '90vw', lg:'70vw'}}  marginInline={'auto'} > 
+    <Box  as='p' textAlign="left" lineHeight="0.9"  fontFamily="Arial" p={{sm:2,md:4}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
     Η Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας είναι μια ομάδα οργανωμένη από φοιτητές/-τριες του Πανεπιστημίου Μακεδονίας, που σκοπό έχει να γνωστοποιήσει και να προωθήσει το Ελεύθερο Λογισμικό, Λογισμικό Ανοικτού Κώδικα (ΕΛ/ΛΑΚ) και Open Source Hardware. Η κοινότητα απαρτίζεται κυρίως από φοιτητές/-τριες του τμήματος της Εφαρμοσμένης Πληροφορικής, μπορεί όμως να συμμετέχει οποιοσδήποτε θέλει να βοηθήσει και να προσφέρει στην ομάδα, με όποιον τρόπο μπορεί.
  </Box>
-    <Box  as='p' textAlign="left" lineHeight="0.9" wordBreak={'break-word'}  fontFamily="Arial" px={{ sm: 5, lg: 20 }}  width={{base: '90vw', lg:'70vw'}}  marginInline={'auto'} > 
+    <Box  as='p' textAlign="left" lineHeight="0.9" wordBreak={'break-word'}  fontFamily="Arial" p={{sm:2,md:4}}width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
     Η συμμετοχή είναι εθελοντική και δεν είστε υποχρεωμένοι/-ες να καταβάλετε οποιοδήποτε χρηματικό ποσό εκτός και αν θέλετε να βοηθήσετε οικονομικά την ομάδα σε τυχόν έξοδα που προκύπτουν κατά καιρούς, είτε για αγορά απαραίτητου εξοπλισμού, είτε για την διοργάνωση εκδηλώσεων. Για περισσότερες πληροφορίες επικοινωνήστε με την ομάδα.
     </Box>
 

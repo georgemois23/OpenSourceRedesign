@@ -79,7 +79,7 @@ export const LatestPosts = () => {
   }
 
   return (
-    <Box py={8} px={4}>
+    <Box py={8} px={4} mt={8} >
       {!error && <Heading as="h2" size="xl" mb={8} textAlign="center">Τελευταία Νέα</Heading>}
       {!error && 
       <Wrap spacing={8} justify="center" mx={'auto'}>

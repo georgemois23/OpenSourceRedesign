@@ -1,4 +1,4 @@
-import { useState,useEffect} from "react";
+import { useState,useEffect,useRef} from "react";
 import { Outlet, useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Box, Flex, Image, IconButton, useDisclosure } from "@chakra-ui/react";
@@ -108,6 +108,17 @@ const location = useLocation();
 
 const NavSection = ({ items, sourcesItems }) => {
   const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const timeoutRef = useRef(null);
+
+const handleMouseLeave = () => {
+  timeoutRef.current = setTimeout(onClose, 300); // Delay close
+};
+
+const handleMouseEnter = () => {
+  clearTimeout(timeoutRef.current); // Cancel close if mouse re-enters
+  onOpen();
+};
    const location = useLocation();
   return(
   <Flex
@@ -125,10 +136,16 @@ const NavSection = ({ items, sourcesItems }) => {
     ))}
     
     {sourcesItems && (
-      <Menu borderRadius={8} isLazy autoSelect={false} placement="bottom" closeOnSelect={true}>
+      <Menu borderRadius={8} isOpen={isOpen} isLazy autoSelect={false} placement="bottom"  closeOnSelect={true} delay={2} 
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      >
         {({ isOpen }) => (
           <>
-            <MenuButton isActive={isOpen} as={Box} cursor="pointer" rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} position="relative" >
+            <MenuButton isActive={isOpen} as={Box} cursor="pointer" 
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} position="relative" >
               ΠΗΓΕΣ 
                <AnimatePresence mode="wait" initial={false}>
                                     <motion.span
@@ -144,7 +161,10 @@ const NavSection = ({ items, sourcesItems }) => {
                                   </AnimatePresence>
               {/* <ChevronDownIcon /> */}
             </MenuButton>
-            <MenuList borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
+            <MenuList  
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+             borderRadius={8} bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
               {sourcesItems.map((item) => (
                 <MenuItem 
                   key={item.label}

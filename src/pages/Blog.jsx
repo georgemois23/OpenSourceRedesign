@@ -101,7 +101,7 @@ export default function BlogList() {
 
   return (
     <Box minH={'100vh'} px={4} py={8} >
-      <Heading as="h1" size="2xl" mb={8} userSelect={'none'} >
+      <Heading as="h1" ml={4}  fontSize={{ base: "3xl", sm: "3xl", md: "3xl", lg: "4xl" }} mb={8} userSelect={'none'} >
         Blog
       </Heading>
       {/* <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}> */}
@@ -121,7 +121,7 @@ export default function BlogList() {
   : null;
 
           return (
-            <WrapItem key={post._id} width={{ sm: '100%',sm2: '70%', md: '45%', lg: '30%' }} display="flex"
+            <WrapItem key={post._id} width={{ sm: '100%',sm2: '75%', md: '45%', lg: '30%' }} minW={'200px'} display="flex"
             justifyContent="center" 
             onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
             // marginInline={'auto'}

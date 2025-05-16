@@ -28,10 +28,10 @@ import {
       navigate("/");
       onClose();
     };
-    
+    const MotionDrawerContent = motion(DrawerContent);
   
     return (
-      <Drawer onClose={onClose} isOpen={isOpen} size="full" closeOnBlur>
+      <Drawer onClose={onClose} isOpen={isOpen} size="full" closeOnBlur >
         <DrawerOverlay />
         <DrawerContent sx={{
           zIndex: '99999 !important',

@@ -34,17 +34,15 @@ export const LatestPosts = () => {
 
   useEffect(() => {
     const CACHE_KEY = 'latest-posts';
-    const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
+    const CACHE_DURATION = 30 * 60 * 1000; 
     const cached = localStorage.getItem(CACHE_KEY);
     const cachedTime = localStorage.getItem(`${CACHE_KEY}-time`);
 
-    // Use cache if it exists and isn't expired
     if (cached && cachedTime && Date.now() - parseInt(cachedTime) < CACHE_DURATION) {
       setPosts(JSON.parse(cached));
       setIsLoading(false);
     }
 
-    // Always fetch fresh data
     client.fetch(LATEST_POSTS_QUERY)
       
       .then(data => {
@@ -57,7 +55,7 @@ export const LatestPosts = () => {
       }})
       .catch(err => {
         console.error("Error fetching posts:", err);
-        if (cached) setPosts(JSON.parse(cached)); // Fallback to cache if available
+        if (cached) setPosts(JSON.parse(cached)); 
       })
       
       .finally(() => setIsLoading(false));

@@ -3,6 +3,7 @@ import { Flex,Box,Text,Button,Center } from '@chakra-ui/react';
 import { Divider } from '@chakra-ui/react'
 import { EmailIcon } from "@chakra-ui/icons";
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import Form from '../components/Form';
 const Register = () => {
     document.title = "Επικοινωνία - Open Source UoM";
     return (
@@ -14,12 +15,13 @@ const Register = () => {
                 <Text fontSize={{ base: 'md', lg: 'lg' }} mb={8} color={'gray.500'}>
                 Εδώ θα βρεις όλες τις πληροφορίες!
                 </Text>
+
                 <Flex 
                 direction={'column'} 
                 width={'fit-content'} 
                 align={'center'} 
                 justify={'center'}
-                borderRadius="12px" // Slightly larger radius for modern look
+                borderRadius="12px" 
                 gap={4}
                 boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
                 bg="rgba(0, 12, 45, 0.98)" 
@@ -30,7 +32,7 @@ const Register = () => {
                 textAlign={'center'}
                 
                >
-
+                <Form/>
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
                     Στείλε μας email</Text>

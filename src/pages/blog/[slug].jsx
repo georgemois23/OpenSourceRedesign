@@ -21,7 +21,6 @@ const fetcher = ([query, params]) => {
   
   if (cached) {
     const parsed = JSON.parse(cached);
-    // Return cached data immediately
     return Promise.resolve(parsed);
   }
 
@@ -63,7 +62,7 @@ const PostPage = () => {
  
 
 
-  if (isLoading){ 
+  if (isLoading && !post) { 
     const timeout = setTimeout(() => {
       window.location.reload();
     }, 7000);
@@ -91,7 +90,6 @@ else{
 
 {post.title && (document.title = `${post.title} - Open Source UoM`)};
 
-  // Use the image URL builder to create the image URL with width and height
   const postImageUrl = post.image
   ? urlFor(post.image)
       .width(800)  

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Heading, SimpleGrid, Text, Image,HStack ,Flex,Wrap,WrapItem,Skeleton,SkeletonText,SkeletonCircle} from '@chakra-ui/react';
-import { client } from '../sanity/client'; // Sanity client
-import imageUrlBuilder from '@sanity/image-url'; // Import the image URL builder
+import { client } from '../sanity/client';
+import imageUrlBuilder from '@sanity/image-url'; 
 import { FaUser,FaCalendarAlt  } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'; 
 import { Spinner } from '@chakra-ui/react'
@@ -35,10 +35,10 @@ export default function BlogList() {
     if (cachedData && cachedTime && Date.now() - parseInt(cachedTime) < CACHE_DURATION) {
       setPosts(JSON.parse(cachedData));
       setIsLoading(false);
-      return; // Exit if cached data is fresh
+      return; 
     }
 
-    // Fetch new data if cache is expired or doesn't exist
+    
     client.fetch(POSTS_QUERY)
       .then((data) => {
         setPosts(data);
@@ -50,7 +50,6 @@ export default function BlogList() {
       .catch((err) => {
         console.error(err);
         setIsLoading(false);
-        // If fetch fails but we have cached data, use that
         if (cachedData) {
           setPosts(JSON.parse(cachedData));
         }
@@ -138,9 +137,9 @@ export default function BlogList() {
               // boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
               boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
               border="1px solid rgba(255, 255, 255, 0.13)"
-              // bg="linear-gradient(135deg, rgba(0, 10, 38, 0.6), rgba(25, 35, 55, 0.8))" // New color gradient (deep blue to darker blue)
-              // backdropFilter="blur(4px)" // Blur effect to match
-              // boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" // Lighter shadow for a subtle effect
+              // bg="linear-gradient(135deg, rgba(0, 10, 38, 0.6), rgba(25, 35, 55, 0.8))"
+              // backdropFilter="blur(4px)"
+              // boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
               // border="1px solid rgba(255, 255, 255, 0.09)"
               _hover={{ 
                 transform: 'translateY(-5px)',
@@ -157,7 +156,6 @@ export default function BlogList() {
             >
                
 
-              {/* Render image if available */}
               {postImageUrl && (
                 <Image
                 draggable={false}

@@ -9,7 +9,6 @@ const Footer = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Mark as mounted to fix layout issues that happen before hydration
     setMounted(true);
   }, []);
 

@@ -30,6 +30,17 @@ const location = useLocation();
     onOpen();
   }
 };
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);  
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <Box>
@@ -43,8 +54,10 @@ const location = useLocation();
         paddingX="2rem"
         paddingY="1rem"
         zIndex="999"
-        backgroundColor='rgba(0, 10, 38, 0.98)'
-        // backdropBlur={"4px"}
+        // backgroundColor='rgba(0, 10, 38, 0.98)'
+         backgroundColor={scrolled ? "rgba(0, 10, 38, 0.65)" : "rgba(0, 10, 38, 0.98)"}
+        backdropFilter={scrolled ? "blur(9px)" : "none"}
+        transition="background-color 0.3s ease, backdrop-filter 0.3s ease"
         height={{base:"70px", lg:"80px"}}
         fontFamily="Arial"
       >
@@ -65,6 +78,7 @@ const location = useLocation();
             w={{ base: "40px", md: "60px" }}
             _hover={{ transform: "scale(1.05)" }}
             transition="transform 0.3s ease-in-out"
+            userSelect={'none'}
           />
         </Flex>
 
@@ -116,7 +130,7 @@ const handleMouseLeave = () => {
 };
 
 const handleMouseEnter = () => {
-  clearTimeout(timeoutRef.current); // Cancel close if mouse re-enters
+  clearTimeout(timeoutRef.current); 
   onOpen();
 };
    const location = useLocation();
@@ -130,6 +144,7 @@ const handleMouseEnter = () => {
     fontWeight={400}
     position="relative"
     zIndex="1"
+    userSelect={'none'}
   >
     {items.map((item) => (
       <NavItem key={item.path} item={item} />

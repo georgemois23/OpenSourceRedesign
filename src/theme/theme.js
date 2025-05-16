@@ -1,10 +1,9 @@
 import { background, Button, extendTheme } from "@chakra-ui/react";
 
-// Extend the Chakra UI theme with your custom configuration
 const theme = extendTheme({
   config: {
-    initialColorMode: "light", // Set the default theme to dark mode
-    useSystemColorMode: false, // Optionally set to true if you want to respect the system theme
+    initialColorMode: "light",
+    useSystemColorMode: false, 
   },
   colors: {
     brand: {
@@ -36,8 +35,13 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        backgroundColor: "brand.dark.primary", // Set background color for dark mode
-        color: "brand.dark.text", // Set text color for dark mode
+        backgroundColor: "brand.dark.primary", 
+        color: "brand.dark.text",  
+        "::selection": {
+        backgroundColor: "brand.dark.text",
+        color: "brand.dark.primary",
+        
+      },
       },
      
     },

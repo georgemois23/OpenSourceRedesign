@@ -10,6 +10,8 @@ import Videos from "./pages/Videos";
 import Linux from "./pages/LinuxCommands";
 import Blog from "./pages/Blog.jsx";
 import PostPage from './pages/blog/[slug].jsx';
+import Events from './pages/Events.jsx';
+import EventPage from './pages/Events/[slugEvents].jsx';
 import Contact from "./pages/Contact";
 import Header from "./components/Header/Header";
 import ReadMe from "./pages/ReadMe";
@@ -20,12 +22,20 @@ import LinuxCommands from './pages/LinuxCommands.jsx';
 function App() {
   const [count, setCount] = useState(0)
     return (
-      <Box minH="100vh" h='fit-content' 
-      backgroundColor="#000a26"
+      <>
+     <Box
+  position="fixed"
+  top={0}
+  left={0}
+  width="100vw"
+  height="100vh"
+  backgroundColor="#000a26"
   backgroundImage="linear-gradient(#001a66 1px, transparent 1px), linear-gradient(to right, #001a66 1px, #000a26 1px)"
   backgroundSize="50px 50px"
-  overflow={"auto"}
-  >
+  zIndex={-1} 
+/>
+
+<Box minH="100vh" overflowY="auto"overflowX={'hidden'}  position="relative" zIndex={1}>
       <ScrollToTop />
         <Routes>
         <Route path="/" element={<Layout />}>
@@ -38,6 +48,8 @@ function App() {
         <Route path="/readme" element={<ReadMe />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<PostPage />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/events/:slug" element={<EventPage />} />
         <Route path="/*" element={<NotReady/>} />
         <Route path="/404" element={<Error404/>} />
 
@@ -45,6 +57,7 @@ function App() {
         
       </Routes>
       </Box>
+      </>
     );
   }
 

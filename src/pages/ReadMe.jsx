@@ -85,7 +85,7 @@ const ReadMe = () => {
             >
               {section.title}
             </Heading>
-            <Text textAlign="left" color={textColor} fontSize="sm">
+            <Text textAlign="left" color={textColor} as={'p'}>
               {section.content}
             </Text>
           </Box>
@@ -98,7 +98,7 @@ const ReadMe = () => {
           Μήπως σε πείσαμε;
         </Text>
         <Button
-          size={{sm:'md',md:"lg"}}
+          size={'md'}
           leftIcon={<FiUserPlus />}
           onClick={() => navigate('/register')}
         >

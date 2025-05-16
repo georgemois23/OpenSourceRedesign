@@ -40,12 +40,7 @@ const NotReady = () => {
 </Box>
 <br/>
             <Button
-            onClick={() => navigate("/")}
-                // colorScheme="teal"
-                // bgGradient="linear(to-r, brand.dark.text,  brand.dark.secondary)"
-                // color="white"
-                variant="solid"
-            >
+            onClick={() => navigate("/")}>
                 Μετάβαση στην αρχική σελίδα
             </Button>
             <br/>

@@ -6,6 +6,9 @@ import { useRef,useState,useEffect } from "react";
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
 import { LatestPosts } from "./blog/LatestPosts.jsx";
+import { LatestEvent } from "./Events/LatestEvents.jsx";
+
+import { FiUsers } from "react-icons/fi";
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -43,7 +46,7 @@ export default function HomePage() {
     if (isVisible) {
       const timeoutId = setTimeout(() => {
         setShouldRender(false);
-      }, 500); // 500ms για να προλάβει να γίνει το fade out
+      }, 500);
   
       return () => clearTimeout(timeoutId);
     }
@@ -57,7 +60,6 @@ export default function HomePage() {
   ];
 
   useEffect(() => {
-    // Check if animation has already played this session
     const animationPlayed = sessionStorage.getItem('textAnimationPlayed');
     if (!animationPlayed) {
       setShouldAnimate(true);
@@ -138,8 +140,10 @@ export default function HomePage() {
         width="fit-content"
         display="flex"
         alignItems="center"
-        gap={2}>Εγγραφή στην ομάδα μας
-        <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} />
+        // gap={2}
+        rightIcon={<FiUsers />}
+        >Εγγραφή στην ομάδα μας
+        {/* <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /> */}
         </Button>
 
     </Flex>
@@ -165,37 +169,43 @@ export default function HomePage() {
     direction='column'  
      mb={10} 
      marginInline={'auto'} 
-     gap={4}   
-     width={{base: '90vw', lg:'70vw'}}  
-     padding={4}
-     borderRadius={8}  
-    boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
+     gap={2}   
+    //  width={{base: '90vw', lg:'70vw'}}  
+    width="100vw" 
+    py={{ base:12, lg: 8 }}
+    // py={8}
+    //  padding={4}
+    px={{sm:4,lg: 8}}
+    //  borderRadius={8}  
+    boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.2)"
     bg="rgba(0, 12, 45, 0.98)" 
-    backdropFilter="blur(14px)"
-    border="1px solid rgba(0, 46, 102, 0.96)" 
+    // backdropFilter="blur(14px)"
+    // borderBlock="1px solid rgba(0, 46, 102, 0.9)" 
+    // border="1px solid rgba(0, 46, 102, 0.9)" 
   mt={{ base: '25vw', lg: '12vh' }}
   transform="translateY(-2px)" 
   >
-      <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center">Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
-    <Box  as='p' textAlign="left" lineHeight="0.9"  fontFamily="Arial" p={{sm:2,md:4}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+      <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center" mb={{sm:2,md:4}}>Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
+    <Box  as='p' textAlign="left" lineHeight="1.1"  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
     Η Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας είναι μια ομάδα οργανωμένη από φοιτητές/-τριες του Πανεπιστημίου Μακεδονίας, που σκοπό έχει να γνωστοποιήσει και να προωθήσει το Ελεύθερο Λογισμικό, Λογισμικό Ανοικτού Κώδικα (ΕΛ/ΛΑΚ) και Open Source Hardware. Η κοινότητα απαρτίζεται κυρίως από φοιτητές/-τριες του τμήματος της Εφαρμοσμένης Πληροφορικής, μπορεί όμως να συμμετέχει οποιοσδήποτε θέλει να βοηθήσει και να προσφέρει στην ομάδα, με όποιον τρόπο μπορεί.
  </Box>
-    <Box  as='p' textAlign="left" lineHeight="0.9" wordBreak={'break-word'}  fontFamily="Arial" p={{sm:2,md:4}}width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+    <Box  as='p' textAlign="c" lineHeight="1.1" wordBreak={'break-word'}  fontFamily="Arial" px={{sm:0,md:8}}width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
     Η συμμετοχή είναι εθελοντική και δεν είστε υποχρεωμένοι/-ες να καταβάλετε οποιοδήποτε χρηματικό ποσό εκτός και αν θέλετε να βοηθήσετε οικονομικά την ομάδα σε τυχόν έξοδα που προκύπτουν κατά καιρούς, είτε για αγορά απαραίτητου εξοπλισμού, είτε για την διοργάνωση εκδηλώσεων. Για περισσότερες πληροφορίες επικοινωνήστε με την ομάδα.
     </Box>
 
     
 
-    <Button  marginInline={'auto'} onClick={() => navigate('/readme')} display="flex"
+    <Button  marginInline={'auto'} onClick={() => navigate('/readme')} display="flex" size={{ base: 'sm', md: 'md' }}
         alignItems="center" width={{ base: 'fit-content', lg: 'fit-content' }} wordBreak={'break-word'}
-        gap={2} fontSize={{ base: 'sm', lg: 'lg' }}>
-          {/* <ToolTipUnderConstruction where={"Περισσότερες πληροφορίες"} /> */}
+        gap={2} fontSize={{ base: 'sm', lg: 'md' }} mt={4}>
           Περισσότερες πληροφορίες
           <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /> 
           </Button>
  </Flex>
     </Flex>
 
+    <LatestEvent />
+     
     <Wrap
       justify="center"
       spacing="40px"

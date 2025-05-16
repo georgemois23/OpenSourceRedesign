@@ -29,9 +29,9 @@ const ResponsiveYouTube = ({ videoId }) => {
     <Box 
       position="relative" 
       width="100%" 
-      maxWidth="100vw"  // Ensure it can take full viewport width
-      paddingTop="56.25%" // Maintain 16:9 aspect ratio
-      overflow="hidden" // Hide any overflow
+      maxWidth="100vw" 
+      paddingTop="56.25%" 
+      overflow="hidden"
     >
       <Box 
         position="absolute" 

@@ -27,6 +27,7 @@ const Footer = () => {
       width="100%"
       gap={6}
       minH="fit-content"
+      userSelect={'none'}
     >
       <Flex
         align="flex-start"

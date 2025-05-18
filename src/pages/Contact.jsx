@@ -32,7 +32,11 @@ const Register = () => {
                 textAlign={'center'}
                 
                >
-                <Form/>
+
+
+                {/* <Form/> */}
+
+
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
                     Στείλε μας email</Text>

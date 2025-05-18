@@ -65,7 +65,7 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
       bg: isMobile ? "transparent" : "#000d33", 
       boxShadow: isMobile ? "none" : "0 0 10px rgba(0, 80, 200, 0.25)", 
     }}
-    userSelect="none"
+    // userSelect="none"
     letterSpacing="-0.025em"
     willChange="transform, box-shadow"
     style={{

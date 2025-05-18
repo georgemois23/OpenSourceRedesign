@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react';
 import { client } from '../sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
-import { FaCalendarAlt, FaUserFriends, FaTag } from 'react-icons/fa';
+import { FaCalendarAlt, FaUserFriends, FaTag,FaMapMarkerAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const EVENTS_QUERY = `*[_type == "event"] | order(eventDate desc)[0...12]{
@@ -28,6 +28,7 @@ const EVENTS_QUERY = `*[_type == "event"] | order(eventDate desc)[0...12]{
   title,
   slug,
   eventDate,
+  location {name, address},
   organizer,
   "mainImage": images[0] {
     asset->{
@@ -117,35 +118,51 @@ export default function EventList() {
 
   if (events.length === 0) {
     return (
-      <Box textAlign="center" py={10}>
+      <Flex textAlign="center" direction='column' justifyContent={'center'}  p={2} minH={"80vh"} h={'fit-content'} mb={10} >
         <Heading size="lg" mb={4}>Δεν υπάρχουν προσεχής εκδηλώσεις</Heading>
-        <Text>Προσπαθήστε ξανά αργότερα ή ακολουθήστε μας στο <Link to='https://www.instagram.com/opensourceuom/'>Instagram</Link>  για να ενημερώνεστε!</Text>
-      </Box>
+        <Text>Προσπαθήστε ξανά αργότερα ή ακολουθήστε μας στο <Link to='https://www.instagram.com/opensourceuom/' style={{textDecoration:'underline'}}>Instagram</Link>  για να ενημερώνεστε!</Text>
+      </Flex>
     );
   }
 
   return (
-    <Box p={4} minH={"100vh"} h={'100vh'} mb={10} >
+    <Box p={4} minH={"100vh"} h={'100vh'} mb={10} height='fit-content'>
       <Heading size="lg" mb={6}>Προσεχής εκδηλώσεις</Heading>
        <Wrap spacing={8} justify="center"  mx={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }} > 
         {events.map((event) => (
           <WrapItem key={event._id} width={{ sm: '100%',sm2: '75%', md: '45%', lg: '30%' }} minW={'200px'} display="flex"
                       justifyContent="center" >
-          <Box 
-            key={event._id} 
-            borderWidth="1px" 
-            borderRadius="lg" 
-            overflow="hidden" 
-            p={4}
-            width={{ base: '100%', md: '90%', lg: '95%' }}
-            _hover={{ 
-              transform: 'translateY(-4px)',
-              boxShadow: 'lg',
-              transition: 'all 0.2s'
-            }}
+                        <Box
+                                      key={event._id} 
+                                      borderWidth={1}
+                                      p={4}
+                                      h={'fit-content'}
+                                      width={{ base: '100%', md: '90%', lg: '95%' }}
+                                      borderRadius={8}
+                                      bg="rgba(0, 10, 38, 0.95)"
+                                      // backdropFilter="blur(6px)"
+                                      // boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
+                                      boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
+                                      border="1px solid rgba(255, 255, 255, 0.13)"
+                                      // bg="linear-gradient(135deg, rgba(0, 10, 38, 0.6), rgba(25, 35, 55, 0.8))"
+                                      // backdropFilter="blur(4px)"
+                                      // boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+                                      // border="1px solid rgba(255, 255, 255, 0.09)"
+                                      _hover={{ 
+                                        transform: 'translateY(-5px)',
+                                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)'
+                                      }}
+                                      transition="all 0.3s ease"
+                                        user-select='none'
+                        
+                                      flexDirection="column"
+                                      
+                                      
             cursor="pointer"
             onClick={() => navigate(`/events/${event.slug.current}`)}
-          >
+                                      
+                                    >
+         
             {event.mainImage && (
               <Image
                 src={urlFor(event.mainImage).width(400).url()}
@@ -168,6 +185,26 @@ export default function EventList() {
             </HStack>
             
          
+         {event.location && (
+         <Flex
+           align="baseline"
+           mb={3}
+           fontSize="sm"
+         >
+           <Box as={FaMapMarkerAlt} boxSize="12px" mr="6px" mt="1px" />
+           <Text flex="1" whiteSpace="normal">
+             Τοποθεσία:{" "}
+             <Text as="span" fontWeight="medium">
+               {event.location.name}
+             </Text>
+             {event.location.address && (
+               <Text as="span">, {event.location.address}</Text>
+             )}
+           </Text>
+         </Flex>
+         
+         
+         )}
             
             
           </Box>

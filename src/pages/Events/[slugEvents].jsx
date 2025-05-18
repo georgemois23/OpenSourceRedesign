@@ -126,7 +126,7 @@ const EventPage = () => {
         mb={4}
       >
         <IoIosArrowRoundBack size={40} style={{ marginRight: '6px' }} />
-        <Text>Πίσω στις Εκδηλώσεις</Text>
+        <Text>Όλες οι Εκδηλώσεις</Text>
       </Flex>
 
       <Heading as="h1" fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }} fontWeight="bold" mb={6}>
@@ -134,28 +134,26 @@ const EventPage = () => {
       </Heading>
 
      {(event.location ) && (
-          <HStack
+    <HStack
   onClick={() => window.open(event.location.mapsLink)}
   cursor="pointer"
   spacing={2}
   align="center"
   wrap="wrap"
-  _hover={{ color: "brand.dark.secondary"}}
+  _hover={{ color: "brand.dark.secondary" }}
   mb={4}
 >
   <Box as={FaMapMarkerAlt} boxSize={4} />
+  <Text as="span" fontWeight="medium">
+    Τοποθεσία:
+  </Text>
   <Text>
-    Τοποθεσία:{" "}
-    <Text as="span" fontWeight="medium">
-      {event.location.name}
-    </Text>
-    {event.location.address && (
-      <Text as="span" fontSize="sm">
-        , {event.location.address}
-      </Text>
-    )}
+    {event.location.name}
+    {event.location.address && `, ${event.location.address}`}
   </Text>
 </HStack>
+
+
 
         )}
 

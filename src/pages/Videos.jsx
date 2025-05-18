@@ -5,6 +5,9 @@ import { EmailIcon } from "@chakra-ui/icons";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import ResponsiveYouTube from '../components/ResponsiveYT';
+
+
+
 const Videos = () => {
     document.title = "Βίντεο - Open Source UoM";
     const opts = {
@@ -15,13 +18,14 @@ const Videos = () => {
       };
     
     return (
+      
         <Box  minH={'100vh'} px={4} py={8} >
+           
               <Heading pl={1} as="h1" fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }} mb={8} userSelect={'none'} >
               Τα βίντεο μας
               </Heading>
            <Box textAlign={"center"} justify="center" mx={'auto'}  flex="1"  p={{ sm: 5, lg: 10 }} >
                 <Flex marginInline={"auto"} justify='center' align="center"   gap={{base:20, lg:20}}  mt={25} direction={{sm:'column',lg:'row'}} pb={'20vh'}>
-
 
 
 
@@ -39,8 +43,8 @@ const Videos = () => {
                 </Box>  
                 </Flex>
            </Box>     
-       
         </Box>
+      
     );
 };
 

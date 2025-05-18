@@ -47,7 +47,6 @@ const ReadMe = () => {
         as="h1"
         fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
         mb={12}
-        userSelect="none"
         color={textColor}
         textAlign="center"
       >

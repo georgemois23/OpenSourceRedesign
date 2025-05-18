@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex, Box, Text, Button, Center, IconButton, Icon } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Divider } from '@chakra-ui/react';
+import CustomCursor from '../components/CustomCursor';
 
 const Register = () => {
     document.title = "Εγγραφή - Open Source UoM";

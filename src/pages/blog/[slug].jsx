@@ -64,7 +64,7 @@ const PostPage = () => {
 
   if (isLoading && !post) { 
     const timeout = setTimeout(() => {
-      window.location.reload();
+      // window.location.reload();
     }, 7000);
     return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
     {/* <Spinner speed='0.65s' thickness='3px' /> */}

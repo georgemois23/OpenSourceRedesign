@@ -1,11 +1,13 @@
 import { Text } from "@chakra-ui/react";
 import { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const NavItem = ({ item, onClose, isMobile = false }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const isActive = location.pathname === item.path;
+  const [hovered, setHovered] = useState(false);
 
   const handleClick = () => {
     if (item.type === "external") {
@@ -65,14 +67,17 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
       bg: isMobile ? "transparent" : "#000d33", 
       boxShadow: isMobile ? "none" : "0 0 10px rgba(0, 80, 200, 0.25)", 
     }}
-    // userSelect="none"
+    userSelect="none"
     letterSpacing="-0.025em"
     willChange="transform, box-shadow"
     style={{
       WebkitTapHighlightColor: "transparent",
     }}
+    onMouseEnter={() => setHovered(true)}
+    onMouseLeave={() => setHovered(false)}
   >
-    {item.label}
+
+    {item.label} <Text as={'span'} pr={0}> <Text as={'span'} mt={2} opacity={isMobile ? 1 : hovered ? 1 : 0} >{item.icon}</Text></Text>
   </Text>
   
   );

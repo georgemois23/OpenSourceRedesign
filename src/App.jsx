@@ -21,21 +21,33 @@ import './App.css';
 import LinuxCommands from './pages/LinuxCommands.jsx';
 function App() {
   const [count, setCount] = useState(0)
-    return (
-      <>
-     <Box
-  position="fixed"
-  top={0}
-  left={0}
-  width="100vw"
-  height="100vh"
-  backgroundColor="#000a26"
+   
+  
+//   return (
+//       <>
+//      <Box
+//   position="fixed"
+//   top={0}
+//   left={0}
+//   width="100vw"
+//   height="100vh"
+//   backgroundColor="#000a26"
+//   backgroundImage="linear-gradient(#001a66 1px, transparent 1px), linear-gradient(to right, #001a66 1px, #000a26 1px)"
+//   backgroundSize="50px 50px"
+//   zIndex={-1} 
+// />
+
+// <Box minH="100vh" overflowY="auto"overflowX={'hidden'}  position="relative" zIndex={1}>
+ return (
+      <Box minH="100vh" h='fit-content' 
+      backgroundColor="#000a26"
   backgroundImage="linear-gradient(#001a66 1px, transparent 1px), linear-gradient(to right, #001a66 1px, #000a26 1px)"
   backgroundSize="50px 50px"
-  zIndex={-1} 
-/>
+  overflowY="auto"overflowX={'hidden'}
+  >
 
-<Box minH="100vh" overflowY="auto"overflowX={'hidden'}  position="relative" zIndex={1}>
+
+
       <ScrollToTop />
         <Routes>
         <Route path="/" element={<Layout />}>
@@ -57,7 +69,7 @@ function App() {
         
       </Routes>
       </Box>
-      </>
+      // </>
     );
   }
 

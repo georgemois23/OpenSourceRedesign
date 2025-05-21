@@ -144,10 +144,10 @@ const handleMouseEnter = () => {
     fontWeight={400}
     position="relative"
     zIndex="1"
-    // userSelect={'none'}
+    userSelect={'none'}
   >
     {items.map((item) => (
-      <NavItem key={item.path} item={item} />
+      <NavItem key={item.path} item={item} icon={item.icon} />  
     ))}
     
     {sourcesItems && (

@@ -96,22 +96,45 @@ export default function EventList() {
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
 
-  if (isLoading) {
+  if (isLoading ) {
     return (
       <Box p={4}  minH={"100vh"}>
         <Heading size="lg" mb={6}>Προσεχής εκδηλώσεις</Heading>
-        <SimpleGrid columns={[1, 2, 3]} spacing={6}>
-          {[...Array(6)].map((_, i) => (
-            <Box key={i} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
-              <Skeleton height="200px" mb={4} />
-              <SkeletonText noOfLines={2} spacing="4" />
-              <HStack mt={4}>
-                <SkeletonCircle size="4" />
-                <Skeleton width="100px" height="20px" />
-              </HStack>
-            </Box>
-          ))}
-        </SimpleGrid>
+         <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}>
+              {[...Array(6)].map((_, i) => (
+                <WrapItem key={i} width={{ base: '100%', md: '45%', lg: '30%' }} marginInline={'auto'}>
+                  <Box
+                    marginInline={'auto'}
+                    borderWidth={1}
+                    p={4}
+                    width={{ base: '90%', md: '90%', lg: '100%' }}
+                    borderRadius={8}
+                    bg="rgba(0, 10, 38, 0.85)"
+                    border="1px solid rgba(255, 255, 255, 0.13)"
+                  >
+                    <Skeleton height="200px" borderRadius={8} mb={4} />
+                    
+                    <Skeleton height="30px" mb={4} />
+                    
+                    <SkeletonText noOfLines={3} spacing="3" mb={4} />
+                    
+                    <Skeleton height="20px" width="100px" mb={4} />
+                    
+                    <Flex justifyContent="space-between" alignItems="center">
+                      <HStack spacing={2}>
+                        <SkeletonCircle size="18px" /> {/* Calendar Icon */}
+                        <Skeleton height="20px" width="80px" /> {/* Date */}
+                      </HStack>
+                      
+                      <HStack spacing={2}>
+                        <SkeletonCircle size="18px" /> {/* User Icon */}
+                        <Skeleton height="20px" width="60px" /> {/* Author */}
+                      </HStack>
+                    </Flex>
+                  </Box>
+                </WrapItem>
+              ))}
+            </Wrap>
       </Box>
     );
   }

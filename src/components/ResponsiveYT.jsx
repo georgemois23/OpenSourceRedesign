@@ -64,6 +64,7 @@ const ResponsiveYouTube = ({ videoId }) => {
             <YouTube 
               videoId={videoId} 
               opts={opts} 
+              loading='eager'
               onReady={handleReady} 
               onError={handleError}
               style={{ 

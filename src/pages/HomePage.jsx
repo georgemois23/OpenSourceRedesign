@@ -172,7 +172,7 @@ export default function HomePage() {
      gap={2}   
     //  width={{base: '90vw', lg:'70vw'}}  
     width="100vw" 
-    py={{ base:12, lg: 8 }}
+    py={{ base:12, lg: 12 }}
     // py={8}
     //  padding={4}
     px={{sm:4,lg: 8}}

@@ -25,6 +25,7 @@ export const NAV_ITEMS = [
       label: "myUoM",
       path: "https://my.uom.gr/",
       type: "external",
+      icon: <ExternalLinkIcon fontSize={14} ml={1} mb={1}/>,
     },
     {
       label: "README",

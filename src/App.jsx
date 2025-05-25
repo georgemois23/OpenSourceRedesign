@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 import { Box, Heading, Button } from "@chakra-ui/react";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
@@ -62,7 +62,8 @@ function App() {
         <Route path="/blog/:slug" element={<PostPage />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/:slug" element={<EventPage />} />
-        <Route path="/*" element={<NotReady/>} />
+        {/* <Route path="/*" element={<NotReady/>} /> */}
+        <Route path="*" element={<Navigate to="/404" />} />
         <Route path="/404" element={<Error404/>} />
 
         </Route>

@@ -57,7 +57,7 @@ import {
             width="90%"
             pt={4}
             maxW="300px"
-            gap={4} 
+            gap={{xs:2,sm:3}} 
             marginInline={"auto"}
           >
             {NAV_ITEMS.map((item) => (
@@ -77,7 +77,7 @@ import {
               
               <Menu borderRadius={8} zIndex='99999' autoSelect={false} 
               modifiers={[{ name: "flip", enabled: false }]}
-            placement={useBreakpointValue({ xxs: 'top', xs: 'bottom' })}
+            placement={useBreakpointValue({ xxs: 'top',xs:'top', sm: 'bottom' })}
               closeOnSelect={false} 
               preventOverflow
   isLazy >

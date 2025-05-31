@@ -77,7 +77,7 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
     onMouseLeave={() => setHovered(false)}
   >
 
-    {item.label} <Text as={'span'} pr={0}> <Text as={'span'} mt={2} opacity={isMobile ? 1 : hovered ? 1 : 0} >{item.icon}</Text></Text>
+    {item.label} <Text as={'span'} pr={0}> <Text transition="all 0.2s ease-in-out" as={'span'} mt={2} opacity={isMobile ? 1 : hovered ? 1 : 0} >{item.icon}</Text></Text>
   </Text>
   
   );

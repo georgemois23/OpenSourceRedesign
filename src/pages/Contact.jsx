@@ -54,10 +54,19 @@ const Register = () => {
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
                 Βρες μας από κοντά</Text>
                 <Flex direction="column" gap={1} pt={2}>
-                            <Flex  gap={1}>
-                              <FaMapMarkerAlt />
+                            <Flex  gap={1} 
+                            onClick={() => window.open('https://www.google.gr/maps/place/University+of+Macedonia/@40.6250129,22.9579198,17z/data=!4m5!3m4!1s0x14a838febd9553d7:0xdafb4206c7c961c9!8m2!3d40.6250129!4d22.9601085', '_blank')}
+                             cursor={'pointer'} 
+                             role="group"
+                             >
+
+                               <Box 
+    as={FaMapMarkerAlt} 
+    color="gray.400" 
+    _groupHover={{ color: 'brand.dark.secondary' }} 
+  />
                               {/* <Box> */}
-                              <Text  onClick={() => window.open('https://www.google.gr/maps/place/University+of+Macedonia/@40.6250129,22.9579198,17z/data=!4m5!3m4!1s0x14a838febd9553d7:0xdafb4206c7c961c9!8m2!3d40.6250129!4d22.9601085', '_blank')} cursor={'pointer'} fontSize="sm" color="gray.400" lineHeight="normal">
+                              <Text   fontSize="sm" color="gray.400" lineHeight="normal"  _groupHover={{ color: 'brand.dark.secondary' }}>
                                 Πανεπιστήμιο Μακεδονίας, Αίθουσα 10
                               </Text>
                               </Flex>

@@ -123,6 +123,7 @@ export default function BlogList() {
             <WrapItem key={post._id} width={{ sm: '100%',sm2: '75%', md: '45%', lg: '30%' }} minW={'200px'} display="flex"
             justifyContent="center" 
             onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
+            mb={'10vh'}
             // marginInline={'auto'}
             >
             <Box

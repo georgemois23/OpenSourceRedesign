@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { 
   Box, 
   Heading, 
@@ -17,6 +16,7 @@ import {
   TagLeftIcon,
   useColorModeValue,
   Wrap,WrapItem,
+  Link 
 } from '@chakra-ui/react';
 import { client } from '../sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
@@ -99,7 +99,7 @@ export default function EventList() {
   if (isLoading ) {
     return (
       <Box p={4}  minH={"100vh"}>
-        <Heading size="lg" mb={6}>Προσεχής εκδηλώσεις</Heading>
+        <Heading size="lg" mb={6}>Προσεχείς εκδηλώσεις</Heading>
          <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}>
               {[...Array(6)].map((_, i) => (
                 <WrapItem key={i} width={{ base: '100%', md: '45%', lg: '30%' }} marginInline={'auto'}>
@@ -141,16 +141,16 @@ export default function EventList() {
 
   if (events.length === 0) {
     return (
-      <Flex textAlign="center" direction='column' justifyContent={'center'}  p={2} minH={"80vh"} h={'fit-content'} mb={10} >
-        <Heading size="lg" mb={4}>Δεν υπάρχουν προσεχής εκδηλώσεις</Heading>
-        <Text>Προσπαθήστε ξανά αργότερα ή ακολουθήστε μας στο <Link to='https://www.instagram.com/opensourceuom/' style={{textDecoration:'underline'}}>Instagram</Link>  για να ενημερώνεστε!</Text>
+      <Flex textAlign="center" direction='column' justifyContent={'center'}  p={3} minH={"80vh"} h={'fit-content'} mb={10} >
+        <Heading size="lg" mb={4}>Δεν υπάρχουν προσεχείς εκδηλώσεις</Heading>
+        <Text>Προσπαθήστε ξανά αργότερα ή ακολουθήστε μας στο <Link href='https://www.instagram.com/opensourceuom/' isExternal style={{textDecoration:'underline'}}>Instagram</Link>  για να ενημερώνεστε!</Text>
       </Flex>
     );
   }
 
   return (
     <Box p={4} minH={"100vh"} h={'100vh'} mb={10} height='fit-content'>
-      <Heading size="lg" mb={6}>Προσεχής εκδηλώσεις</Heading>
+      <Heading size="lg" mb={6}>Προσεχείς εκδηλώσεις</Heading>
        <Wrap spacing={8} justify="center"  mx={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }} > 
         {events.map((event) => (
           <WrapItem key={event._id} width={{ sm: '100%',sm2: '75%', md: '45%', lg: '30%' }} minW={'200px'} display="flex"

@@ -140,6 +140,7 @@ export const LatestEvent = () => {
   mb={3}
   fontSize="sm"
 >
+      
   <Box as={FaMapMarkerAlt} boxSize="12px" mr="6px" mt="1px" />
   <Text flex="1" whiteSpace="normal">
     Τοποθεσία:{" "}

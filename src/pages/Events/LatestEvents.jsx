@@ -135,14 +135,9 @@ export const LatestEvent = () => {
 
 
 {event.location && (
-<Flex
-  align="baseline"
-  mb={3}
-  fontSize="sm"
->
-      
-  <Box as={FaMapMarkerAlt} boxSize="12px" mr="6px" mt="1px" />
+<Flex align="baseline" mb={3} fontSize="sm">
   <Text flex="1" whiteSpace="normal">
+    <Box as={FaMapMarkerAlt} display="inline" boxSize="12px" mr="4px" />
     Τοποθεσία:{" "}
     <Text as="span" fontWeight="medium">
       {event.location.name}

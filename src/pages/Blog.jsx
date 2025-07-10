@@ -99,7 +99,7 @@ export default function BlogList() {
 //     <Text textAlign={'center'} fontSize={{sm: 'xl',md:'3xl'}}>Φόρτωση...</Text> </Flex>);
 
   return (
-    <Box minH={'100vh'} px={4} py={8} >
+    <Box minH={'100vh'} px={4} py={8} mb={'10vh'} >
       <Heading as="h1" ml={4}  fontSize={{ base: "3xl", sm: "3xl", md: "3xl", lg: "4xl" }} mb={8} userSelect={'none'} >
         Blog
       </Heading>
@@ -123,7 +123,7 @@ export default function BlogList() {
             <WrapItem key={post._id} width={{ sm: '100%',sm2: '75%', md: '45%', lg: '30%' }} minW={'200px'} display="flex"
             justifyContent="center" 
             onClick={()=> navigate(`/blog/${post.slug.current}`)} cursor={'pointer'}
-            mb={'10vh'}
+            // mb={'10vh'}
             // marginInline={'auto'}
             >
             <Box
@@ -134,6 +134,8 @@ export default function BlogList() {
               width={{ base: '100%', md: '90%', lg: '95%' }}
               borderRadius={8}
               bg="rgba(0, 10, 38, 0.95)"
+
+              
               // backdropFilter="blur(6px)"
               // boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
               boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"

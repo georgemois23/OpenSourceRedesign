@@ -62,7 +62,7 @@ const PostPage = () => {
  
 
 
-  if (isLoading && !post) { 
+  if (isLoading && !post) {  
     const timeout = setTimeout(() => {
       // window.location.reload();
     }, 7000);
@@ -75,7 +75,7 @@ const PostPage = () => {
 
 if(!post){
   document.title = 'Δεν βρέθηκε το άρθρο - Open Source UoM';
-return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
+return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4} mx={1}>
   <Heading as="h3" size="lg" mb={4} textAlign={"center"}>Το άρθρο δεν βρέθηκε</Heading>
    <Text color={'gray.500'} mb={6} textAlign={'center'} >
                   Το άρθρο που αναζητάτε δεν υπάρχει ή έχει μετακινηθεί.

@@ -149,8 +149,10 @@ export default function EventList() {
   }
 
   return (
-    <Box p={4} minH={"100vh"} h={'100vh'} mb={10} height='fit-content'>
-      <Heading size="lg" mb={6}>Προσεχείς εκδηλώσεις</Heading>
+   <Box minH={'100vh'} px={4} py={8} mb={'10vh'} >
+         <Heading as="h1" ml={4}  fontSize={{ base: "3xl", sm: "3xl", md: "3xl", lg: "4xl" }} mb={8} userSelect={'none'} >
+           Προσεχείς Εκδηλώσεις
+         </Heading>
        <Wrap spacing={8} justify="center"  mx={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }} > 
         {events.map((event) => (
           <WrapItem key={event._id} width={{ sm: '100%',sm2: '75%', md: '45%', lg: '30%' }} minW={'200px'} display="flex"
@@ -185,7 +187,7 @@ export default function EventList() {
             onClick={() => navigate(`/events/${event.slug.current}`)}
                                       
                                     >
-         
+          {new Date(event.eventDate).getTime() < Date.now() && <Text color={"brand.dark.secondary"}>Έγινε η εκδήλωση</Text>}
             {event.mainImage && (
               <Image
                 src={urlFor(event.mainImage).width(400).url()}

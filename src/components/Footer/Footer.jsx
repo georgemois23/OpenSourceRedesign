@@ -21,7 +21,7 @@ const Footer = () => {
       as="footer"
       direction="column"
       align="center"
-      py={3}
+      py={8}
       px={{ base: 4, md: 8 }}
       bg="rgba(0, 10, 38, 0.93)"
       width="100%"

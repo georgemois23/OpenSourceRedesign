@@ -4,6 +4,16 @@ import { Divider } from '@chakra-ui/react'
 import { EmailIcon } from "@chakra-ui/icons";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Wrap, WrapItem } from '@chakra-ui/react';
+import qtLogo from '../assets/images/qt.png';
+import bpiLogo from '../assets/images/bpi.png';
+import onlyOfficeLogo from '../assets/images/onlyoffice.png';
+import nextcloudLogo from '../assets/images/nextcloud.png';
+import codethinkLogo from '../assets/images/codethink.png';
+import kdeLogo from '../assets/images/kde.png';
+import canonicalLogo from '../assets/images/canonical.png';
+import fotoAnalysisLogo from '../assets/images/foto-analysis.png';
+
+
 const Register = () => {
     document.title = "Χορηγοί - Open Source UoM";
     return (
@@ -25,7 +35,7 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/10/KDE_logo.svg_-300x300.png"
+    src={kdeLogo}
     alt="KDE logo"
     width={{ base: '100px', lg: '150px' }}
     height="auto"
@@ -34,8 +44,8 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/10/download.png"
-    alt="logo"
+    src={canonicalLogo}
+    alt="Canonical logo"
     width={{ base: '180px', lg: '363px' }}
     height="auto"
   />
@@ -43,7 +53,7 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/09/qt_logo.png"
+    src={qtLogo}
     alt="qt logo"
     width={{ base: '100px', lg: '300px' }}
     height={{ base: '100px', lg: '300px' }}
@@ -52,7 +62,7 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/06/ONLYOFFICE_logo.png"
+    src={onlyOfficeLogo}
     alt="ONLYOFFICE logo"
     width={{ base: '188px', lg: '208px' }}
     height="auto"
@@ -61,7 +71,7 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/07/banana-pi-logo.png"
+    src={bpiLogo}
     alt="banana-pi logo"
     width={{ base: '178px', lg: '300px' }}
     height="auto"
@@ -70,7 +80,7 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/09/codethink-logo-opengraph-1200x600-1-1024x512.png"
+    src={codethinkLogo}
     alt="CodeThink Logo"
     loading="lazy"
     decoding="async"
@@ -82,7 +92,7 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/10/Nextcloud_Logo.svg_-1536x1090.png"
+    src={nextcloudLogo}
     alt="Nextcloud logo"
     width={{ base: '150px', lg: '300px' }}
     height="auto"
@@ -91,8 +101,8 @@ const Register = () => {
 <WrapItem>
   <Image
     draggable="false"
-    src="https://opensource.uom.gr/storage/2023/09/Screenshot-from-2023-09-20-16-31-57.png"
-    alt="logo"
+    src={fotoAnalysisLogo}
+    alt="Foto Analysis logo"
     width={{ base: '290px', lg: '590px' }}
     height="auto"
   />

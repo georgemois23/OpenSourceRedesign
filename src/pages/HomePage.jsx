@@ -11,6 +11,8 @@ import { LatestEvent } from "./Events/LatestEvents.jsx";
 import { FiUsers } from "react-icons/fi";
 
 import { motion, AnimatePresence } from "framer-motion";
+import elakkLogo from '../assets/images/eellak.png';
+import pamakLogo from '../assets/images/pamak.png';
 
 export default function HomePage() {
   document.title = "Αρχική - Open Source UoM";
@@ -214,10 +216,10 @@ export default function HomePage() {
       
     >
       <WrapItem>
-        <Image draggable="false" src="https://opensource.uom.gr/storage/2023/08/eellak.png" alt="KDE logo" width={{ base: '550px', lg: '550px' }} height='auto' />
+        <Image draggable="false" src={elakkLogo} alt="KDE logo" width={{ base: '550px', lg: '550px' }} height='auto' />
       </WrapItem>
       <WrapItem>
-        <Image draggable="false" src="https://opensource.uom.gr/storage/2023/07/University_of_Macedonia_logo-white-768x458-1.png" alt="KDE logo" width={{ base: '300px', lg: '300px' }} height='auto' />
+        <Image draggable="false" src={pamakLogo} alt="University of Macedonia logo" width={{ base: '300px', lg: '300px' }} height='auto' />
       </WrapItem>
     </Wrap>
 

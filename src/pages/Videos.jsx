@@ -17,11 +17,11 @@ const Videos = () => {
     
     return (
       
-        <Box  minH={'100vh'} px={4} py={8} >
-           
-              <Heading pl={1} as="h1" fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }} mb={8} userSelect={'none'} >
+       <Box minH={'100vh'} px={4} py={8} mb={'10vh'} >
+            <Heading as="h1" ml={4}  fontSize={{ base: "3xl", sm: "3xl", md: "3xl", lg: "4xl" }} mb={8} userSelect={'none'} >
               Τα βίντεο μας
-              </Heading>
+            </Heading>
+       
            <Box textAlign={"center"} justify="center" mx={'auto'}  flex="1"  p={{ sm: 5, lg: 10 }} >
                 <Flex marginInline={"auto"} justify='center' align="center"   gap={{base:20, lg:20}}  mt={25} direction={{sm:'column',lg:'row'}} pb={'20vh'}>
 

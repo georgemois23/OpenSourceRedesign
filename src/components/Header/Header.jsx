@@ -160,7 +160,9 @@ const handleMouseEnter = () => {
             <MenuButton isActive={isOpen} as={Box} cursor="pointer" 
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-        rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} position="relative" >
+        rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} position="relative"
+        fontWeight={600}
+        >
               ΠΗΓΕΣ 
                <AnimatePresence mode="wait" initial={false}>
                                     <motion.span

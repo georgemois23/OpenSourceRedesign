@@ -98,8 +98,10 @@ export default function EventList() {
 
   if (isLoading ) {
     return (
-      <Box p={4}  minH={"100vh"}>
-        <Heading size="lg" mb={6}>Προσεχείς εκδηλώσεις</Heading>
+      <Box minH={'100vh'} px={4} py={8} mb={'10vh'} >
+         <Heading as="h1" ml={4}  fontSize={{ base: "3xl", sm: "3xl", md: "3xl", lg: "4xl" }} mb={8} userSelect={'none'} >
+           Προσεχείς Εκδηλώσεις
+         </Heading>
          <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}>
               {[...Array(6)].map((_, i) => (
                 <WrapItem key={i} width={{ base: '100%', md: '45%', lg: '30%' }} marginInline={'auto'}>
@@ -182,12 +184,14 @@ export default function EventList() {
                         
                                       flexDirection="column"
                                       
+                                      opacity={event.eventDate && new Date(event.eventDate).getTime() < Date.now() ? 0.9 : 1}
                                       
+
             cursor="pointer"
             onClick={() => navigate(`/events/${event.slug.current}`)}
                                       
                                     >
-          {new Date(event.eventDate).getTime() < Date.now() && <Text color={"brand.dark.secondary"}>Έγινε η εκδήλωση</Text>}
+          {new Date(event.eventDate).getTime() < Date.now() && <Text color={"brand.dark.secondary"} opacity={1}>Έγινε η εκδήλωση</Text>}
             {event.mainImage && (
               <Image
                 src={urlFor(event.mainImage).width(400).url()}
@@ -200,13 +204,16 @@ export default function EventList() {
                   transform={'scale(0.9)'}
                   marginInline={{base: 'none', lg: 'auto'}}
                 fallbackSrc={event.mainImage.asset.metadata.lqip}
+
+                filter={ new Date(event.eventDate).getTime() < Date.now() ? 'grayscale(100%)' : 'none' }
+                opacity={ new Date(event.eventDate).getTime() < Date.now() ? 0.7 : 1 }
               />
             )}
-            <Heading size="md" mb={2}>{event.title}</Heading>
+            <Heading size="md" mb={2} filter={ new Date(event.eventDate).getTime() < Date.now() ? 'grayscale(100%)' : 'none' }>{event.title}</Heading>
             
-            <HStack spacing={2} mb={2}>
+            <HStack spacing={2} mb={2} filter={ new Date(event.eventDate).getTime() < Date.now() ? 'grayscale(100%)' : 'none' }>
               <FaCalendarAlt size="14px" />
-              <Text fontSize="sm">{formatDate(event.eventDate)}</Text>
+              <Text fontSize="sm" >{formatDate(event.eventDate)}</Text>
             </HStack>
             
          
@@ -215,8 +222,9 @@ export default function EventList() {
            align="baseline"
            mb={3}
            fontSize="sm"
+           filter={ new Date(event.eventDate).getTime() < Date.now() ? 'grayscale(100%)' : 'none' }
          >
-           <Box as={FaMapMarkerAlt} boxSize="12px" mr="6px" mt="1px" />
+           <Box as={FaMapMarkerAlt} boxSize="12px" mr="6px" mt="1px"  />
            <Text flex="1" whiteSpace="normal">
              Τοποθεσία:{" "}
              <Text as="span" fontWeight="medium">

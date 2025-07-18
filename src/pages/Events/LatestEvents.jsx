@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Heading, Text, HStack, Flex, Spinner, Button } from '@chakra-ui/react';
+import { Box, Heading, Text, HStack, Flex, Spinner, Button,Divider } from '@chakra-ui/react';
 import { FaUserFriends } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { client } from '../../sanity/client';
@@ -15,7 +15,7 @@ const LATEST_EVENT_QUERY = `*[_type == "event" && eventDate > now()] | order(eve
   eventDate,
   organizer,
   body
-}`;
+}`; 
 
 
 const formatCountdown = (dateString) => {
@@ -33,26 +33,37 @@ const formatCountdown = (dateString) => {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  let result = "";
+  let result = {};
   
-  if (months > 0) {
-    result = `${months}mo ${days}d ${hours}h`;
-  } else if (days > 0) {
-    result = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  } else {
-    result = `${hours}h ${minutes}m ${seconds}s`;
+  return {
+    months: months,
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds,
   }
 
-  return {
-    text: result,
-    isPast: false
-  };
+
+  // let result = "";
+  
+  // if (months > 0) {
+  //   result = ${months}mo ${days}d ${hours}h;
+  // } else if (days > 0) {
+  //   result = ${days}d ${hours}h ${minutes}m ${seconds}s;
+  // } else {
+  //   result = ${hours}h ${minutes}m ${seconds}s;
+  // }
+
+  // return {
+  //   text: result,
+  //   isPast: false
+  // };
 };
 
 export const LatestEvent = () => {
   const [event, setEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [countdown, setCountdown] = useState("");
+  const [countdown, setCountdown] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,7 +85,7 @@ export const LatestEvent = () => {
           localStorage.setItem(`${CACHE_KEY}-time`, Date.now().toString());
           if (data.eventDate) {
             const initialCountdown = formatCountdown(data.eventDate);
-            setCountdown(initialCountdown.text);
+            setCountdown(initialCountdown);
           }
         }
       })
@@ -90,8 +101,12 @@ export const LatestEvent = () => {
 
     const timer = setInterval(() => {
       const result = formatCountdown(event.eventDate);
-      setCountdown(result.text);
-      if (result.isPast) clearInterval(timer);
+      // setCountdown(result.text);
+      setCountdown(result);
+      if (result.isPast) {
+  clearInterval(timer);
+  setCountdown(null);
+}
     }, 1000);
 
     return () => clearInterval(timer);
@@ -102,8 +117,12 @@ export const LatestEvent = () => {
 
     const excerpt = event.shortDescription || event.body?.slice(0, 100) + "...";
 
+
+
+  const isSmall = window.innerWidth < 768;
+
   return (
- <Box textAlign="center" px={{ base: 4, md: 6 }} mt={{sm:12,md:8}} mb={{sm:'18vh',lg:8}} userSelect={'none'} >
+ <Box textAlign="center" px={{ base: 4, md: 6 }} mt={{sm:12,md:8}} mb={{xs:'18vh',sm:'28vh',lg:8}} userSelect={'none'} >
   <Heading size={{ base: "lg", md: "xl" }} mb={8}>
     Επόμενη εκδήλωση
   </Heading>
@@ -114,12 +133,14 @@ export const LatestEvent = () => {
     // backdropFilter="blur(14px)"
     border="1px solid rgba(0, 46, 102, 0.96)" 
     borderRadius={'xl'}
+    m={1}
     p={{ base: 5, md: 8 }}
     maxW="lg"
     mx="auto"
+    // w={{ base: "80%", md: "100%" }}
   >
 
-     <Heading size={{ base: "md", md: "xl" }} mb={3}>
+     <Heading size={{ base: "md", md: "lg" }} mb={3}>
       {event.title}
     </Heading>
 
@@ -129,17 +150,72 @@ export const LatestEvent = () => {
       mb={3}
       color="brand.dark.secondary"
     >
-      {countdown ? countdown : "--d --h --m --s"}
+      {/* {countdown ? countdown : "--d --h --m --s"} */}
+  {countdown ? (
+  <Flex
+    justify="center"
+    align="center"
+    wrap="wrap"
+    px={{ base: 1, md: 2 }}
+    py={{ base: 1, md: 2 }}
+    gap={{ base: 2, md: 4 }}
+  >
+    {[
+      { value: countdown.months, label: "μήνες" },
+      { value: countdown.days, label: "μέρες" },
+      { value: countdown.hours, label: "ώρες" },
+      { value: countdown.minutes, label: "λεπτά" },
+      { value: countdown.seconds, label: "δευτερόλεπτα" },
+    ]
+      .filter(({ value }) => value !== null && value !== undefined)
+      .slice(0, isSmall ? 4 : 5)
+      .map(({ value, label }, index, arr) => (
+        <React.Fragment key={index}>
+          <Flex
+            direction="column"
+            align="center"
+            minW={{ base: "32px", md: "40px" }}
+          >
+            <Text
+              fontSize={{ base: "xl", md: "2xl" }}
+              fontWeight="semibold"
+            >
+              {value.toString().padStart(2, "0")}
+            </Text>
+            <Text
+              fontSize={{ base: "xs", md: "sm" }}
+              color="gray.500"
+            >
+              {label}
+            </Text>
+          </Flex>
+
+          {index < arr.length - 1 && (
+            <Divider
+              orientation="vertical"
+              borderColor="gray.600"
+              h={{ base: 5, md: 6 }}
+            />
+          )}
+        </React.Fragment>
+      ))}
+  </Flex>
+) : (
+  <Flex justify="center" align="center">
+    <Text>Loading countdown...</Text>
+  </Flex>
+)}
+
     </Text>
 
 
 
 {event.location && (
 <Flex align="baseline" mb={3} fontSize="sm">
-  <Text flex="1" whiteSpace="normal">
-    <Box as={FaMapMarkerAlt} display="inline" boxSize="12px" mr="4px" />
+  <Text flex="1" whiteSpace="normal" fontSize={{ base: "xs", md: "sm" }}>
+    <Box as={FaMapMarkerAlt} display="inline" boxSize="12px" mr="4px"  />
     Τοποθεσία:{" "}
-    <Text as="span" fontWeight="medium">
+    <Text as="span" fontWeight="medium" fontSize={{ base: "xs", md: "sm" }}>
       {event.location.name}
     </Text>
     {event.location.address && (
@@ -167,11 +243,11 @@ export const LatestEvent = () => {
       // boxShadow: "0 0 8px",
     }}
     transition="all 0.3s ease"
-    size="sm" onClick={() => navigate(`/events/${event.slug.current}`)}
+    size="sm" onClick={() =>  navigate(`/events/${event.slug.current}`)}
   >
     Μάθε περισσότερα
   </Button>
-    {/* <Button size="sm" onClick={() => navigate(`/events/${event.slug.current}`)}>
+    {/* <Button size="sm" onClick={() => navigate(/events/${event.slug.current})}>
       Μάθε περισσότερα
     </Button> */}
   </Box>

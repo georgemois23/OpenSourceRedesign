@@ -128,7 +128,7 @@ const EventPage = () => {
         <IoIosArrowRoundBack size={40} style={{ marginRight: '6px' }} />
         <Text>Όλες οι Εκδηλώσεις</Text>
       </Flex>
-
+       {new Date(event.eventDate).getTime() < Date.now() && <Text color={"brand.dark.secondary"} fontSize="lg" opacity={1} mb={4}>Έγινε η εκδήλωση</Text>}
       <Heading as="h1" fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }} fontWeight="bold" mb={6}>
         {event.title}
       </Heading>

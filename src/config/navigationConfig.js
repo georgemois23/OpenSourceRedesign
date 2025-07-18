@@ -12,10 +12,11 @@ export const NAV_ITEMS = [
     //   underConstruction: true,
     },
     {
-      label: "ΧΟΡΗΓΟΙ",
-      path: "/sponsors",
+      label: "ΕΚΔΗΛΩΣΕΙΣ",
+      path: "/events",
       type: "internal",
     },
+    
     {
       label: "ΕΓΓΡΑΦΗ",
       path: "/register",
@@ -37,6 +38,12 @@ export const NAV_ITEMS = [
       path: "/contact",
       type: "internal",
     },
+    // {
+    //   label: "ΧΟΡΗΓΟΙ",
+    //   path: "/sponsors",
+    //   type: "internal",
+    // },
+    
   ];
   
   export const SOURCES_MENU_ITEMS = [
@@ -46,12 +53,11 @@ export const NAV_ITEMS = [
       icon: <ExternalLinkIcon fontSize={14} ml={1} mb={1}/>,
       type: "external",
     },
-    // {
-    //   label: "Αποθετήριο Gitlab",
-    //   path: "https://gitlab.com/opensourceuom",
-    //   icon: <ExternalLinkIcon fontSize={14} ml={1} mb={1}/>,
-    //   type: "external",
-    // },
+    {
+      label: "ΧΟΡΗΓΟΙ",
+      path: "/sponsors",
+      type: "internal",
+    },
     {
       label: "Βίντεο",
       path: "/videos",

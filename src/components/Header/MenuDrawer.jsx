@@ -49,7 +49,15 @@ import {
               marginInline={"auto"}
             />
           </DrawerHeader>
-          <DrawerBody userSelect={'none'}>
+          {/* <DrawerBody userSelect={'none'}> */}
+          <DrawerBody 
+  userSelect="none" 
+  display="flex" 
+  flexDirection="column" 
+  overflow="hidden" 
+  p={0}
+>
+  <Box flex="1" overflowY="auto" px={4} py={4}>
           <Flex
             direction="column"
             align="center"
@@ -120,7 +128,19 @@ import {
 
 
                     </MenuButton>
-                    <MenuList borderRadius={8}  bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)" mt={0}>
+                    {/* <MenuList borderRadius={8}  bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)" mt={0}> */}
+                    <MenuList
+  position="static"
+  width={"100%"}
+  borderRadius={8}
+  bg="rgba(0, 10, 38, 1)"
+  backdropFilter="blur(4px)"
+  boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+  border="1px solid rgba(255, 255, 255, 0.15)"
+  mt={0}
+  zIndex="100"
+>
+
                       {SOURCES_MENU_ITEMS.map((item) => (
                         <MenuItem 
                           key={item.label}
@@ -157,6 +177,7 @@ import {
                 <InfoIcon pb="0.5" fontSize="18px" /> Σελίδα υπο κατασκευή
               </Text> */}
             </Flex>
+            </Box>
           </DrawerBody>
           {/* <DrawerFooter
                     justifyContent={"center"}

@@ -12,7 +12,7 @@ export const NAV_ITEMS = [
     //   underConstruction: true,
     },
     {
-      label: "ΕΚΔΗΛΩΣΕΙΣ",
+      label: "EVENTS",
       path: "/events",
       type: "internal",
     },
@@ -54,7 +54,7 @@ export const NAV_ITEMS = [
       type: "external",
     },
     {
-      label: "ΧΟΡΗΓΟΙ",
+      label: "Χορηγοί",
       path: "/sponsors",
       type: "internal",
     },

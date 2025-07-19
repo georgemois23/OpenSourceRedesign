@@ -100,7 +100,8 @@ export default function EventList() {
     return (
       <Box minH={'100vh'} px={4} py={8} mb={'10vh'} >
          <Heading as="h1" ml={4}  fontSize={{ base: "3xl", sm: "3xl", md: "3xl", lg: "4xl" }} mb={8} userSelect={'none'} >
-           Προσεχείς Εκδηλώσεις
+           {/* Προσεχείς Εκδηλώσεις */}
+           Εκδηλώσεις
          </Heading>
          <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}>
               {[...Array(6)].map((_, i) => (
@@ -153,7 +154,8 @@ export default function EventList() {
   return (
    <Box minH={'100vh'} px={4} py={8} mb={'10vh'} >
          <Heading as="h1" ml={4}  fontSize={{ base: "3xl", sm: "3xl", md: "3xl", lg: "4xl" }} mb={8} userSelect={'none'} >
-           Προσεχείς Εκδηλώσεις
+           {/* Προσεχείς Εκδηλώσεις */}
+           Εκδηλώσεις
          </Heading>
        <Wrap spacing={8} justify="center"  mx={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }} > 
         {events.map((event) => (

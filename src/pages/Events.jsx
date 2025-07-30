@@ -144,7 +144,7 @@ export default function EventList() {
 
   if (events.length === 0) {
     return (
-      <Flex textAlign="center" direction='column' justifyContent={'center'}  p={3} minH={"80vh"} h={'fit-content'} mb={10} >
+      <Flex textAlign="center" direction='column' justifyContent={'center'}  px={4} py={8} minH={"80vh"} h={'fit-content'} mb={10} >
         <Heading size="lg" mb={4}>Δεν υπάρχουν προσεχείς εκδηλώσεις</Heading>
         <Text>Προσπαθήστε ξανά αργότερα ή ακολουθήστε μας στο <Link href='https://www.instagram.com/opensourceuom/' isExternal style={{textDecoration:'underline'}}>Instagram</Link>  για να ενημερώνεστε!</Text>
       </Flex>

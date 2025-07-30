@@ -1,4 +1,4 @@
-import {Box,Flex,Text,Button,Icon,Tooltip,Image}  from "@chakra-ui/react";
+import {Box,Flex,Text,Button,Icon,Tooltip,Image, Center, VStack}  from "@chakra-ui/react";
 import '../App.css';
 import { useNavigate } from "react-router-dom";
 import { ArrowForwardIcon, ArrowDownIcon ,InfoOutlineIcon} from "@chakra-ui/icons";
@@ -13,6 +13,9 @@ import { FiUsers } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import elakkLogo from '../assets/images/eellak.png';
 import pamakLogo from '../assets/images/pamak.png';
+
+import backgroundImage from "../assets/images/code-background-.jpg";
+import Sponsors from "../components/SponsorsScroll.tsx";
 
 export default function HomePage() {
   document.title = "Αρχική - Open Source UoM";
@@ -167,31 +170,59 @@ export default function HomePage() {
   Μάθε περισσότερα για την κοινότητα μας <ArrowDownIcon />
 </Text>
 
-    <Flex ref={aboutSectionRef}   
+ <Flex
+  ref={aboutSectionRef}
+  direction="column"
+  mb={10}
+  marginInline="auto"
+  gap={2}
+  width="100vw"
+  pt={{ base: '15vh', lg: '25vh' }}
+  pb={{ base: '22vh', lg: '15vh' }}
+  px={{ sm: 4, lg: 8 }}
+  // mr={{ base: 6, lg: 12 }}
+  boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.2)"
+  bg="rgba(0, 12, 45, 0.98)" // same as current
+  bgSize="cover"
+  bgPosition="center"
+  bgRepeat="space"
+  mt={{ base: '25vw', lg: '5vh' }}
+  transform="translateY(-2px)"
+  borderTopLeftRadius={{ base: "40% 00%", lg: "0% 50%" }}
+  borderTopRightRadius={{ base: "40% 10%", lg: "120% 50%" }}
+
+>
+    {/* <Flex ref={aboutSectionRef}   
     direction='column'  
      mb={10} 
      marginInline={'auto'} 
      gap={2}   
     //  width={{base: '90vw', lg:'70vw'}}  
     width="100vw" 
-    py={{ base:12, lg: 12 }}
+    py={{ base: '12vh', lg: '15vh' }}
     // py={8}
     //  padding={4}
     px={{sm:4,lg: 8}}
     //  borderRadius={8}  
     boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.2)"
+
     bg="rgba(0, 12, 45, 0.98)" 
+    // bgImage={backgroundImage}
+    bgSize="cover"
+    bgPosition="center"
+    bgRepeat={"space"}
+
     // backdropFilter="blur(14px)"
     // borderBlock="1px solid rgba(0, 46, 102, 0.9)" 
     // border="1px solid rgba(0, 46, 102, 0.9)" 
   mt={{ base: '25vw', lg: '12vh' }}
   transform="translateY(-2px)" 
-  >
+  > */}
       <Text fontSize={{ base: 'lg', lg: '2xl' }} fontWeight={800}  textAlign="center" mb={{sm:2,md:4}}>Σχετικά με τη Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας</Text>
-    <Box  as='p' textAlign="left" lineHeight="1.1"  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+    <Box  as='p' textAlign="start" lineHeight="1.1"  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
     Η Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας είναι μια ομάδα οργανωμένη από φοιτητές/-τριες του Πανεπιστημίου Μακεδονίας, που σκοπό έχει να γνωστοποιήσει και να προωθήσει το Ελεύθερο Λογισμικό, Λογισμικό Ανοικτού Κώδικα (ΕΛ/ΛΑΚ) και Open Source Hardware. Η κοινότητα απαρτίζεται κυρίως από φοιτητές/-τριες του τμήματος της Εφαρμοσμένης Πληροφορικής, μπορεί όμως να συμμετέχει οποιοσδήποτε θέλει να βοηθήσει και να προσφέρει στην ομάδα, με όποιον τρόπο μπορεί.
  </Box>
-    <Box  as='p' textAlign="c" lineHeight="1.1" wordBreak={'break-word'}  fontFamily="Arial" px={{sm:0,md:8}}width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+    <Box  as='p' textAlign="start" lineHeight="1.1" wordBreak={'break-word'}  fontFamily="Arial" px={{sm:0,md:8}}width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
     Η συμμετοχή είναι εθελοντική και δεν είστε υποχρεωμένοι/-ες να καταβάλετε οποιοδήποτε χρηματικό ποσό εκτός και αν θέλετε να βοηθήσετε οικονομικά την ομάδα σε τυχόν έξοδα που προκύπτουν κατά καιρούς, είτε για αγορά απαραίτητου εξοπλισμού, είτε για την διοργάνωση εκδηλώσεων. Για περισσότερες πληροφορίες επικοινωνήστε με την ομάδα.
     </Box>
 
@@ -207,6 +238,7 @@ export default function HomePage() {
     </Flex>
 
     <LatestEvent />
+
      
     <Wrap
       justify="center"
@@ -216,14 +248,18 @@ export default function HomePage() {
       
     >
       <WrapItem>
-        <Image draggable="false" src={elakkLogo} alt="KDE logo" width={{ base: '550px', lg: '550px' }} height='auto' />
+        <Image draggable="false" src={elakkLogo} alt="KDE logo" width={{ base: '550px', lg: '550px' }} height='auto' onClick={() => window.open('https://eellak.ellak.gr/', '_blank')} />
       </WrapItem>
       <WrapItem>
-        <Image draggable="false" src={pamakLogo} alt="University of Macedonia logo" width={{ base: '300px', lg: '300px' }} height='auto' />
+        <Image draggable="false" src={pamakLogo} alt="University of Macedonia logo" width={{ base: '300px', lg: '300px' }} height='auto' onClick={() => window.open('https://www.uom.gr/', '_blank')} />
       </WrapItem>
     </Wrap>
 
     <LatestPosts />
+
+
+    <Sponsors />
+
     </Flex>
 
     );

@@ -17,10 +17,14 @@ import {
   import { NAV_ITEMS, SOURCES_MENU_ITEMS } from "../../config/navigationConfig";
   import { NavItem } from "./NavItem";
   import  {useNavigate,useLocation} from "react-router-dom";
+  import { useEffect, useState } from "react";
   import { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
   import { motion, AnimatePresence } from "framer-motion";
   import {CloseIcon} from "../../assets/icons";
   
+  // import AnimatedText from "../../config/AnimatedText";
+import { use } from "react";
+
   export function MenuDrawer({ isOpen, onClose }) {
     const navigate = useNavigate();
     const location = useLocation();
@@ -29,7 +33,24 @@ import {
       onClose();
     };
     const MotionDrawerContent = motion(DrawerContent);
-  
+
+
+    useEffect(() => {
+  if (isOpen) {
+    const timer = setTimeout(() => setShouldAnimate(true), 100);
+    return () => clearTimeout(timer);
+  } else {
+    setShouldAnimate(false); 
+    setMenu(false); 
+  }
+}, [isOpen]);
+
+    const [shouldAnimate, setShouldAnimate] = useState(false);
+    const [menu, setMenu] = useState(false);
+
+
+    const placement = useBreakpointValue({ xxs: 'top', xs: 'top', sm: 'bottom' });
+
     return (
       <Drawer onClose={onClose} isOpen={isOpen} size="full" closeOnBlur >
         <DrawerOverlay />
@@ -68,27 +89,58 @@ import {
             gap={{xs:2,sm:3}} 
             marginInline={"auto"}
           >
-            {NAV_ITEMS.map((item) => (
+            {/* {NAV_ITEMS.map((item) => (
               <Box 
                 key={item.path} 
                 width="100%"
                 marginInline={"auto"}
                 textAlign="center"
               >
+                <AnimatedText  key={`${item.label}-${shouldAnimate}`} texts={[item.label]} shouldAnimate={shouldAnimate} />
                 <NavItem 
                   item={item} 
                   onClose={onClose} 
                   isMobile 
                 />
               </Box>
-            ))}
-              
+            ))} */}
+
+    <AnimatePresence mode="wait">
+  {shouldAnimate &&
+    NAV_ITEMS.map((item, index) => (
+      <motion.div
+        key={item.label}
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -20, scale: 0.9 }}
+        transition={{
+          duration: 0.6,
+          delay: index * 0.15, 
+          ease: [0.22, 1, 0.36, 1], 
+        }}
+        style={{
+          width: "100%",
+          textAlign: "center",
+        }}
+        onAnimationComplete={() => {
+          if (index === NAV_ITEMS.length - 3) {
+            setMenu(true);
+          }
+        }}
+      >
+        <NavItem item={item} onClose={onClose} isMobile />
+      </motion.div>
+    ))}
+</AnimatePresence>
+
+             {menu && (
               <Menu borderRadius={8} zIndex='99999' autoSelect={false} 
               modifiers={[{ name: "flip", enabled: false }]}
-            placement={useBreakpointValue({ xxs: 'top',xs:'top', sm: 'bottom' })}
+              // placement={useBreakpointValue({ xxs: 'top',xs:'top', sm: 'bottom' })}
+              placement={placement}
               closeOnSelect={false} 
               preventOverflow
-  isLazy >
+              isLazy >
                 {({ isOpen }) => (
                   <>
                     <MenuButton
@@ -172,7 +224,7 @@ import {
                   </>
                 )}
               </Menu>
-  
+            )}
               {/* <Text position="absolute" bottom="8vh" fontWeight={200}>
                 <InfoIcon pb="0.5" fontSize="18px" /> Σελίδα υπο κατασκευή
               </Text> */}

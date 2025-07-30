@@ -157,7 +157,7 @@ const EventPage = () => {
 
         )}
 
-      <Flex direction="column" gap={4} mb={6} color="gray.500">
+      <Flex direction="column" gap={4} mb={6} color="gray.400">
         <HStack>
           <FaCalendarAlt />
           <Text>Ημερομηνία: {formattedDate}</Text>

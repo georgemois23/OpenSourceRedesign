@@ -15,7 +15,7 @@ import elakkLogo from '../assets/images/eellak.png';
 import pamakLogo from '../assets/images/pamak.png';
 
 // import backgroundImage from "../assets/images/code-background-.jpg";
-import Sponsors from "../components/SponsorsScroll.tsx";
+// import Sponsors from "../components/SponsorsScroll.tsx";
 
 export default function HomePage() {
   document.title = "Αρχική - Open Source UoM";
@@ -258,7 +258,7 @@ export default function HomePage() {
     <LatestPosts />
 
 
-    <Sponsors />
+    {/* <Sponsors /> */}
 
     </Flex>
 

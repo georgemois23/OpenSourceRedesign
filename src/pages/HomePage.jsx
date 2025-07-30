@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import elakkLogo from '../assets/images/eellak.png';
 import pamakLogo from '../assets/images/pamak.png';
 
-import backgroundImage from "../assets/images/code-background-.jpg";
+// import backgroundImage from "../assets/images/code-background-.jpg";
 import Sponsors from "../components/SponsorsScroll.tsx";
 
 export default function HomePage() {

@@ -123,9 +123,9 @@ import { use } from "react";
           textAlign: "center",
         }}
         onAnimationComplete={() => {
-          if (index === NAV_ITEMS.length - 3) {
+          // if (index === NAV_ITEMS.length - 1) {
             setMenu(true);
-          }
+          // }
         }}
       >
         <NavItem item={item} onClose={onClose} isMobile />
@@ -160,6 +160,22 @@ import { use } from "react";
                       userSelect="none"
                       sx={{ WebkitTapHighlightColor: "transparent" }}
                     >
+                       <motion.div
+        // key={item.label}
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -20, scale: 0.9 }}
+        transition={{
+          duration: 0.6,
+          delay: 0.35, 
+          ease: [0.22, 1, 0.36, 1], 
+        }}
+        style={{
+          width: "100%",
+          textAlign: "center",
+        }}
+       
+      >
 
                       ΠΗΓΕΣ 
                       {/* {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} */}
@@ -169,7 +185,7 @@ import { use } from "react";
                         initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
                         animate={{ opacity: 1, rotate: 0, scale: 1 }}
                         exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
-                        transition={{ duration: 0.1, ease: "easeOut" }}
+                        transition={{ duration: 0.9, ease: "easeOut" }}
                         style={{ display: "inline-block", marginLeft: "0.5rem" }}
                       >
                         {isOpen ? <ChevronUpIcon  boxSize={5} /> : <ChevronDownIcon boxSize={5} />}
@@ -177,21 +193,21 @@ import { use } from "react";
                     </AnimatePresence>
 
 
-
+              </motion.div>
 
                     </MenuButton>
                     {/* <MenuList borderRadius={8}  bg='rgba(0, 10, 38, 1)' backdropFilter='blur(4px)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)" mt={0}> */}
                     <MenuList
-  position="static"
-  width={"100%"}
-  borderRadius={8}
-  bg="rgba(0, 10, 38, 1)"
-  backdropFilter="blur(4px)"
-  boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-  border="1px solid rgba(255, 255, 255, 0.15)"
-  mt={0}
-  zIndex="100"
->
+                      position="static"
+                      width={"100%"}
+                      borderRadius={8}
+                      bg="rgba(0, 10, 38, 1)"
+                      backdropFilter="blur(4px)"
+                      boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
+                      border="1px solid rgba(255, 255, 255, 0.15)"
+                      mt={0}
+                      zIndex="100"
+                    >
 
                       {SOURCES_MENU_ITEMS.map((item) => (
                         <MenuItem 

@@ -10,6 +10,7 @@ import { RichTextRenderer } from "../../sanity/RichTextRenderer";
 import useSWR from 'swr';
 import LoadingThreeDotsPulse from "../../components/Loading";
 import { FaTag } from "react-icons/fa";
+import { RiArticleLine } from "react-icons/ri";
 
 
 
@@ -75,8 +76,9 @@ const PostPage = () => {
 
 if(!post){
   document.title = 'Δεν βρέθηκε το άρθρο - Open Source UoM';
-return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4} mx={1}>
-  <Heading as="h3" size="lg" mb={4} textAlign={"center"}>Το άρθρο δεν βρέθηκε</Heading>
+return (<Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4} mx={2}>
+  <Heading as="h3" size={{sm:"lg", lg:'lg'}} mb={4} textAlign={"center"}>Το άρθρο δεν βρέθηκε</Heading>
+  <RiArticleLine size={60} color={'gray.400'} />
    <Text color={'gray.500'} mb={6} textAlign={'center'} >
                   Το άρθρο που αναζητάτε δεν υπάρχει ή έχει μετακινηθεί.
               </Text>

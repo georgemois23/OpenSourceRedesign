@@ -4,10 +4,12 @@ import { client } from "../../sanity/client";
 import { useParams, useNavigate } from "react-router-dom";
 import imageUrlBuilder from "@sanity/image-url";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { MdEventBusy } from "react-icons/md";
 import { RichTextRenderer } from "../../sanity/RichTextRenderer";
 import useSWR from 'swr';
 import LoadingThreeDotsPulse from "../../components/Loading";
-import { FaTag, FaUserFriends, FaCalendarAlt,FaMapMarkerAlt } from "react-icons/fa";
+import { FaTag, FaUserFriends, FaCalendarAlt,FaMapMarkerAlt,FaRegCalendar} from "react-icons/fa";
+
 
 const EVENT_QUERY = `*[_type == "event" && slug.current == $slug][0]{
   _id,
@@ -85,9 +87,10 @@ const EventPage = () => {
   if (!event) {
     document.title = 'Δεν βρέθηκε η εκδήλωση - Open Source UoM';
     return (
-      <Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4}>
+      <Flex justifyContent="center" alignItems="center" height="80vh" mb={'10vh'} direction={'column'} gap={4} mx={2}>
         <Heading as="h3" size="lg" mb={4} textAlign={"center"}>Η εκδήλωση δεν βρέθηκε</Heading>
-        <Text color={'gray.500'} mb={6} textAlign={'center'}>
+        <FaRegCalendar size={60} color={'gray.400'} />
+        <Text color={'gray.400'} mb={6} textAlign={'center'}>
           Η εκδήλωση που αναζητάτε δεν υπάρχει ή έχει μετακινηθεί.
         </Text>
         <Button onClick={() => navigate('/events')} mt={4}>

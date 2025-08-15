@@ -177,7 +177,7 @@ import { use } from "react";
        
       >
 
-                      ΠΗΓΕΣ 
+                      MORE 
                       {/* {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} */}
                       <AnimatePresence mode="wait" initial={false}>
                       <motion.span

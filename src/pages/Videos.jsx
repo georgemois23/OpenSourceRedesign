@@ -6,6 +6,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import ResponsiveYouTube from '../components/ResponsiveYT';
 
+
 const Videos = () => {
     document.title = "Βίντεο - Open Source UoM";
     const opts = {
@@ -15,6 +16,8 @@ const Videos = () => {
         },
       };
     
+     
+
     return (
       
        <Box minH={'100vh'} px={4} py={8} mb={'10vh'} >
@@ -40,8 +43,11 @@ const Videos = () => {
                     <ResponsiveYouTube videoId="RH5aXb9ydPw" />
                 </Box>  
                 </Flex>
-           </Box>     
-          
+           </Box>
+
+      <Box textAlign={"center"} justify="center" mx={'auto'}  flex="1"  p={{ sm: 5, lg: 10 }} >
+       
+        </Box>
         </Box>
       
     );

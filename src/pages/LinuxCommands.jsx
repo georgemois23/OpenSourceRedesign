@@ -331,15 +331,17 @@ const commandCategories = [
 ];
 
 const LinuxCommands = () => {
+    document.title = 'Βασικές εντολές του LINUX - Open Source UoM';
   return (
-    <Box  minH={'100vh'} px={4} py={8} >
+    <Box  minH={'100vh'} px={4} py={8} scrollBehavior="smooth" >
                   <Heading pl={1} as="h1" size="xl" mb={8} userSelect={'none'} >
                   Βασικές εντολές του GNU/LINUX
                   </Heading>
     <Text fontSize={{ base: "sm", md: "md" }} textAlign="left" mb={4} color="gray.400">
         Εδώ θα δούμε κάποιες βασικές εντολές τερματικού
         </Text>
-    <Accordion allowMultiple mt={10} mb={10}>
+    {/* <Accordion allowMultiple mt={10} mb={10}> */}
+    <Accordion mt={10} mb={10}>
   {commandCategories.map((category, index) => (
     <AccordionItem 
       key={index} 
@@ -351,6 +353,7 @@ const LinuxCommands = () => {
     bg="rgba(0, 12, 45, 0.98)" 
     backdropFilter="blur(14px)"
     border="1px solid rgba(0, 46, 102, 0.96)"
+
     >
       <Heading as="h2" size={{ base: "md", md: "lg" }} mb={0}>
         <AccordionButton 
@@ -363,7 +366,10 @@ const LinuxCommands = () => {
         </AccordionButton>
       </Heading>
       
-      <AccordionPanel px={0} py={0}>
+      <AccordionPanel px={0} py={0} transition="all 0.3s ease-in-out"
+      maxHeight="400px" 
+  overflowY="auto"
+      >
         <TableContainer width="100%">
           <Table 
             variant="simple"

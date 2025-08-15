@@ -61,7 +61,7 @@ export default function HomePage() {
 
   const texts = [
     { content: "OPEN SOURCE", color: undefined },
-    { content: "UOM COMMUNITY", color: "gray.500" }
+    { content: "UOM COMMUNITY", color: "gray.400" }
   ];
 
   useEffect(() => {
@@ -248,10 +248,10 @@ export default function HomePage() {
       
     >
       <WrapItem>
-        <Image draggable="false" src={elakkLogo} alt="KDE logo" width={{ base: '550px', lg: '550px' }} height='auto' onClick={() => window.open('https://eellak.ellak.gr/', '_blank')} />
+        <Image draggable="false" src={elakkLogo} alt="KDE logo" width={{ base: '550px', lg: '550px' }} height='auto' cursor={'pointer'}  onClick={() => window.open('https://eellak.ellak.gr/', '_blank')} />
       </WrapItem>
       <WrapItem>
-        <Image draggable="false" src={pamakLogo} alt="University of Macedonia logo" width={{ base: '300px', lg: '300px' }} height='auto' onClick={() => window.open('https://www.uom.gr/', '_blank')} />
+        <Image draggable="false" src={pamakLogo} alt="University of Macedonia logo" width={{ base: '300px', lg: '300px' }} cursor={'pointer'} height='auto' onClick={() => window.open('https://www.uom.gr/', '_blank')} />
       </WrapItem>
     </Wrap>
 

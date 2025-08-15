@@ -104,9 +104,11 @@ export const LatestPosts = () => {
               bg="rgba(0, 10, 38, 0.95)"
                 // backdropFilter="blur(6px)"
                 boxShadow="0 8px 32px rgba(0, 0, 0, 0.5)"
-                border="1px solid rgba(255, 255, 255, 0.13)"
+                // border="1px solid rgba(255, 255, 255, 0.13)"
+                border = "1px solid rgba(255, 255, 255, 0.19)"
                 _hover={{ 
-                  transform: 'translateY(-5px)',
+                  // transform: 'translateY(-5px)',
+                  transform: 'rotate(-.4deg)',
                   boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)'
                 }}
                 transition="all 0.3s ease"

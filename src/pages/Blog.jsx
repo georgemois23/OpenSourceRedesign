@@ -56,7 +56,9 @@ export default function BlogList() {
         }
       });
   }, []);
-  
+
+ 
+
   const renderSkeletons = () => (
     <Wrap spacing={8} justify="center" align="center" marginInline={'auto'} width={{ base: '100%', md: '90%', lg: '100%' }}>
       {[...Array(6)].map((_, i) => (
@@ -97,6 +99,16 @@ export default function BlogList() {
 
  const [searchTerm, setSearchTerm] = React.useState("");
 
+ useEffect(() => {
+      if (searchTerm === '') {
+    if (typeof window !== "undefined" && typeof window.scrollTo === "function") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      document.documentElement.scrollTop = 0; // fallback
+    }
+  }
+  }, [searchTerm==='']);
+
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
     post.body
@@ -131,9 +143,11 @@ export default function BlogList() {
             borderRadius={8}
             bg="rgba(0, 10, 38, 0.95)"
             boxShadow="0 8px 32px rgba(0, 0, 0, 0.6)"
-            border="1px solid rgba(255, 255, 255, 0.13)"
-            _hover={{ transform: 'translateY(-5px)', boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)' }}
-            transition="all 0.3s ease"
+            // border="1px solid rgba(255, 255, 255, 0.13)"
+            border = "1px solid rgba(255, 255, 255, 0.24)"
+            // _hover={{ transform: 'translateY(-5px)', boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)' }}
+            _hover={{ transform: 'rotate(-.4deg)', boxShadow: '0 12px 40px rgba(0, 0, 0, 1.2)' }}
+            transition="all 0.9s ease"
             flexDirection="column"
           >
             {postImageUrl && (
@@ -219,6 +233,7 @@ export default function BlogList() {
               mb={6}
               mr={{ base: 0, md: 4 }}
               value={searchTerm}
+              border = "1.5px solid rgba(255, 255, 255, 0.24)"
               onChange={(e) => setSearchTerm(e.target.value)}/>
               </Box>
 
@@ -241,7 +256,7 @@ export default function BlogList() {
         {renderPosts(posts.slice(0, 3))}
         <Center>
           <Button mt={12} onClick={() => setSearchTerm('')}>Δείτε όλα τα  άρθρα</Button>
-        </Center>
+            </Center>
 
   </Box>
   ) : (

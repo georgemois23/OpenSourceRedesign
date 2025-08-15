@@ -163,7 +163,7 @@ const handleMouseEnter = () => {
         rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} position="relative"
         fontWeight={600}
         >
-              ΠΗΓΕΣ 
+              MORE 
                <AnimatePresence mode="wait" initial={false}>
                                     <motion.span
                                       key={isOpen ? "open" : "closed"}
